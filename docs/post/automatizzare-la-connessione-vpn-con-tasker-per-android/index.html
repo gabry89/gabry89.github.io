@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    
+      <title>
+        Automatizzare la connessione VPN con Tasker per Android ::
+        Gabriele Tips — Tech tips &amp; Personal rants
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/automatizzare-la-connessione-vpn-con-tasker-per-android/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Automatizzare la connessione VPN con Tasker per Android"/>
+<meta name="twitter:description" content="Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android"/>
+
+
+
+<meta property="og:title" content="Automatizzare la connessione VPN con Tasker per Android" />
+<meta property="og:description" content="Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/automatizzare-la-connessione-vpn-con-tasker-per-android/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-25T17:19:34+00:00" />
+<meta property="article:modified_time" content="2018-11-25T17:19:34+00:00" /><meta property="og:site_name" content="Gabriele Tips" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >root@gabriele.tips:~#</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/archive">archive</a></li>
+        
+      
+        
+          <li><a href="/privacy-policy">privacy policy</a></li>
+        
+      
+        
+          <li><a href="/whoami">whoami</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/archive">archive</a></li>
+      
+    
+      
+        <li><a href="/privacy-policy">privacy policy</a></li>
+      
+    
+      
+        <li><a href="/whoami">whoami</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Automatizzare la connessione VPN con Tasker per Android</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          25-11-2018
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+        <span class="post-read-time"
+          >— 5 min di lettura</span
+        >
+      
+    </div>
+
+    
+
+    
+      <figure class="post-cover">
+  
+    <img src="/images/pihole1-1-1-.jpeg" alt="Automatizzare la connessione VPN con Tasker per Android"/>
+  
+
+  
+</figure>
+
+    
+
+    <div class="post-content">
+      
+      <p>Da quando ho iniziato ad usare le VPN sul telefono mi sono accorto di un problema di semplice natura: ricordarmi di attivarla quando esco di casa. Spesse volte mi è capitato infatti di ricordarmene solo dopo qualche ora passata fuori casa, o ancora peggio accorgermi della mancanza di un filtro sulla navigazione quando ormai avevo già vinto 4 iPad e 9 iPhone X.</p>
+<p>L&rsquo;idea mi è quindi balzata in testa: perché non automatizzare la connessione VPN appena mi allontano dal WiFi di casa? Viceversa, appena torno a casa la VPN si deve disconnettere.</p>
+<p>Ebbene, grazie a Tasker e il client OpenVPN for Android è possibile farlo!</p>
+<p>Questa breve guida fa seguito alla mia guida iniziale su <a href="__GHOST_URL__/virtual-private-pi-holed-network/">come realizzare una VPN domestica con Pi-Hole integrato</a> da poter utilizzare fuori casa per navigare sicuri e protetti in mobilità.</p>
+<h2 id="tasker-per-android">
+  Tasker per Android
+  <a href="#tasker-per-android" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Tasker è un&rsquo;app per Android che permette di eseguire delle automazioni in base a determinate condizioni. La trovate nel <a href="https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm">Play Store</a> ad un costo di 2.99 €.</p>
+<p>Il principio di funzionamento di Tasker è molto semplice:</p>
+<p><strong>SE</strong> [CONDIZIONE DA RISPETTARE] <strong>È VERO, ALLORA</strong> [ESEGUI ATTIVITÀ]</p>
+<p>In Tasker le &ldquo;condizioni da rispettare&rdquo; si chiamano <strong>Profili</strong>. Ogni <strong>Attività</strong> può contenere una o più <strong>Azioni</strong>.</p>
+<h2 id="automatic-virtual-private-pi-holed-network">
+  AUTOMATIC Virtual Private Pi-Holed Network
+  <a href="#automatic-virtual-private-pi-holed-network" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>La logica con cui ho creato l&rsquo;automazione è la seguente:</p>
+<ul>
+<li><strong>SE</strong> [WiFi non connesso] <strong>È VERO, ALLORA</strong> [Connetti VPN]</li>
+<li><strong>SE</strong> [WiFi di casa connesso] <strong>È VERO, ALLORA</strong> [Disconnetti VPN]</li>
+</ul>
+<p>La realizzazione è abbastanza semplice, vediamola insieme.</p>
+<h2 id="creiamo-le-attività-start-vpn-e-stop-vpn">
+  Creiamo le attività &ldquo;Start VPN&rdquo; e &ldquo;Stop VPN&rdquo;
+  <a href="#creiamo-le-attivit%c3%a0-start-vpn-e-stop-vpn" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Iniziamo con la creazione delle due attività di connessione e disconnessione della VPN.</p>
+<h3 id="start-vpn">
+  Start VPN
+  <a href="#start-vpn" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Apriamo Tasker e posizioniamoci sulla tab <strong>Attività</strong>, dopodiché premiamo <strong>+</strong>, scriviamo <strong>&ldquo;Start VPN&rdquo;</strong> e poi confermiamo.</p>
+<p>A questo punto possiamo andare ad inserire una o più azioni che verranno eseguite quando verrà avviata questa attività, noi dobbiamo connettere il nostro profilo VPN salvato in OpenVPN for Android.</p>
+<p>Per farlo, premiamo <strong>+</strong> e scegliamo <strong>Sistema</strong> e <strong>Invia Intent</strong>. Vi apparirà un form dove bisogna inserire dei valori. I valori da inserire sono questi:</p>
+<p>Azione<br>
+<code>android.intent.action.MAIN</code><br>
+Cat<br>
+<code>None</code><br>
+Extra (dove &ldquo;Casa&rdquo; è il nome del vostro profilo VPN)<br>
+<code>de.blinkt.openvpn.shortcutProfileName: Casa</code><br>
+Pacchetto<br>
+<code>de.blinkt.openvpn</code><br>
+Classe<br>
+<code>de.blinkt.openvpn.LauchVPN</code><br>
+Target<br>
+<code>Activity</code></p>
+<p>Ora torniamo indietro fino al pannello principale delle attività.</p>
+<h3 id="stop-vpn">
+  Stop VPN
+  <a href="#stop-vpn" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Creiamo la seconda attività per disconnettere la VPN sempre seguendo la stessa procedura con <strong>+</strong>, scriviamo <strong>&ldquo;Stop VPN&rdquo;</strong> e confermiamo.</p>
+<p>Di nuovo qui facciamo <strong>+</strong>, <strong>Sistema</strong>, <strong>Invia Intent</strong> e scriviamo questi parametri:</p>
+<p>Azione<br>
+<code>android.intent.action.MAIN</code><br>
+Cat<br>
+<code>None</code><br>
+Extra (dove &ldquo;Casa&rdquo; è il nome del vostro profilo VPN)<br>
+<code>de.blinkt.openvpn.shortcutProfileName: Casa</code><br>
+Pacchetto<br>
+<code>de.blinkt.openvpn</code><br>
+Classe<br>
+<code>de.blinkt.openvpn.api.DisconnectVPN</code><br>
+Target<br>
+<code>Activity</code></p>
+<p>Torniamo di nuovo indietro alla home e se avete fatto tutto giusto, dovreste ritrovarvi con due Attività: <strong>&ldquo;Start VPN&rdquo;</strong> e <strong>&ldquo;Stop VPN&rdquo;</strong>.</p>
+<h2 id="creazione-dei-profili-wifi-collegato-e-non-wifi-collegato">
+  Creazione dei profili &ldquo;WIFI Collegato&rdquo; e &ldquo;Non WIFI Collegato&rdquo;
+  <a href="#creazione-dei-profili-wifi-collegato-e-non-wifi-collegato" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Ora possiamo passare alla creazione dei profili.</p>
+<h3 id="wifi-collegato">
+  WIFI Collegato
+  <a href="#wifi-collegato" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Iniziamo con la creazione del profilo <strong>&ldquo;WIFI Collegato&rdquo;</strong>, dobbiamo quindi dirgli di disconnettere la VPN se siamo connessi al nostro WiFi di casa.</p>
+<p>Spostiamoci nella tab <strong>Profili</strong>, premiamo <strong>+</strong>, selezioniamo <strong>Stato</strong> dal menu a scomparsa, poi <strong>Rete</strong> e <strong>WIFI Collegato</strong>.</p>
+<p>Nel form che vi compare, dovete semplicemente inserire il <strong>nome della vostra rete WiFi</strong> nel campo <strong>SSID</strong> e lasciare tutto il resto invariato. Ora premendo indietro per tornare alla pagina principale vi comparirà automaticamente un menu rapido dal quale possiamo scegliere l&rsquo;azione da eseguire quando si attiverà questo profilo. In questo specifico caso dovete selezionare <strong>&ldquo;Stop VPN&rdquo;</strong>.</p>
+<p>Ed ecco quindi che abbiamo creato il primo profilo:</p>
+<p><strong>SE</strong> [WiFi di casa connesso] <strong>È VERO, ALLORA</strong> [Disconnetti VPN]</p>
+
+  <figure class="left" >
+    <img src="/images/Screenshot_20181125-161151-2.png"   />
+    
+  </figure>
+
+
+<h3 id="non-wifi-collegato">
+  Non WIFI Collegato
+  <a href="#non-wifi-collegato" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Passiamo quindi alla creazione del profilo <strong>&ldquo;Non WIFI Collegato&rdquo;</strong>. Dobbiamo dire che se il WiFi viene scollegato, deve connettersi automaticamente la VPN.</p>
+<p>Procediamo quindi allo stesso modo nella tab <strong>Profili</strong>, premiamo <strong>+</strong>, selezioniamo <strong>Stato</strong> dal menu a scomparsa, poi <strong>Rete</strong> e <strong>WIFI Collegato</strong>. A questo punto dobbiamo semplicemente mettere la spunta su <strong>Inverti</strong> lasciando tutto vuoto.</p>
+<p>Torniamo indietro e ci verrà riproposto lo stesso menu rapido di prima, dove selezioniamo <strong>&ldquo;Start VPN&rdquo;</strong>.</p>
+<p>Facendo così, abbiamo creato anche il nostro secondo profilo:</p>
+<p><strong>SE</strong> [WiFi non connesso] <strong>È VERO, ALLORA</strong> [Connetti VPN]</p>
+
+  <figure class="left" >
+    <img src="/images/Screenshot_20181125-161157-2.png"   />
+    
+  </figure>
+
+
+<h2 id="salvataggio-della-configurazione">
+  Salvataggio della configurazione
+  <a href="#salvataggio-della-configurazione" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Ora che abbiamo creato le azioni e i profili, non resta che salvare tutta la configurazione. Per farlo è sufficiente premere il <strong>check</strong> sulla barra del titolo e Tasker si attiverà.</p>
+
+  <figure class="left" >
+    <img src="/images/Screenshot_20181125-162303.png"   />
+    
+  </figure>
+
+
+<h2 id="autorizzare-tasker-per-linterazione-con-openvpn">
+  Autorizzare Tasker per l&rsquo;interazione con OpenVPN
+  <a href="#autorizzare-tasker-per-linterazione-con-openvpn" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Alla prima esecuzione di un&rsquo;attività potrebbe apparirvi un popup di richiesta autorizzazione. Questo è un avviso di sicurezza di <strong>OpenVPN per Android</strong> per indicarvi che un&rsquo;applicazione di terze parti vuole interagire con i profili VPN. Qui dovete semplicemente <strong>mettere la spunta</strong> per considerare Tasker attendibile e fare <strong>Ok</strong>.</p>
+
+  <figure class="left" >
+    <img src="/images/Screenshot_20181125-170252-2.png"   />
+    
+  </figure>
+
+
+<h2 id="considerazioni-finali">
+  Considerazioni finali
+  <a href="#considerazioni-finali" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Sto utilizzando questa configurazione da circa un mesetto e posso confermarvi che il setup è abbastanza solido. So per certo però che i più attenti di voi non potranno fare a meno di notare che c&rsquo;è un piccolo &ldquo;bug&rdquo; nella mia configurazione, che si presenta nella situazione in cui si passa dalla rete WiFi di casa direttamente ad un&rsquo;altra rete WiFi. In questo specifico caso infatti il profilo &ldquo;Non WIFI Collegato&rdquo; non entra in azione, poiché il dispositivo migra direttamente da una rete WiFi ad un&rsquo;altra, non scatenando l&rsquo;evento che fa switchare il profilo.</p>
+<p>La situazione potrebbe sembrare di facile risoluzione semplicemente inserendo il nome dell&rsquo;SSID di casa insieme al parametro Inverti (SE ![SSID di Casa]), tuttavia impostando così il profilo ho riscontrato che viene attivato erroneamente nel momento in cui il telefono si connette in VPN, generando così un loop di connessione e disconnessione continua.</p>
+<p>Ammetto di non avere indagato a fondo, tuttavia il setup così impostato è perfetto per la mia esperienza d&rsquo;uso, ovvero:</p>
+<p><strong>Sono a casa -&gt;</strong> Profilo &ldquo;WiFi Collegato&rdquo;, navigo in rete locale.</p>
+<p><strong>Fuori casa in 4G -&gt;</strong> Mi sgancio dal wifi, si attiva &ldquo;Non WiFi Collegato&rdquo; e navigo in VPN.</p>
+<p><strong>Mi collego ad altri WiFi -&gt;</strong> La condizione per &ldquo;WiFi Collegato&rdquo; non viene rispettata in quanto SSID differente, quindi continuo a navigare in VPN.</p>
+<p><strong>Torno a casa -&gt;</strong> Rileva connessione al WiFi domestico, entra &ldquo;WiFi Collegato&rdquo; che disconnette la VPN.</p>
+<p>E con questo è tutto. Se avete bisogno di ulteriori informazioni, segnalarmi degli errori o fornirmi feedback, scrivetemi! ☺️</p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Leggi altri post</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/post/fastweb-e-modem-libero/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Fastweb FTTH e Modem Libero</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="/post/virtual-private-pi-holed-network/">
+                  <span class="button__text">VPPN: Virtual Private &#34;Pi-Holed&#34; Network</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >root@gabriele.tips:~#</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2022 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

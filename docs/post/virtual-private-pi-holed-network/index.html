@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    
+      <title>
+        VPPN: Virtual Private &#34;Pi-Holed&#34; Network ::
+        Gabriele Tips — Tech tips &amp; Personal rants
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Come installare OpenVPN su Pi-Hole per poterlo usare con smartphone e tablet tramite VPN!"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/virtual-private-pi-holed-network/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VPPN: Virtual Private &#34;Pi-Holed&#34; Network"/>
+<meta name="twitter:description" content="Come installare OpenVPN su Pi-Hole per poterlo usare con smartphone e tablet tramite VPN!"/>
+
+
+
+<meta property="og:title" content="VPPN: Virtual Private &#34;Pi-Holed&#34; Network" />
+<meta property="og:description" content="Come installare OpenVPN su Pi-Hole per poterlo usare con smartphone e tablet tramite VPN!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/virtual-private-pi-holed-network/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-02T16:34:08+00:00" />
+<meta property="article:modified_time" content="2018-11-02T16:34:08+00:00" /><meta property="og:site_name" content="Gabriele Tips" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >root@gabriele.tips:~#</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/archive">archive</a></li>
+        
+      
+        
+          <li><a href="/privacy-policy">privacy policy</a></li>
+        
+      
+        
+          <li><a href="/whoami">whoami</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/archive">archive</a></li>
+      
+    
+      
+        <li><a href="/privacy-policy">privacy policy</a></li>
+      
+    
+      
+        <li><a href="/whoami">whoami</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">VPPN: Virtual Private &ldquo;Pi-Holed&rdquo; Network</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          02-11-2018
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+        <span class="post-read-time"
+          >— 7 min di lettura</span
+        >
+      
+    </div>
+
+    
+
+    
+      <figure class="post-cover">
+  
+    <img src="/images/pihole1-1.jpg" alt="VPPN: Virtual Private &#34;Pi-Holed&#34; Network"/>
+  
+
+  
+</figure>
+
+    
+
+    <div class="post-content">
+      
+      <p>Chi mi conosce sa molto bene che provo un amore incondizionato per <a href="https://pi-hole.net/">Pi-Hole</a>. Navigare in una rete non protetta da Pi-Hole mi fa sentire nudo e vulnerabile, perché Pi-Hole non è un semplice ad-blocker, è un incredibile strumento per alzare in modo considerevole la sicurezza della navigazione.</p>
+<p>Senza gli ads, si riduce quasi del 100% la possibilità di venire dirottati su qualche pagina malevola a causa di malvertising.</p>
+<p>Per esempio, attacchi di questo tipo verrebbero completamente neutralizzati grazie a Pi-Hole:</p>
+
+    <style type="text/css">
+      .twitter-tweet {
+        font: 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+        border-left: 4px solid #2b7bb9;
+        padding-left: 1.5em;
+        color: #555;
+      }
+      .twitter-tweet a {
+        color: #2b7bb9;
+        text-decoration: none;
+      }
+      blockquote.twitter-tweet a:hover,
+      blockquote.twitter-tweet a:focus {
+        text-decoration: underline;
+      }
+    </style>
+  <blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Brand new Win10 laptop. Attempt to install Chrome.  Almost get owned with my very first action.  Why is this still happening in 2018, <a href="https://twitter.com/bing?ref_src=twsrc%5Etfw">@bing</a>?  Please explain. <a href="https://t.co/uYJhu7xa9H">pic.twitter.com/uYJhu7xa9H</a></p>&mdash; Gabriel Landau (@GabrielLandau) <a href="https://twitter.com/GabrielLandau/status/1055300918101598208?ref_src=twsrc%5Etfw">October 25, 2018</a></blockquote>
+
+<p>Fin dai primi giorni di utilizzo ho desiderato poter avere lo stesso livello di protezione anche in mobilità con lo smartphone. L&rsquo;idea era quella di fare una VPN per dirottare tutto il traffico di navigazione nella rete di casa e far gestire quindi i DNS da Pi-Hole. Purtroppo questa idea è durata qualche secondo, giusto il tempo di ricordarsi di avere una misera aDSL da 8Mbps/700Kbps. #FuckDigitalDivideNon potendo fare una VPN domestica a causa delle scarse prestazioni della mia rete, ho adottato per diverso tempo una VPN di terze parti, nello specifico F-Secure Freedome, che implementa un filtro per siti malevoli e tracking. Non siamo ai livelli di Pi-Hole, però mi ha aiutato a navigare in modo sicuro anche in mobilità negli ultimi due anni.</p>
+<p>Ora però la musica è cambiata. Ora ho cambiato casa e ho finalmente a disposizione una connessione stratosferica, 1Gbps/200Mbps con OpenFiber!</p>
+
+  <figure class="left" >
+    <img src="/images/asdasdasdasda.gif"   />
+    
+  </figure>
+
+
+<p>Appena ho collegato il router e ho provato con mano l&rsquo;incredibile velocità, l&rsquo;idea della VPN è tornata a solleticarmi, così una sera mi sono messo comodo sul divano e ho realizzato la mia <strong>Virtual Private Pi-Holed Network</strong>!</p>
+<p>Nota: esiste una <a href="https://docs.pi-hole.net/guides/vpn/overview/">guida ufficiale molto ben dettagliata</a>, da cui ho preso informazioni a piene mani, tuttavia parte da una Raspbian pulita senza nulla, ci installa prima OpenVPN e poi Pi-Hole. E&rsquo; molto più facile invece trovarsi in una situazione dove si ha un RPi con Pi-Hole già installato e configurato e si desidera installarci sopra la VPN.</p>
+<p>Ed è esattamente quello che faremo ora.</p>
+<p>Situazione di partenza: Raspberry Pi nella rete locale con Raspbian Lite e Pi-Hole installato e funzionante. Darò per scontato che se siete arrivati qui, sapete connettervi in SSH al vostro RPi. Consiglio prima di partire con l&rsquo;installazione, di fare un controllo su eventuali aggiornamenti disponibili:</p>
+<pre tabindex="0"><code>sudo apt update &amp;&amp; sudo apt upgrade
+</code></pre><h3 id="installiamo-openvpn-su-pi-hole">
+  Installiamo OpenVPN su Pi-Hole
+  <a href="#installiamo-openvpn-su-pi-hole" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>La prima cosa da fare è scaricare e installare OpenVPN <a href="https://en.wikipedia.org/wiki/Road_warrior_(computing)">road warrior</a>. Connettetevi in SSH al RPi ed eseguite questo comando:</p>
+<pre tabindex="0"><code>wget https://git.io/vpn -O openvpn-install.sh
+chmod 755 openvpn-install.sh
+sudo ./openvpn-install.sh
+</code></pre><p>Verrà eseguita la procedura guidata per l&rsquo;installazione. E&rsquo; molto semplice e basta inserire poche informazioni chiave. Vi consiglio di tenere le stesse impostazioni che ho messo io e cambiare solamente il vostro indirizzo pubblico e il nome del client alla fine:</p>
+<pre tabindex="0"><code>Welcome to this quick OpenVPN &#34;road warrior&#34; installer
+
+I need to ask you a few questions before starting the setup
+You can leave the default options and just press enter if you are ok with them
+
+First I need to know the IPv4 address of the network interface you want OpenVPN
+listening to.
+IP address: 10.8.0.1
+
+This server is behind NAT. What is the public IPv4 address or hostname?
+Public IP address / hostname: x.x.x.x 
+#Nota: qui dovete inserire il vostro IP pubblico di casa
+
+Which protocol do you want for OpenVPN connections?
+   1) UDP (recommended)
+   2) TCP
+Protocol [1-2]: 1
+
+What port do you want OpenVPN listening to?
+Port: 1194
+
+Which DNS do you want to use with the VPN?
+   1) Current system resolvers
+   2) Google
+   3) OpenDNS
+   4) NTT
+   5) Hurricane Electric
+   6) Verisign
+DNS [1-6]: 1
+
+Finally, tell me your name for the client certificate
+Please, use one word only, no special characters
+Client name: GabrielePixel2 
+#Nota: qui dovete inserire un nome profilo per il vostro utente remoto
+
+Okay, that was all I needed. We are ready to setup your OpenVPN server now
+Press any key to continue...
+</code></pre><p>A questo punto partirà l&rsquo;installazione e terminerà così:</p>
+<pre tabindex="0"><code>Finished!
+
+Your client configuration is available at /root/GabrielePixel2.ovpn
+If you want to add more clients, you simply need to run this script again!
+</code></pre><p>Il file che ha generato è il profilo <code>.ovpn</code> da copiare nel vostro client per poter effettuare la connessione. Di default lo salva in <code>/root/</code>, vi consiglio di spostarlo nella vostra home per poterlo prelevare dal RPi con più semplicità:</p>
+<pre tabindex="0"><code>cd ~
+sudo mv /root/GabrielePixel2.ovpn GabrielePixel2.ovpn
+</code></pre><p>A seconda della configurazione del vostro RPi, potrebbe essere necessario diventare proprietari del file per poterlo gestire. Se usate l&rsquo;utente di default <code>pi</code> basta digitare:</p>
+<pre tabindex="0"><code>sudo chown pi:pi GabrielePixel2.ovpn
+</code></pre><p>Di questo file ci occuperemo più avanti. Procediamo con la configurazione del server VPN.</p>
+<h3 id="configuriamo-openvpn-server">
+  Configuriamo OpenVPN Server
+  <a href="#configuriamo-openvpn-server" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Ora dobbiamo cambiare i resolver DNS per l&rsquo;interfaccia <code>tun0</code> creata dallo script di OpenVPN. Prima però ci serve sapere l&rsquo;IP di questa interfaccia. Se non avete cambiato nulla in fase di installazione rispetto alla guida, dovrebbe avere indirizzo <code>10.8.0.1</code>, in alternativa potete sempre verificare con questi semplici comandi</p>
+<p>Per Raspbian Jessie:</p>
+<pre tabindex="0"><code>ifconfig tun0 | grep &#39;inet addr&#39;
+</code></pre><p>Per Raspbian Stretch:</p>
+<pre tabindex="0"><code>ip a
+</code></pre><p>Annotiamoci l&rsquo;IP dell&rsquo;interfaccia <code>tun0</code>, quindi andiamo a modificare il file di configurazione di OpenVPN:</p>
+<pre tabindex="0"><code>sudo nano /etc/openvpn/server.conf
+</code></pre><p>Cercate all&rsquo;interno del file la riga che inizia con <code>push &quot;dhcp option DNS x.x.x.x&quot;</code> e modificatela con l&rsquo;IP della vostra <code>tun0</code>:</p>
+<pre tabindex="0"><code>push &#34;dhcp-option DNS 10.8.0.1&#34;
+</code></pre><p>Chiudete salvando il file e riavviate il servizio di OpenVPN:</p>
+<pre tabindex="0"><code>sudo service openvpn restart
+</code></pre><p>Ora colleghiamoci al pannello admin web di Pi-Hole, nelle impostazioni, sezione DNS, impostate l&rsquo;interfaccia di ascolto su &ldquo;Listen on all interfaces&rdquo; e salvate:</p>
+
+  <figure class="left" >
+    <img src="/images/Screenshot_2018-11-02-Pi-hole-Admin-Console.png"   />
+    
+      <figcaption class="center" >Listen on all interfaces</figcaption>
+    
+  </figure>
+
+
+<p>A questo punto il server OpenVPN è configurato e funzionante con Pi-Hole come resolver DNS! 👏</p>
+<h3 id="port-forward-dal-router">
+  Port Forward dal router
+  <a href="#port-forward-dal-router" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Per poter accedere da fuori è necessario esporre su internet la porta 1194 UDP del vostro RPi. Non vi lascio una guida per farlo perché cambia a seconda del router che avete, però vi consiglio di fare molta attenzione ad esporre SOLAMENTE la porta 1194 UDP e non tutto il RPi. <strong>Non mettete il RPi in DMZ!!</strong></p>
+<h3 id="esportiamo-il-file-ovpn">
+  Esportiamo il file .ovpn
+  <a href="#esportiamo-il-file-ovpn" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Ora possiamo provare a connetterci alla nostra VPN, però prima dobbiamo recuperare il nostro file di configurazione <code>.ovpn</code> dal RPi e copiarlo sullo smartphone. Per farlo è sufficiente connettersi con un client SFTP e prelevare dalla home directory il file. Se siete su Windows vi consiglio <a href="https://winscp.net/eng/docs/lang:it">WinSCP</a>. Salvate pure il file <code>.ovpn</code> dove volete nel vostro smartphone, non è importante.</p>
+<p>Se volete, potete creare ulteriori nuovi utenti semplicemente eseguendo di nuovo lo script iniziale</p>
+<pre tabindex="0"><code>sudo ./openvpn-install.sh
+</code></pre><p>Questa volta apparirà un menu differente, dove potremo creare un nuovo profilo <code>.ovpn</code> da usare per esempio su un altro device.</p>
+<pre tabindex="0"><code>Looks like OpenVPN is already installed
+
+What do you want to do?
+   1) Add a new user
+   2) Revoke an existing user
+   3) Remove OpenVPN
+   4) Exit
+Select an option [1-4]: 1
+
+Tell me a name for the client certificate
+Please, use one word only, no special characters
+Client name: iPhone7
+</code></pre><p>La procedura per esportare il file .ovpn è la medesima riportata sopra.</p>
+<h3 id="connettiamoci-alla-vpn">
+  Connettiamoci alla VPN
+  <a href="#connettiamoci-alla-vpn" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Procediamo quindi all&rsquo;installazione del client OpenVPN. Su Android vi consiglio OpenVPN for Android, poiché è un&rsquo;alternativa OpenSource al client ufficiale e permette una personalizzazione più granulare.</p>
+<p>Ora dovete solamente importare il profilo <code>.ovpn</code> nell&rsquo;app e provare a connettervi.</p>
+<p>Nota: potete cambiare liberamente il nome della connessione. Per esempio io l&rsquo;ho chiamata <code>Casa</code>.</p>
+
+  <figure class="left" >
+    <img src="/images/Screenshot_20181102-153132.png"   />
+    
+  </figure>
+
+
+<p>Se tutto è stato fatto come da manuale, dovrebbe connettersi e dovreste riuscire a navigare.</p>
+
+  <figure class="left" >
+    <img src="/images/Screenshot--2-nov-2018-17_30_49-.png"   />
+    
+  </figure>
+
+
+<p>Come prova dell&rsquo;effettiva navigazione con Pi-Hole, potete provare a visitare questo sito: <a href="https://blockads.fivefilters.org/?pihole">https://blockads.fivefilters.org/?pihole</a></p>
+
+  <figure class="left" >
+    <img src="/images/Screenshot_2018-11-02-Block-Ads--1.png"   />
+    
+  </figure>
+
+
+<p>Se vi restituisce questo messaggio, potete farvi i complimenti, avete appena creato la vostra <strong>Virtual Private Pi-Holed Network</strong>!</p>
+<h3 id="heading">
+  
+  <a href="#heading" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Leggi altri post</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/post/automatizzare-la-connessione-vpn-con-tasker-per-android/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Automatizzare la connessione VPN con Tasker per Android</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="/post/perche-dazn-consiglia-edge/">
+                  <span class="button__text">Perché DAZN consiglia Edge e Internet Explorer?</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >root@gabriele.tips:~#</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2022 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

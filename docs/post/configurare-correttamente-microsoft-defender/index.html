@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    
+      <title>
+        Configurare correttamente Microsoft Defender ::
+        Gabriele Tips — Tech tips &amp; Personal rants
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/configurare-correttamente-microsoft-defender/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configurare correttamente Microsoft Defender"/>
+<meta name="twitter:description" content="Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti"/>
+
+
+
+<meta property="og:title" content="Configurare correttamente Microsoft Defender" />
+<meta property="og:description" content="Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/configurare-correttamente-microsoft-defender/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-03-20T14:18:12+00:00" />
+<meta property="article:modified_time" content="2022-03-20T14:18:12+00:00" /><meta property="og:site_name" content="Gabriele Tips" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >root@gabriele.tips:~#</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/archive">archive</a></li>
+        
+      
+        
+          <li><a href="/privacy-policy">privacy policy</a></li>
+        
+      
+        
+          <li><a href="/whoami">whoami</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/archive">archive</a></li>
+      
+    
+      
+        <li><a href="/privacy-policy">privacy policy</a></li>
+      
+    
+      
+        <li><a href="/whoami">whoami</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Configurare correttamente Microsoft Defender</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          20-03-2022
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+        <span class="post-read-time"
+          >— 6 min di lettura</span
+        >
+      
+    </div>
+
+    
+
+    
+      <figure class="post-cover">
+  
+    <img src="/images/defender-header.webp" alt="Configurare correttamente Microsoft Defender"/>
+  
+
+  
+</figure>
+
+    
+
+    <div class="post-content">
+      
+      <p>Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti.</p>
+<p>Negli ultimi anni Microsoft ha fatto enormi investimenti ed evoluzioni per alzare il livello di sicurezza di base di Defender. I primi tentativi lasciavano un po&rsquo; a desiderare, tuttavia recentemente è arrivato a competere con le soluzioni di protezione più famose e in alcuni casi ne esce persino migliore.</p>
+<p>Defender, nella sua configurazione di base, offre una protezione che si potrebbe considerare già sopra la media, tuttavia nasconde delle opzioni che possono essere attivate manualmente per incrementare di molto il livello di protezione e la sicurezza dell&rsquo;intero sistema.</p>
+<p>Alcune di queste opzioni si attivano dalle Impostazioni di Windows, altre invece sono un po&rsquo; più nascoste e si attivano solamente tramite dei comandi PowerShell.</p>
+<p>Fortunatamente, esiste un semplice strumento di terze parti che permette di configurare tutte queste opzioni da una comoda interfaccia.</p>
+<blockquote>
+<p>Se si possiede una soluzione di protezione a pagamento con l&rsquo;abbonamento scaduto, occorre disinstallarla immediatamente. Una protezione in abbonamento senza licenza è totalmente inefficace e vi fornisce una falsa sensazione di sicurezza!</p>
+</blockquote>
+<h2 id="configure-defender">
+  Configure Defender
+  <a href="#configure-defender" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Lo strumento si chiama Configure Defender e lo possiamo scaricare da questo repository GitHub. L&rsquo;eseguibile da scaricare è &ldquo;ConfigureDefender.exe&rdquo;.</p>
+<p><a href="https://github.com/AndyFul/ConfigureDefender">https://github.com/AndyFul/ConfigureDefender</a></p>
+<p>All&rsquo;apertura veniamo accolti con una serie di pulsanti e selettori, raggruppati per sezioni.</p>
+
+  <figure class="center" >
+    <img src="/images/configure-defender.png"   />
+    
+      <figcaption class="center" >L&rsquo;interfaccia principale di ConfigureDefender</figcaption>
+    
+  </figure>
+
+
+<p>È possibile andare ad impostare ogni singola voce, oppure usare delle configurazione pre-impostate ottimali.</p>
+<p>Nello specifico, l&rsquo;impostazione che consiglio di attivare è <strong>HIGH</strong>.</p>
+<p>L&rsquo;impostazione HIGH attiva molte delle funzionalità di protezione contro gli exploit, attiva la Network Protection e molte delle regole di riduzione della superficie di attacco (ASR).</p>
+<p><strong>Per attivarla è sufficiente cliccare su HIGH, attendere qualche secondo la comparsa della finestra di conferma e riavviare il computer.</strong></p>
+
+  <figure class="center" >
+    <img src="/images/image-2.png"   />
+    
+      <figcaption class="center" >Avviso di conferma di avvenuta configurazione</figcaption>
+    
+  </figure>
+
+
+<p><strong>Fatto! In pochi minuti avete appena eseguito un aggiornamento veramente sostanziale a Microsoft Defender e alla sicurezza del vostro computer.</strong></p>
+<blockquote>
+<p>Questa configurazione funziona solamente se non sono presenti altre soluzioni di protezione antivirus installate nel sistema (es. McAfee, Norton, etc&hellip;).</p>
+</blockquote>
+<p>Ma cosa abbiamo fatto? Se siete curiosi, vediamo un po&rsquo; nel dettaglio qualche impostazione.</p>
+<h2 id="funzionalità-antimalware-attivate-con-limpostazione-high">
+  Funzionalità antimalware attivate con l&rsquo;impostazione HIGH
+  <a href="#funzionalit%c3%a0-antimalware-attivate-con-limpostazione-high" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h4 id="pua-protection-on">
+  PUA Protection [On]
+  <a href="#pua-protection-on" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Le applicazioni potenzialmente indesiderate (PUA) sono una categoria di software che può rallentare il funzionamento del computer, visualizzare annunci indesiderati o, nel peggiore dei casi, installare altro software senza il vostro consenso. Protezione imprescindibile.</p>
+<blockquote>
+<p><em>Approfondimento tecnico:</em></p>
+<p><a href="https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus?view=o365-worldwide</a></p>
+</blockquote>
+<h4 id="cloud-protection-level-highest">
+  Cloud Protection Level [Highest]
+  <a href="#cloud-protection-level-highest" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>La protezione Cloud è la forma di protezione più avanzata presente nei moderni antivirus e antimalware. Usa la potenza di elaborazione del Cloud per determinare se un file è o meno una minaccia. Per farla breve, abbiamo girato la manopola un po&rsquo; più aggressiva.</p>
+<blockquote>
+<p><em>Approfondimento tecnico:</em></p>
+<p><a href="https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/specify-cloud-protection-level-microsoft-defender-antivirus?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/specify-cloud-protection-level-microsoft-defender-antivirus?view=o365-worldwide</a></p>
+</blockquote>
+<h4 id="cloud-check-time-limit-20s">
+  Cloud Check Time Limit [20s]
+  <a href="#cloud-check-time-limit-20s" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Quando Microsoft Defender trova un nuovo file sospetto, può impedire l&rsquo;esecuzione del file mentre verifica sul servizio Cloud di protezione l&rsquo;esito della scansione. Questa funzione si chiama BAFS (Block At First Sight).</p>
+<p>Il periodo predefinito per il blocco del file è di 10 secondi, con questa impostazione l&rsquo;abbiamo portato ad un massimo 20 secondi.</p>
+<p>Terminati i 20 secondi, se Defender non ha ancora ricevuto una risposta, il file verrà sbloccato ed eseguito, ma la scansione continuerà comunque nel Cloud fino alla ricezione del risultato. Se dovesse risultare malevolo dopo i 20 secondi, il file verrà inserito in quarantena.</p>
+<p>Nella maggior parte dei casi, il risultato della scansione Cloud avviene ben prima dei 20 secondi.</p>
+<blockquote>
+<p><em>Approfondimento tecnico:</em></p>
+<p><a href="https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-cloud-block-timeout-period-microsoft-defender-antivirus?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-cloud-block-timeout-period-microsoft-defender-antivirus?view=o365-worldwide</a></p>
+</blockquote>
+<h4 id="exploit-guard-attack-surface-reduction-asr">
+  EXPLOIT GUARD Attack Surface Reduction (ASR)
+  <a href="#exploit-guard-attack-surface-reduction-asr" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Nella sezione EXPLOIT GUARD di Configure Defender vengono riportate tutte le impostazioni attivate per la riduzione della superficie di attacco.</p>
+
+  <figure class="left" >
+    <img src="/images/image-3.png"   />
+    
+      <figcaption class="center" >Sezione relativa alle regole ASR</figcaption>
+    
+  </figure>
+
+
+<p>Queste funzionalità di riduzione della superficie di attacco sono l&rsquo;introduzione più interessante fatta da Microsoft negli ultimi anni. Le regole ASR mirano a chiudere o disattivare funzionalità di sistema pericolose che non vengono quasi mai usate dagli utenti, ma vengono spesso abusate dai malware per eseguire comandi malevoli e ottenere l&rsquo;accesso al computer.</p>
+<p>Per dirla breve, mette le sbarre a quella finestra che non usate mai e non sapete di avere, ma che fa tanto gola ai ladri.</p>
+<p>Le regole ASR sono numerose e la loro spiegazione nel dettaglio può risultare complessa per chi non è molto pratico. Oltretutto, l&rsquo;attivazione di una regola ASR può comportare dei falsi positivi, ovvero il blocco del funzionamento di una applicazione benigna.</p>
+<p>La configurazione a HIGH attiva solamente le regole ASR che nel 99% dei casi non causano problemi nell&rsquo;uso quotidiano, ma bloccano la stragrande maggioranza delle funzionalità di Windows usate dai malware. Per fare qualche esempio:</p>
+<ul>
+<li>impedisce alle macro di Office di fare chiamate di sistema pericolose</li>
+<li>impedisce agli scripts di lanciare eseguibili scaricati da internet</li>
+<li>impedisce l&rsquo;esecuzione di scripts offuscati, spesso nascosti negli allegati e-mail</li>
+<li>blocca l&rsquo;esecuzione di processi non firmati da chiavette USB</li>
+</ul>
+<p>La lista delle regole ASR è in costante aumento e verranno introdotte molte altre regole nel prossimo futuro.</p>
+<blockquote>
+<p><em>Approfondimento tecnico:</em></p>
+<p><a href="https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide</a></p>
+</blockquote>
+<blockquote>
+<p><em>Se volete leggere l&rsquo;esperienza di un team tecnico che ha implementato le ASR in ambiente business corporate:</em></p>
+<p><a href="https://blog.palantir.com/microsoft-defender-attack-surface-reduction-recommendations-a5c7d41c3cf8">https://blog.palantir.com/microsoft-defender-attack-surface-reduction-recommendations-a5c7d41c3cf8</a></p>
+</blockquote>
+<h4 id="network-protection-on">
+  Network Protection [ON]
+  <a href="#network-protection-on" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>La Network Protection è abbastanza parlante e il suo funzionamento è molto semplice: impedisce di accedere a domini e IP pericolosi come phishing, scam e siti che ospitano malware.</p>
+
+  <figure class="center" >
+    <img src="/images/image-4.png"   />
+    
+      <figcaption class="center" >Notifica di blocco</figcaption>
+    
+  </figure>
+
+
+<h2 id="altre-impostazioni-avanzate-per-esperti">
+  Altre impostazioni avanzate per esperti
+  <a href="#altre-impostazioni-avanzate-per-esperti" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Come avrete notato, Microsoft Defender presenta molte altre funzioni che la configurazione HIGH non ha attivato. Sono funzioni avanzate, che possono generare falsi positivi se non vengono gestite correttamente.</p>
+<p>Consiglio di approfondire il funzionamento solo se si è consapevoli e se sapete fare una ricerca tecnica su Google.</p>
+<p>Per esempio la funzione di Controlled Folder Access permette di impedire ai ransomware di cifrare le cartelle dei documenti, ma la protezione è estremamente severa e il rischio di bloccare l&rsquo;accesso ad applicazioni sicure è molto frequente. Attivatela solo se siete disposti a voler gestire qualche falso positivo da aggiungere alle esclusioni.</p>
+<p>Volendo è possibile impostare Defender in modalità &ldquo;paranoia&rdquo;, bloccando tutti gli eseguibili che non hanno raggiunto un certo livello di prevalenza, età o non vengano aggiunti ad una lista sicura da parte di Microsoft.</p>
+
+  <figure class="left" >
+    <img src="/images/image-5.png"   />
+    
+  </figure>
+
+
+<p>È una funzionalità estremamente utile per i computer che necessitano di un livello di protezione senza compromessi, ma il rischio di vedersi bloccato qualche aggiornamento di un software che usate solo voi e pochi altri è estremamente elevato.</p>
+<h2 id="testare-il-corretto-funzionamento">
+  Testare il corretto funzionamento
+  <a href="#testare-il-corretto-funzionamento" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>La configurazione proposta è pensata per un uso massivo comune e non dovrebbe causare falsi positivi nell&rsquo;uso quotidiano. Nello specifico, l&rsquo;unica parte che potrebbe causare qualche falso positivo in qualche caso specifico sono le regole ASR, ma mi vengono in mente solo scenari aziendali con software particolari tipo gestionali balordi mal progettati o macro incredibilmente complesse che operano ad un livello molto integrato con il sistema.</p>
+<p>Per un uso domestico o piccolo ufficio, questa configurazione garantisce un aumento considerevole della sicurezza con un rischio pressoché nullo di falsi positivi.</p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Leggi altri post</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/post/furto-dati-ho-mobile-cosa-rischio-cosa-fare/">
+                  <span class="button__text">Furto dati ho. Mobile – Cosa rischio? Cosa fare?</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >root@gabriele.tips:~#</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2022 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
