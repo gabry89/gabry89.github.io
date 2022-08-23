@@ -1,7 +1,8 @@
-baseURL: "/"
+baseURL: ""
 title: Gabriele Tips
 paginate: 5
 theme: PaperMod
+publishDir: "docs"
 
 enableRobotsTXT: true
 buildDrafts: false

@@ -1,10 +1,10 @@
 ---
-title: "echo \"Hello world!\""
+title: 'echo \"Hello world!\"'
 date: 2018-07-13T11:57:31.000Z
 #description: "Da qualche parte si deve pur iniziare."
 draft: false
 cover: 
-    image: /images/hello-world-program-php.png
+    image: "/images/hello-world-program-php.png"
 slug: echo-hello-world
 summary: "Da qualche parte si deve pur iniziare."
 ---

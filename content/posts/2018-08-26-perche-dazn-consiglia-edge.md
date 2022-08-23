@@ -6,7 +6,7 @@ draft: false
 cover: 
     image: /images/dazn-og.jpg
 slug: perche-dazn-consiglia-edge
-summary: L'account ufficiale DAZN consiglia di usare Edge e Internet Explorer per una migliore esperienza di visione. Bevuti il cervello? Non proprio.
+summary: "L'account ufficiale DAZN consiglia di usare Edge e Internet Explorer per una migliore esperienza di visione. Bevuti il cervello? Non proprio."
 ---
 
 
