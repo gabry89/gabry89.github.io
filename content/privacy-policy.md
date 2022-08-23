@@ -6,6 +6,10 @@ cover:
 slug: privacy-policy
 summary: Privacy Policy
 title: Privacy Policy
+hidemeta: true
+ShowShareButtons: false
+ShowPostNavLinks: false
+ShowBreadCrumbs: false
 ---
 
 Qui non ci sono tracker, annunci e cookie di nessun genere.
