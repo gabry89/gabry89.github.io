@@ -1,12 +1,13 @@
-+++
-title = "Fastweb FTTH e Modem Libero"
-date = 2019-04-03T21:02:50Z
-description = "Una breve guida per utilizzare il modem libero proprietario con Fastweb FTTH e togliere il FASTGate."
-draft = false
-cover = "/images/thomas-jensen-602189-unsplash.webp"
-slug = "fastweb-e-modem-libero"
-summary = "Una breve guida per utilizzare il modem libero proprietario con Fastweb FTTH e togliere il FASTGate."
-+++
+---
+title: Fastweb FTTH e Modem Libero
+date: 2019-04-03T21:02:50.000Z
+#description: Una breve guida per utilizzare il modem libero proprietario con Fastweb FTTH e togliere il FASTGate.
+draft: false
+cover: 
+    image: /images/thomas-jensen-602189-unsplash.webp
+slug: fastweb-e-modem-libero
+summary: Una breve guida per utilizzare il modem libero proprietario con Fastweb FTTH e togliere il FASTGate.
+---
 
 
 **AGGIORNAMENTO del 01/03/2020**

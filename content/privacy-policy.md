@@ -1,12 +1,12 @@
-+++
-description = "privacy policy"
-draft = false
-cover = "/images/chris-yang-1tnS_BVy9Jk-unsplash-1.jpg"
-slug = "privacy-policy"
-summary = "Privacy Policy"
-title = "Privacy Policy"
-readingtime = false
-+++
+---
+description: privacy policy
+draft: false
+cover: 
+    image: /images/chris-yang-1tnS_BVy9Jk-unsplash-1.jpg
+slug: privacy-policy
+summary: Privacy Policy
+title: Privacy Policy
+---
 
 Qui non ci sono tracker, annunci e cookie di nessun genere.
 

@@ -1,12 +1,13 @@
-+++
-title = "Automatizzare la connessione VPN con Tasker per Android"
-date = 2018-11-25T17:19:34Z
-description = "Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android"
-draft = false
-cover = "/images/pihole1-1-1-.jpeg"
-slug = "automatizzare-la-connessione-vpn-con-tasker-per-android"
-summary = "Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android"
-+++
+---
+title: Automatizzare la connessione VPN con Tasker per Android
+date: 2018-11-25T17:19:34.000Z
+#description: Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android
+draft: false
+cover: 
+    image: /images/pihole1-1-1-.jpeg
+slug: automatizzare-la-connessione-vpn-con-tasker-per-android
+summary: Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android
+---
 
 
 Da quando ho iniziato ad usare le VPN sul telefono mi sono accorto di un problema di semplice natura: ricordarmi di attivarla quando esco di casa. Spesse volte mi è capitato infatti di ricordarmene solo dopo qualche ora passata fuori casa, o ancora peggio accorgermi della mancanza di un filtro sulla navigazione quando ormai avevo già vinto 4 iPad e 9 iPhone X.

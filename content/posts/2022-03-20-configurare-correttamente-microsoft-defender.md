@@ -1,12 +1,13 @@
-+++
-title = "Configurare correttamente Microsoft Defender"
-date = 2022-03-20T14:18:12Z
-description = "Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti"
-draft = false
-cover = "/images/defender-header.webp"
-slug = "configurare-correttamente-microsoft-defender"
-summary = "Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti"
-+++
+---
+title: Configurare correttamente Microsoft Defender
+date: 2022-03-20T14:18:12Z
+#description: Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti
+draft: false
+cover:
+    image: /images/defender-header.webp
+slug: configurare-correttamente-microsoft-defender
+summary: Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti
+---
 
 
 Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti.
@@ -49,7 +50,7 @@ Ma cosa abbiamo fatto? Se siete curiosi, vediamo un po' nel dettaglio qualche im
 
 ## Funzionalità antimalware attivate con l'impostazione HIGH
 
-#### PUA Protection [On]
+### PUA Protection [On]
 
 Le applicazioni potenzialmente indesiderate (PUA) sono una categoria di software che può rallentare il funzionamento del computer, visualizzare annunci indesiderati o, nel peggiore dei casi, installare altro software senza il vostro consenso. Protezione imprescindibile.
 
@@ -57,7 +58,7 @@ Le applicazioni potenzialmente indesiderate (PUA) sono una categoria di software
 >
 >[https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus?view=o365-worldwide](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/detect-block-potentially-unwanted-apps-microsoft-defender-antivirus?view=o365-worldwide)
 
-#### Cloud Protection Level [Highest]
+### Cloud Protection Level [Highest]
 
 La protezione Cloud è la forma di protezione più avanzata presente nei moderni antivirus e antimalware. Usa la potenza di elaborazione del Cloud per determinare se un file è o meno una minaccia. Per farla breve, abbiamo girato la manopola un po' più aggressiva.
 
@@ -65,7 +66,7 @@ La protezione Cloud è la forma di protezione più avanzata presente nei moderni
 >
 >[https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/specify-cloud-protection-level-microsoft-defender-antivirus?view=o365-worldwide](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/specify-cloud-protection-level-microsoft-defender-antivirus?view=o365-worldwide)
 
-#### Cloud Check Time Limit [20s]
+### Cloud Check Time Limit [20s]
 
 Quando Microsoft Defender trova un nuovo file sospetto, può impedire l'esecuzione del file mentre verifica sul servizio Cloud di protezione l'esito della scansione. Questa funzione si chiama BAFS (Block At First Sight).
 
@@ -79,7 +80,7 @@ Nella maggior parte dei casi, il risultato della scansione Cloud avviene ben pri
 >
 >[https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-cloud-block-timeout-period-microsoft-defender-antivirus?view=o365-worldwide](https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-cloud-block-timeout-period-microsoft-defender-antivirus?view=o365-worldwide)
 
-#### EXPLOIT GUARD Attack Surface Reduction (ASR)
+### EXPLOIT GUARD Attack Surface Reduction (ASR)
 
 Nella sezione EXPLOIT GUARD di Configure Defender vengono riportate tutte le impostazioni attivate per la riduzione della superficie di attacco.
 
@@ -108,7 +109,7 @@ La lista delle regole ASR è in costante aumento e verranno introdotte molte alt
 >
 >[https://blog.palantir.com/microsoft-defender-attack-surface-reduction-recommendations-a5c7d41c3cf8](https://blog.palantir.com/microsoft-defender-attack-surface-reduction-recommendations-a5c7d41c3cf8)
 
-#### Network Protection [ON]
+### Network Protection [ON]
 
 La Network Protection è abbastanza parlante e il suo funzionamento è molto semplice: impedisce di accedere a domini e IP pericolosi come phishing, scam e siti che ospitano malware.
 

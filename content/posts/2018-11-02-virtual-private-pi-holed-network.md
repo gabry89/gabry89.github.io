@@ -1,12 +1,13 @@
-+++
-title = "VPPN: Virtual Private \"Pi-Holed\" Network"
-date = 2018-11-02T16:34:08Z
-description = "Come installare OpenVPN su Pi-Hole per poterlo usare con smartphone e tablet tramite VPN!"
-draft = false
-cover = "/images/pihole1-1.jpg"
-slug = "virtual-private-pi-holed-network"
-summary = "Come installare OpenVPN su Pi-Hole per poterlo usare con smartphone e tablet tramite VPN!"
-+++
+---
+title: 'VPPN: Virtual Private "Pi-Holed" Network'
+date: 2018-11-02T16:34:08.000Z
+#description: Come installare OpenVPN su Pi-Hole per poterlo usare con smartphone e tablet tramite VPN!
+draft: false
+cover: 
+   image: /images/pihole1-1.jpg
+slug: virtual-private-pi-holed-network
+summary: Come installare OpenVPN su Pi-Hole per poterlo usare con smartphone e tablet tramite VPN!
+---
 
 
 Chi mi conosce sa molto bene che provo un amore incondizionato per [Pi-Hole](https://pi-hole.net/). Navigare in una rete non protetta da Pi-Hole mi fa sentire nudo e vulnerabile, perché Pi-Hole non è un semplice ad-blocker, è un incredibile strumento per alzare in modo considerevole la sicurezza della navigazione.
@@ -203,8 +204,3 @@ Come prova dell'effettiva navigazione con Pi-Hole, potete provare a visitare que
 {{< figure src="/images/Screenshot_2018-11-02-Block-Ads--1.png" >}}
 
 Se vi restituisce questo messaggio, potete farvi i complimenti, avete appena creato la vostra **Virtual Private Pi-Holed Network**!
-
-### 
-
-
-

@@ -1,6 +1,6 @@
-+++
-title = "Archive"
-layout = "list"
-url = "/archive"
-type = "archive"
-+++
+---
+title: "Archive"
+layout: "archives"
+url: "/archives/"
+summary: archives
+---

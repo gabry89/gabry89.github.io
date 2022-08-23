@@ -1,12 +1,13 @@
-+++
-title = "Ghost 2.0 e si vola!"
-date = 2018-08-21T15:23:04Z
-description = "Questo post non ha nessuna utilità"
-draft = false
-cover = "/images/editor.png"
-slug = "ghost-2-0-e-si-vola"
-summary = "Questo post non ha nessuna utilità"
-+++
+---
+title: Ghost 2.0 e si vola!
+date: 2018-08-21T15:23:04.000Z
+#description: Questo post non ha nessuna utilità
+draft: false
+cover: 
+    image: /images/editor.png
+slug: ghost-2-0-e-si-vola
+summary: Questo post non ha nessuna utilità
+---
 
 
 Questo post non ha nessuna utilità, serve solo per testare se l'aggiornamento a Ghost 2.0 ha sfasciato qualcosa. Sembrerebbe tutto ok.

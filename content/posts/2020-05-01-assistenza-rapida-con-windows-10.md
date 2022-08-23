@@ -1,12 +1,13 @@
-+++
-title = "Assistenza Rapida con Windows 10"
-date = 2020-05-01T22:47:12Z
-description = ""
-draft = false
-cover = "/images/4dbc0be0702fce0f625b06e1c4d3d8f403405893.webp"
-slug = "assistenza-rapida-con-windows-10"
-summary = "Windows 10 integra un comodo strumento di Assistenza Rapida per fornire supporto remoto"
-+++
+---
+title: Assistenza Rapida con Windows 10
+date: 2020-05-01T22:47:12.000Z
+#description: Windows 10 integra un comodo strumento di Assistenza Rapida per fornire supporto remoto
+draft: false
+cover: 
+    image: /images/4dbc0be0702fce0f625b06e1c4d3d8f403405893.webp
+slug: assistenza-rapida-con-windows-10
+summary: Windows 10 integra un comodo strumento di Assistenza Rapida per fornire supporto remoto
+---
 
 
 Windows 10 integra di base un comodo strumento per poter offrire assistenza remota, senza dover scaricare software di terze parti come i più famosi TeamViewer o AnyDesk.

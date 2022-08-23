@@ -1,12 +1,13 @@
-+++
-title = "Perché DAZN consiglia Edge e Internet Explorer?"
-date = 2018-08-26T12:41:07Z
-description = "L'account ufficiale DAZN consiglia di usare Edge e Internet Explorer per una migliore esperienza di visione. Bevuti il cervello? Non proprio."
-draft = false
-cover = "/images/dazn-og.jpg"
-slug = "perche-dazn-consiglia-edge"
-summary = "L'account ufficiale DAZN consiglia di usare Edge e Internet Explorer per una migliore esperienza di visione. Bevuti il cervello? Non proprio."
-+++
+---
+title: Perché DAZN consiglia Edge e Internet Explorer?
+date: 2018-08-26T12:41:07.000Z
+#description: L'account ufficiale DAZN consiglia di usare Edge e Internet Explorer per una migliore esperienza di visione. Bevuti il cervello? Non proprio.
+draft: false
+cover: 
+    image: /images/dazn-og.jpg
+slug: perche-dazn-consiglia-edge
+summary: L'account ufficiale DAZN consiglia di usare Edge e Internet Explorer per una migliore esperienza di visione. Bevuti il cervello? Non proprio.
+---
 
 
 L'altro giorno l'account ufficiale [@DAZN_IT](https://twitter.com/DAZN_IT) ha riportato una serie di consigli utili per migliorare la qualità dello streaming. Uno fra tutti, nello specifico il punto 4, ha fatto sbarellare tutti.

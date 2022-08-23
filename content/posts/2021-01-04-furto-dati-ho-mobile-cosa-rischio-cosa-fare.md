@@ -1,12 +1,13 @@
-+++
-title = "Furto dati ho. Mobile – Cosa rischio? Cosa fare?"
-date = 2021-01-04T14:18:04Z
-description = "Furto dati \"ho. Mobile\". Mi devo preoccupare? Cosa rischio? Devo cambiare operatore?"
-draft = false
-cover = "/images/EqXOP0VXAAAsVwX.webp"
-slug = "furto-dati-ho-mobile-cosa-rischio-cosa-fare"
-summary = "Furto dati \"ho. Mobile\". Mi devo preoccupare? Cosa rischio? Devo cambiare operatore?"
-+++
+---
+title: Furto dati ho. Mobile – Cosa rischio? Cosa fare?
+date: 2021-01-04T14:18:04.000Z
+#description: Furto dati "ho. Mobile". Mi devo preoccupare? Cosa rischio? Devo cambiare operatore?
+draft: false
+cover: 
+    image: /images/EqXOP0VXAAAsVwX.webp
+slug: furto-dati-ho-mobile-cosa-rischio-cosa-fare
+summary: Furto dati "ho. Mobile". Mi devo preoccupare? Cosa rischio? Devo cambiare operatore?
+---
 
 
 Probabilmente ne avrete sentito parlare, il 28 dicembre un utente anonimo su un forum del dark web affermava di aver violato l’operatore virtuale di Vodafone, “ho. Mobile”, rubando una notevole quantità di dati personali tra nome, cognome, numero di telefono, codice fiscale, e-mail, data e luogo di nascita, nazionalità e indirizzo e ultimo, ma non meno importante, il codice ICCID della SIM per effettuare la portabilità del numero ad un altro operatore.

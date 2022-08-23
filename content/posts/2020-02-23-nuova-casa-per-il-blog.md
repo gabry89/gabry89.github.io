@@ -1,12 +1,13 @@
-+++
-title = "Nuova casa per il blog"
-date = 2020-02-23T14:22:51Z
-description = "Ho trasferito il blog su una nuova infrastruttura per ottimizzare i costi"
-draft = false
-cover = "/images/plattform-hetzner-cloud.svg"
-slug = "nuova-casa-per-il-blog"
-summary = "Ho trasferito il blog su una nuova infrastruttura per ottimizzare i costi"
-+++
+---
+title: Nuova casa per il blog
+date: 2020-02-23T14:22:51.000Z
+#description: Ho trasferito il blog su una nuova infrastruttura per ottimizzare i costi
+draft: false
+cover: 
+    image: /images/plattform-hetzner-cloud.svg
+slug: nuova-casa-per-il-blog
+summary: Ho trasferito il blog su una nuova infrastruttura per ottimizzare i costi
+---
 
 
 In una sera di noia, ho trasferito questo blog e il dominio su una nuova infrastruttura per ottimizzare la gestione e i costi.
