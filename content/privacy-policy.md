@@ -1,5 +1,5 @@
 ---
-description: privacy policy
+#description: privacy policy
 draft: false
 cover: 
     image: /images/chris-yang-1tnS_BVy9Jk-unsplash-1.jpg

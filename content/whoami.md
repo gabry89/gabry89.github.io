@@ -1,5 +1,5 @@
 ---
-description: whoami
+#description: whoami
 draft: false
 slug: whoami
 title: whoami
