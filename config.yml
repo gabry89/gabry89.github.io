@@ -1,6 +1,6 @@
-baseURL: ""
+baseURL: "https://gabriele.tips"
 title: Gabriele Tips
-paginate: 5
+paginate: 10
 theme: PaperMod
 publishDir: "docs"
 
@@ -77,7 +77,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Gabriele Tips"
-    Content: Tech Tips & Personal Rants
+    Content: "Tech Tips & Personal Rants"
 
   socialIcons:
     - name: twitter
@@ -101,7 +101,7 @@ params:
     hiddenInSingle: false # hide on single page
 
   editPost:
-    URL: "https://github.com/<path_to_repo>/content"
+    URL: "https://github.com/gabry89/gabry89.github.io/tree/main/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
