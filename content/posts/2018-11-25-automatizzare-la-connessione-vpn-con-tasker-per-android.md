@@ -4,7 +4,7 @@ date: 2018-11-25T17:19:34.000Z
 #description: Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android
 draft: false
 cover: 
-    image: /images/pihole1-1-1-.jpeg
+    image: /images/pihole1-1-1-.jpg
 slug: automatizzare-la-connessione-vpn-con-tasker-per-android
 summary: Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android
 ---
