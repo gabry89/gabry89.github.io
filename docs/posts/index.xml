@@ -2,56 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Gabriele Tips</title>
-    <link>/posts/</link>
+    <link>https://gabry89.github.io/posts/</link>
     <description>Recent content in Posts on Gabriele Tips</description>
     <image>
-      <url>%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://gabry89.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gabry89.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 20 Mar 2022 14:18:12 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Mar 2022 14:18:12 +0000</lastBuildDate><atom:link href="https://gabry89.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configurare correttamente Microsoft Defender</title>
-      <link>/posts/configurare-correttamente-microsoft-defender/</link>
+      <link>https://gabry89.github.io/posts/configurare-correttamente-microsoft-defender/</link>
       <pubDate>Sun, 20 Mar 2022 14:18:12 +0000</pubDate>
       
-      <guid>/posts/configurare-correttamente-microsoft-defender/</guid>
+      <guid>https://gabry89.github.io/posts/configurare-correttamente-microsoft-defender/</guid>
       <description>Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti</description>
     </item>
     
     <item>
       <title>Furto dati ho. Mobile – Cosa rischio? Cosa fare?</title>
-      <link>/posts/furto-dati-ho-mobile-cosa-rischio-cosa-fare/</link>
+      <link>https://gabry89.github.io/posts/furto-dati-ho-mobile-cosa-rischio-cosa-fare/</link>
       <pubDate>Mon, 04 Jan 2021 14:18:04 +0000</pubDate>
       
-      <guid>/posts/furto-dati-ho-mobile-cosa-rischio-cosa-fare/</guid>
+      <guid>https://gabry89.github.io/posts/furto-dati-ho-mobile-cosa-rischio-cosa-fare/</guid>
       <description>Furto dati &amp;ldquo;ho. Mobile&amp;rdquo;. Mi devo preoccupare? Cosa rischio? Devo cambiare operatore?</description>
     </item>
     
     <item>
       <title>Assistenza Rapida con Windows 10</title>
-      <link>/posts/assistenza-rapida-con-windows-10/</link>
+      <link>https://gabry89.github.io/posts/assistenza-rapida-con-windows-10/</link>
       <pubDate>Fri, 01 May 2020 22:47:12 +0000</pubDate>
       
-      <guid>/posts/assistenza-rapida-con-windows-10/</guid>
+      <guid>https://gabry89.github.io/posts/assistenza-rapida-con-windows-10/</guid>
       <description>Windows 10 integra un comodo strumento di Assistenza Rapida per fornire supporto remoto</description>
     </item>
     
     <item>
       <title>Nuova casa per il blog</title>
-      <link>/posts/nuova-casa-per-il-blog/</link>
+      <link>https://gabry89.github.io/posts/nuova-casa-per-il-blog/</link>
       <pubDate>Sun, 23 Feb 2020 14:22:51 +0000</pubDate>
       
-      <guid>/posts/nuova-casa-per-il-blog/</guid>
+      <guid>https://gabry89.github.io/posts/nuova-casa-per-il-blog/</guid>
       <description>Ho trasferito il blog su una nuova infrastruttura per ottimizzare i costi</description>
     </item>
     
     <item>
       <title>Fastweb FTTH e Modem Libero</title>
-      <link>/posts/fastweb-e-modem-libero/</link>
+      <link>https://gabry89.github.io/posts/fastweb-e-modem-libero/</link>
       <pubDate>Wed, 03 Apr 2019 21:02:50 +0000</pubDate>
       
-      <guid>/posts/fastweb-e-modem-libero/</guid>
+      <guid>https://gabry89.github.io/posts/fastweb-e-modem-libero/</guid>
       <description>&lt;p&gt;&lt;strong&gt;AGGIORNAMENTO del 01/03/2020&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Questo articolo è stato scritto diversi mesi fa. Potrebbe non essere più attuale e potrebbe consigliare procedure non più attuabili con i nuovi router e le nuove attivazioni Fastweb.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ARTICOLO ORIGINALE&lt;/strong&gt;&lt;/p&gt;
@@ -61,55 +61,55 @@
     
     <item>
       <title>Automatizzare la connessione VPN con Tasker per Android</title>
-      <link>/posts/automatizzare-la-connessione-vpn-con-tasker-per-android/</link>
+      <link>https://gabry89.github.io/posts/automatizzare-la-connessione-vpn-con-tasker-per-android/</link>
       <pubDate>Sun, 25 Nov 2018 17:19:34 +0000</pubDate>
       
-      <guid>/posts/automatizzare-la-connessione-vpn-con-tasker-per-android/</guid>
+      <guid>https://gabry89.github.io/posts/automatizzare-la-connessione-vpn-con-tasker-per-android/</guid>
       <description>Configurare Tasker per automatizzare la connessione VPN con OpenVPN per Android</description>
     </item>
     
     <item>
       <title>VPPN: Virtual Private &#34;Pi-Holed&#34; Network</title>
-      <link>/posts/virtual-private-pi-holed-network/</link>
+      <link>https://gabry89.github.io/posts/virtual-private-pi-holed-network/</link>
       <pubDate>Fri, 02 Nov 2018 16:34:08 +0000</pubDate>
       
-      <guid>/posts/virtual-private-pi-holed-network/</guid>
+      <guid>https://gabry89.github.io/posts/virtual-private-pi-holed-network/</guid>
       <description>Come installare OpenVPN su Pi-Hole per poterlo usare con smartphone e tablet tramite VPN!</description>
     </item>
     
     <item>
       <title>Perché DAZN consiglia Edge e Internet Explorer?</title>
-      <link>/posts/perche-dazn-consiglia-edge/</link>
+      <link>https://gabry89.github.io/posts/perche-dazn-consiglia-edge/</link>
       <pubDate>Sun, 26 Aug 2018 12:41:07 +0000</pubDate>
       
-      <guid>/posts/perche-dazn-consiglia-edge/</guid>
+      <guid>https://gabry89.github.io/posts/perche-dazn-consiglia-edge/</guid>
       <description>L&amp;rsquo;account ufficiale DAZN consiglia di usare Edge e Internet Explorer per una migliore esperienza di visione. Bevuti il cervello? Non proprio.</description>
     </item>
     
     <item>
       <title>Ghost 2.0 e si vola!</title>
-      <link>/posts/ghost-2-0-e-si-vola/</link>
+      <link>https://gabry89.github.io/posts/ghost-2-0-e-si-vola/</link>
       <pubDate>Tue, 21 Aug 2018 15:23:04 +0000</pubDate>
       
-      <guid>/posts/ghost-2-0-e-si-vola/</guid>
+      <guid>https://gabry89.github.io/posts/ghost-2-0-e-si-vola/</guid>
       <description>Questo post non ha nessuna utilità</description>
     </item>
     
     <item>
       <title>Malware nascosti in file .lnk</title>
-      <link>/posts/malware-in-file-lnk/</link>
+      <link>https://gabry89.github.io/posts/malware-in-file-lnk/</link>
       <pubDate>Fri, 13 Jul 2018 21:50:11 +0000</pubDate>
       
-      <guid>/posts/malware-in-file-lnk/</guid>
+      <guid>https://gabry89.github.io/posts/malware-in-file-lnk/</guid>
       <description>L&amp;rsquo;altro giorno mi è stata segnalata una mail malevola decisamente interessante.</description>
     </item>
     
     <item>
       <title>echo \&#34;Hello world!\&#34;</title>
-      <link>/posts/echo-hello-world/</link>
+      <link>https://gabry89.github.io/posts/echo-hello-world/</link>
       <pubDate>Fri, 13 Jul 2018 11:57:31 +0000</pubDate>
       
-      <guid>/posts/echo-hello-world/</guid>
+      <guid>https://gabry89.github.io/posts/echo-hello-world/</guid>
       <description>Da qualche parte si deve pur iniziare.</description>
     </item>
     
