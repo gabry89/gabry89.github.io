@@ -4,7 +4,7 @@ date: 2020-05-01T22:47:12.000Z
 #description: Windows 10 integra un comodo strumento di Assistenza Rapida per fornire supporto remoto
 draft: false
 cover: 
-    image: /images/4dbc0be0702fce0f625b06e1c4d3d8f403405893.webp
+    image: /images/4dbc0be0702fce0f625b06e1c4d3d8f403405893.jpg
 slug: assistenza-rapida-con-windows-10
 summary: Windows 10 integra un comodo strumento di Assistenza Rapida per fornire supporto remoto
 ---

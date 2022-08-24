@@ -4,7 +4,7 @@ date: 2022-03-20T14:18:12Z
 #description: Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti
 draft: false
 cover:
-    image: /images/defender-header.webp
+    image: /images/defender-header.jpg
 slug: configurare-correttamente-microsoft-defender
 summary: Windows include Microsoft Defender, un software antimalware integrato con il sistema in grado di proteggere il computer dalle minacce più recenti
 ---

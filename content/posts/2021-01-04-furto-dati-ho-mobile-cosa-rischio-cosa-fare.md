@@ -4,7 +4,7 @@ date: 2021-01-04T14:18:04.000Z
 #description: Furto dati "ho. Mobile". Mi devo preoccupare? Cosa rischio? Devo cambiare operatore?
 draft: false
 cover: 
-    image: /images/EqXOP0VXAAAsVwX.webp
+    image: /images/EqXOP0VXAAAsVwX.jpg
 slug: furto-dati-ho-mobile-cosa-rischio-cosa-fare
 summary: Furto dati "ho. Mobile". Mi devo preoccupare? Cosa rischio? Devo cambiare operatore?
 ---

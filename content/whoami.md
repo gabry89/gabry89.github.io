@@ -4,7 +4,7 @@ draft: false
 slug: whoami
 title: whoami
 cover: 
-    image: /images/cover-whoami.webp
+    image: /images/cover-whoami.jpg
 hidemeta: true
 ShowShareButtons: false
 ShowPostNavLinks: false
