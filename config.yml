@@ -1,4 +1,4 @@
-baseURL: "https://gabriele.tips"
+baseURL: "#"
 title: Gabriele Tips
 paginate: 10
 theme: PaperMod
