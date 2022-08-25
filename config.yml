@@ -3,6 +3,8 @@ title: Gabriele Tips
 paginate: 10
 theme: PaperMod
 publishDir: "docs"
+defaultContentLanguage: "it"
+
 
 enableRobotsTXT: true
 buildDrafts: false
@@ -101,7 +103,7 @@ params:
 
   editPost:
     URL: "https://github.com/gabry89/gabry89.github.io/tree/main/content"
-    Text: "Suggest Changes" # edit text
+    Text: "Suggerisci modifica" # edit text
     appendFilePath: true # to append file path to Edit link
 
   # for search
@@ -116,8 +118,8 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: archive
-      name: archive
+    - identifier: archivio
+      name: archivio
       url: /archives/
       weight: 10
     - identifier: privacy policy
