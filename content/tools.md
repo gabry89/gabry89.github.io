@@ -14,7 +14,7 @@ Allegato strano? Sito sospetto? Un IP continua a martellare il vostro server?
 In questa pagina cercherò di raccogliere tutti gli strumenti online e i servizi per eseguire delle analisi di malware, domini o file sospetti.  
 
 🔗 - Analizza url e link
-📄 - Analizza file
+📄 - Analizza file  
 
 **[urlscan.io](https://urlscan.io) 🔗**
 Permette di caricare un URL in una sandbox per avere uno screenshot e mostrare tantissime altre informazioni utili come domini contattati e DOM inspection.
