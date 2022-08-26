@@ -11,7 +11,7 @@ title = "Tools"
 Ultimo aggiornamento: 23/07/2018 21:15
 
 Allegato strano? Sito sospetto? Un IP continua a martellare il vostro server?
-In questa pagina cercherò di raccogliere tutti gli strumenti online e i servizi per eseguire delle analisi di malware, domini o file sospetti.
+In questa pagina cercherò di raccogliere tutti gli strumenti online e i servizi per eseguire delle analisi di malware, domini o file sospetti.  
 
 🔗 - Analizza url e link
 📄 - Analizza file
