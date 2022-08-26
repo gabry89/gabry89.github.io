@@ -9,7 +9,6 @@ slug: echo-hello-world
 summary: "Da qualche parte si deve pur iniziare."
 ---
 
-ß
 Da qualche parte si deve pur iniziare.  
 Questo blog nasce dalla voglia di avere un luogo dove scrivere qualcosa di più di un semplice tweet, senza dipendere da piattaforme di terze parti.  
 Mettendo insieme anche il desiderio di giocare un po' con AWS e roba nuova, ho deciso di usare Ghost e hostarlo su una EC2 t2.micro. Il dominio è registrato su Route 53.  
