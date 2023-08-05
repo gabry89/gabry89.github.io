@@ -3,7 +3,7 @@
     <title>Gabriele Tips</title>
     <link href="https://gabriele.tips/feed.xml" rel="self" />
     <link href="https://gabriele.tips" />
-    <updated>2023-08-05T18:07:03+02:00</updated>
+    <updated>2023-08-05T20:03:55+02:00</updated>
     <author>
         <name>Gabriele</name>
     </author>
@@ -17,17 +17,17 @@
         <link href="https://gabriele.tips/forse-questa-e-la-volta-buona/"/>
         <id>https://gabriele.tips/forse-questa-e-la-volta-buona/</id>
 
-        <updated>2023-08-05T18:03:18+02:00</updated>
+        <updated>2023-08-05T20:03:55+02:00</updated>
             <summary>
                 <![CDATA[
-                    Questa storia nasce più o meno un anno fa, nell’agosto 2022 quando un po’ curioso e un po’ annoiato decisi di approfondire meglio il mondo dei generatori statici come Hugo, Jekyll e compagnia. Quando adottai Ghost come strumento per questo blog, era ancora una piattaforma&hellip;
+                    Questa storia nasce più o meno un anno fa, nell’agosto 2022 quando un po’ curioso e un po’ annoiato decisi di approfondire meglio il mondo dei generatori statici come Hugo, Jekyll e compagnia. Quando adottai Ghost come strumento per questo blog era ancora una piattaforma&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>Questa storia nasce più o meno un anno fa, nell’agosto 2022 quando un po’ curioso e un po’ annoiato decisi di approfondire meglio il mondo dei generatori statici come Hugo, Jekyll e compagnia. </p>
 <h2 id="voglio-solo-uno-spazio-dove-scrivere">Voglio solo uno spazio dove scrivere</h2>
-<p>Quando adottai Ghost come strumento per questo blog, era ancora una piattaforma dedicata al semplice blogging, ora il CMS si è trasformato in uno strumento per monetizzare contenuti e generare fidelizzazione, implementando tutto uno stack di iscrizioni a pagamento, newsletter, etc. Tutte cose che a me non servono.</p>
+<p>Quando adottai Ghost come strumento per questo blog era ancora una piattaforma dedicata al semplice blogging, ora il CMS si è trasformato in uno strumento per monetizzare contenuti e generare fidelizzazione, implementando tutto uno stack di iscrizioni a pagamento, newsletter, etc. Tutte cose che a me non servono.</p>
 <p>In aggiunta a questo fastidio, la mia istanza ubuntu su cui gira questo macinino è arrivata praticamente a fine vita e avrei dovuto migrare il tutto per la seconda volta. A complicare il tutto, Hetzner ha aumentato il costo a ben 3.82 euro al mese. </p>
 <p>E quindi iniziai guardarmi in giro e vedere un po’ questi strumenti per generare siti statici.</p>
 <p>Una noiosa sera di un noioso agosto del 2022 mi misi a leggere qualche documentazione su Hugo e a cercare qualche tool di migrazione da Ghost a Hugo.</p>
