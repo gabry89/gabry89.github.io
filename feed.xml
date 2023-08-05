@@ -3,7 +3,7 @@
     <title>Gabriele Tips</title>
     <link href="https://gabriele.tips/feed.xml" rel="self" />
     <link href="https://gabriele.tips" />
-    <updated>2023-08-05T17:49:26+02:00</updated>
+    <updated>2023-08-05T18:03:18+02:00</updated>
     <author>
         <name>Gabriele</name>
     </author>
@@ -17,7 +17,7 @@
         <link href="https://gabriele.tips/forse-questa-e-la-volta-buona/"/>
         <id>https://gabriele.tips/forse-questa-e-la-volta-buona/</id>
 
-        <updated>2023-08-05T17:49:26+02:00</updated>
+        <updated>2023-08-05T18:03:18+02:00</updated>
             <summary>
                 <![CDATA[
                     Questa storia nasce più o meno un anno fa, nell’agosto 2022 quando un po’ curioso e un po’ annoiato decisi di approfondire meglio il mondo dei generatori statici come Hugo, Jekyll e compagnia. Quando adottai Ghost come strumento per questo blog, era ancora una piattaforma&hellip;
@@ -41,7 +41,7 @@
 <p>…ma passò qualche giorno, poi qualche settimana, e alla fine non ne feci più nulla.</p>
 <h2 id="it-works-but">It works, but…</h2>
 <p>C’era qualcosa di questo setup che non mi convinceva al 100%. Hugo è potente, lo usano in tantissimi, ma dipendere da un template fatto da terzi per avere un buon ranking della qualità del sito? Passare a mano tutte le immagini con un tool?</p>
-<p>Sì avrei potuto tranquillamente sbattermene le palle, ma c’era qualcosa che non mi convinceva, e alla fine ha prevalso o status quo per un altro anno intero. Almeno, fino ad oggi.</p>
+<p>Sì avrei potuto tranquillamente sbattermene le palle, ma c’era qualcosa che non mi convinceva, e alla fine ha prevalso lo status quo per un altro anno intero. Almeno, fino ad oggi.</p>
 <p>Illuminato di nuovo dallo spirito santo della forza di volontà, e un po’ perché mi è ricapitato sotto al naso, ho provato a dare una chance ad uno strumento di publishing un po’ di nicchia: Publii (<a href="https://getpublii.com">https://getpublii.com</a>).</p>
 <h2 id="publii">Publii</h2>
 <p>Alcuni considerano Publii un abominio, né carne né pesce, il peggio dei due mondi.
