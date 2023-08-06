@@ -3,7 +3,7 @@
     <title>Gabriele Tips</title>
     <link href="https://gabriele.tips/feed.xml" rel="self" />
     <link href="https://gabriele.tips" />
-    <updated>2023-08-06T00:50:05+02:00</updated>
+    <updated>2023-08-06T11:47:06+02:00</updated>
     <author>
         <name>Gabriele</name>
     </author>
@@ -243,16 +243,16 @@ Per me è “match made in heaven” per il mio caso d’uso.</p>
         <link href="https://gabriele.tips/privacy-policy/"/>
         <id>https://gabriele.tips/privacy-policy/</id>
 
-        <updated>2023-08-06T00:47:17+02:00</updated>
+        <updated>2023-08-06T11:47:06+02:00</updated>
             <summary>
                 <![CDATA[
-                    Qui non ci sono tracker, annunci e cookie di nessun genere. Il sito è generato con Publii e ospitato su Cloudflare Pages. Se consideri Cloudflare Pages lesivo della tua privacy, premi Ctrl + W (con Mac Command + W) per caricare una versione alternativa. Buona&hellip;
+                    Qui non ci sono tracker, annunci e cookie di nessun genere. Il sito è generato con Publii e ospitato su GitHub Pages. Se consideri GitHub Pages lesivo della tua privacy, premi Ctrl + W (con Mac Command + W) per caricare una versione alternativa. Buona&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>Qui non ci sono tracker, annunci e cookie di nessun genere.</p>
-<p>Il sito è generato con <a href="https://getpublii.com" target="_blank" rel="noopener noreferrer">Publii</a> e ospitato su Cloudflare Pages.<br>Se consideri Cloudflare Pages lesivo della tua privacy, premi <code>Ctrl + W</code> (con Mac <code>Command + W</code>) per caricare una versione alternativa.</p>
+<p>Il sito è generato con <a href="https://getpublii.com" target="_blank" rel="noopener noreferrer">Publii</a> e ospitato su GitHub Pages.<br>Se consideri GitHub Pages lesivo della tua privacy, premi <code>Ctrl + W</code> (con Mac <code>Command + W</code>) per caricare una versione alternativa.</p>
 <p>Buona lettura!</p>
             ]]>
         </content>
