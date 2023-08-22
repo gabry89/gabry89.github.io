@@ -3,7 +3,7 @@
     <title>Gabriele Tips</title>
     <link href="https://gabriele.tips/feed.xml" rel="self" />
     <link href="https://gabriele.tips" />
-    <updated>2023-08-22T18:37:27+02:00</updated>
+    <updated>2023-08-22T18:48:07+02:00</updated>
     <author>
         <name>Gabriele</name>
     </author>
@@ -17,7 +17,7 @@
         <link href="https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/"/>
         <id>https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/</id>
 
-        <updated>2023-08-22T18:36:44+02:00</updated>
+        <updated>2023-08-22T18:48:07+02:00</updated>
             <summary>
                 <![CDATA[
                     Recentemente mi sono imbattuto di nuovo in questa vulnerabilità di Windows che ai tempi avevo deliberatamente deciso di ignorare a causa della scarsa documentazione sulla questione. A distanza di qualche mese, la situazione sembra essere più chiara ed è possibile verificare in modo efficiente se&hellip;
@@ -27,7 +27,7 @@
             <![CDATA[
                 
   <p>
-    Recentemente mi sono imbattuto di nuovo in questa vulnerabilità di Windows che ai tempi avevo deliberatamente deciso di ignorare a causa della scarsa documentazione sulla questione.
+    Recentemente mi sono imbattuto di nuovo in questa vulnerabilità di Windows che ai tempi avevo deliberatamente deciso di ignorare a causa della scarsa documentazione sulla questione.<br>
   </p>
 
   <p>
@@ -35,8 +35,16 @@
   </p>
 
   <p>
-    Vediamo poi come utilizzare una Custom Compliance Policy di Microsoft Intune per verificare la presenza della vulnerabilità nel nostro ambiente.
+    Vediamo poi come utilizzare una Custom Compliance Policy di Microsoft Intune per verificare la presenza della vulnerabilità nel nostro ambiente.<br><br>
   </p>
+
+  <div class="post__toc">
+    <h3>Indice</h3>
+    <ul>
+      <li><a href="#cose-la-vulnerabilita-cve-2022-41099">Cos'è la vulnerabilità CVE-2022-41099</a></li><li><a href="#verificare-manualmente-la-vulnerabilita">Verificare manualmente la vulnerabilità</a></li><li><a href="#introduzione-alle-custom-compliance-policies-con-intune">Introduzione alle Custom Compliance Policies con Intune</a></li><li><a href="#creiamo-la-nostra-policy-di-compliance">Creiamo la nostra Policy di Compliance</a><ul><li><a href="#script-powershell-di-detection">Script PowerShell di detection</a></li><li><a href="#json-di-configurazione">JSON di configurazione</a></li><li><a href="#configuriamo-il-tutto-nella-dashboard">Configuriamo il tutto nella Dashboard</a></li></ul></li><li><a href="#come-applicare-la-patch-per-cve-2022-41099">Come applicare la patch per CVE-2022-41099</a></li><li><a href="#1-click-winre-downloadandamppatch">1-Click WinRE Download&amp;Patch</a></li><li><a href="#per-concludere">Per concludere</a></li>
+    </ul>
+  </div>
+  
 
     <h2 id="cose-la-vulnerabilita-cve-2022-41099">
       Cos'è la vulnerabilità CVE-2022-41099
