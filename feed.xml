@@ -3,12 +3,828 @@
     <title>Gabriele Tips</title>
     <link href="https://gabriele.tips/feed.xml" rel="self" />
     <link href="https://gabriele.tips" />
-    <updated>2023-08-08T16:09:44+02:00</updated>
+    <updated>2023-08-22T18:10:13+02:00</updated>
     <author>
         <name>Gabriele</name>
     </author>
     <id>https://gabriele.tips</id>
 
+    <entry>
+        <title>Verificare la vulnerabilità WinRE CVE-2022-41099 con Intune</title>
+        <author>
+            <name>Gabriele</name>
+        </author>
+        <link href="https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/"/>
+        <id>https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/</id>
+
+        <updated>2023-08-22T18:10:13+02:00</updated>
+            <summary>
+                <![CDATA[
+                    Recentemente mi sono imbattuto di nuovo in questa vulnerabilità di Windows che ai tempi avevo deliberatamente deciso di ignorare a causa della scarsa documentazione sulla questione. A distanza di qualche mese, la situazione sembra essere più chiara ed è possibile verificare in modo efficiente se&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                
+  <p>
+    Recentemente mi sono imbattuto di nuovo in questa vulnerabilità di Windows che ai tempi avevo deliberatamente deciso di ignorare a causa della scarsa documentazione sulla questione.
+  </p>
+
+  <p>
+    A distanza di qualche mese, la situazione sembra essere più chiara ed è possibile verificare in modo efficiente se il proprio sistema è vulnerabile.
+  </p>
+
+  <p>
+    Vediamo poi come utilizzare una Custom Compliance Policy di Microsoft Intune per verificare la presenza della vulnerabilità nel nostro ambiente.
+  </p>
+
+    <h2 id="cose-la-vulnerabilita-cve-2022-41099">
+      Cos'è la vulnerabilità CVE-2022-41099
+    </h2>
+
+  <p>
+    La vulnerabilità CVE-2022-41099 di Windows permette ad un attore malevolo in possesso del computer fisico di bypassare la protezione BitLocker e accedere alle informazioni salvate nel disco. La vulnerabilità è sfruttabile solo se il BitLocker è attivo senza un PIN ma solo tramite il TPM, che è la situazione nella stragrande maggioranza dei casi.
+  </p>
+
+  <p>
+    <strong>Per poter correggere questa vulnerabilità è necessario un intervento manuale</strong>, ovvero l'installazione di una patch nell'ambiente WinRE, la partizione di Recovery.
+  </p>
+
+  <p>
+    Non mi dilungherò molto, ma vi consiglio caldamente la lettura di questo articolo che spiega molto bene il problema:<br><a href="https://blog.scrt.ch/2023/08/14/cve-2022-41099-analysis-of-a-bitlocker-drive-encryption-bypass/">https://blog.scrt.ch/2023/08/14/cve-2022-41099-analysis-of-a-bitlocker-drive-encryption-bypass/</a>
+  </p>
+
+    <h2 id="verificare-manualmente-la-vulnerabilita">
+      Verificare manualmente la vulnerabilità
+    </h2>
+
+  <p>
+    Prendendo sempre spunto dall'articolo indicato sopra, è sufficiente aprire una PowerShell come amministratore ed eseguire questo script:
+  </p>
+<pre class="line-numbers  language-visual-basic"><code>$BitLocker = Get-WmiObject -Namespace "Root\cimv2\Security\MicrosoftVolumeEncryption" -Class "Win32_EncryptableVolume" -Filter "DriveLetter = '$($env:SystemDrive)'"
+if ($BitLocker) {
+    if ($BitLocker.GetProtectionStatus().protectionStatus -eq 1) {
+        Write-Host "[CVE-2022-41099] BitLocker is enabled."
+        $TpmProtectors = $BitLocker.GetKeyProtectors("0").volumekeyprotectorID | Where-Object {
+            $KeyProtectorType = $BitLocker.GetKeyProtectorType($_).KeyProtectorType
+            ($KeyProtectorType -eq 1) -or ($KeyProtectorType -ge 4 -and $KeyProtectorType -le 6)
+        }
+        if ($TpmProtectors) {
+            Write-Host "[CVE-2022-41099] A TPM-based protector was found."
+            $MountDir = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "$([Guid]::NewGuid().Guid)_winre"
+            Write-Host "[CVE-2022-41099] Create mount directory: $MountDir"
+            $null = New-Item -Path $MountDir -ItemType Directory
+            Write-Host "[CVE-2022-41099] Mount RE..."
+            reagentc.exe /mountre /path $MountDir
+            if ($LASTEXITCODE -eq 0) {
+                $TargetFile = Join-Path -Path $MountDir -ChildPath "\Windows\System32\bootmenuux.dll"
+                Write-Host "[CVE-2022-41099] File to check: $TargetFile"
+                $RealNtVersion = [Diagnostics.FileVersionInfo]::GetVersionInfo($TargetFile).ProductVersion
+                Write-Host "[CVE-2022-41099] File version: $RealNtVersion"
+                $VersionString = "$($RealNtVersion.Split('.')[0]).$($RealNtVersion.Split('.')[1])"
+                $FileVersion = $($RealNtVersion.Split('.')[2])
+                $FileRevision = $($RealNtVersion.Split('.')[3])
+                if ($VersionString -eq "10.0") {
+                    $ExpectedRevision = 0
+                    switch ($FileVersion) {
+                        "10240" { Write-Host "[CVE-2022-41099] Windows 10, version 1507, file revision should be &gt;= 19567."; $ExpectedRevision = 19567 }
+                        "14393" { Write-Host "[CVE-2022-41099] Windows 10, version 1607, file revision should be &gt;= 5499."; $ExpectedRevision = 5499 }
+                        "17763" { Write-Host "[CVE-2022-41099] Windows 10, version 1809, file revision should be &gt;= 3646."; $ExpectedRevision = 3646 }
+                        "19041" { Write-Host "[CVE-2022-41099] Windows 10, version 2004, file revision should be &gt;= 2247."; $ExpectedRevision = 2247 }
+                        "22000" { Write-Host "[CVE-2022-41099] Windows 11, version 21H2, file revision should be &gt;= 1215."; $ExpectedRevision = 1215 }
+                        "22621" { Write-Host "[CVE-2022-41099] Windows 11, version 22H2, file revision should be &gt;= 815."; $ExpectedRevision = 815 }
+                        default { Write-Host "[CVE-2022-41099] Unsupported OS."}
+                    }
+                    if ($ExpectedRevision -ne 0) {
+                        if ($FileRevision -lt $ExpectedRevision) { Write-Host "[CVE-2022-41099] WinRE is vulnerable." -ForegroundColor Red }
+                        else { Write-Host "[CVE-2022-41099] WinRE is not vulnerable." -ForegroundColor Green }
+                    }
+                }
+                else { Write-Host "[CVE-2022-41099] Unsupported version: $VersionString" }
+                Write-Host "[CVE-2022-41099] Unmount RE..."
+                dism.exe /unmount-image /mountDir:$MountDir /discard
+            }
+            else { Write-Host "[CVE-2022-41099] Failed to mount WinRE." }
+            Write-Host "[CVE-2022-41099] Remove mount directory."
+            Remove-Item -Path $MountDir
+        }
+        else { Write-Host "[CVE-2022-41099] No TPM-based protector was found." }
+    }
+    else { Write-Host "[CVE-2022-41099] BitLocker is not enabled." }
+}</code></pre>
+
+  <p>
+    Questo script è il metodo più affidabile e "idiot proof" per verificare se il sistema è vulnerabile o meno, con un risultato parlante senza lasciare dubbi.
+  </p>
+
+    <figure class="post__image post__image--center">
+      <img loading="lazy" src="https://gabriele.tips/media/posts/19/Screenshot-2023-08-22-alle-15.36.24.png" height="110" width="1210" alt="WinRE is vulnerable"  sizes="100vw" srcset="https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.24-xs.png 300w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.24-sm.png 480w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.24-md.png 768w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.24-lg.png 1024w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.24-xl.png 1360w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.24-2xl.png 1600w">
+      <figcaption>WinRE is vulnerable</figcaption>
+    </figure>
+
+    <figure class="post__image post__image--center">
+      <img loading="lazy" src="https://gabriele.tips/media/posts/19/Screenshot-2023-08-22-alle-15.36.36.png" height="112" width="1204" alt="WinRE is not vulnerable"  sizes="100vw" srcset="https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.36-xs.png 300w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.36-sm.png 480w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.36-md.png 768w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.36-lg.png 1024w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.36-xl.png 1360w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-15.36.36-2xl.png 1600w">
+      <figcaption>WinRE is not vulnerable</figcaption>
+    </figure>
+
+  <p>
+    Nonostante la sua semplicità e chiarezza, questo codice è poco indicato per un check automatico in background, perché i comandi usati sono abbastanza gravosi sulle risorse di sistema e poco indicati per un "health check", che a seconda della configurazione può essere eseguito anche più volte al giorno.
+  </p>
+
+  <p>
+    Cercando un po' in giro ho scoperto che è possibile eseguire lo stesso controllo senza dover fare il mount della partizione di Recovery, grazie a questo script:<br><a href="https://p0w3rsh3ll.wordpress.com/2023/04/06/patching-cve-2022-41099/" target="_blank">https://p0w3rsh3ll.wordpress.com/2023/04/06/patching-cve-2022-41099/</a>
+  </p>
+
+  <p>
+    Inizialmente non funzionava sui miei sistemi, ma semplicemente perché lo script è tarato per i sistemi in inglese, mentre l'output di <code>ReAgentC.exe</code> nei sistemi in italiano o in altre lingue è differente. (Thanks, Micro💩...)
+  </p>
+
+  <p>
+    Ho quindi modificato lo script per identificare la partizione di recovery a prescindere dalla lingua del sistema:
+  </p>
+<pre class="line-numbers  language-html"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
+$RELoc = $RELoc.Trim()
+Get-WindowsImageContent -ImagePath "$($RELoc)\winre.wim" -Index 1 |
+Where-Object { $_ -match 'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll'} |
+ForEach-Object { ([regex]'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll').Matches($_) |
+Select-Object -Expand Groups | Where-Object Name -eq 'Version' | Select-Object -ExpandProperty Value}| ForEach-Object { try {[version]$_}catch{ 'Failed'}} |
+Sort-Object -Descending | Select-Object -First 1 | ForEach-Object ToString</code></pre>
+
+  <p>
+    Questo codice però non è così versatile come il precedente, mostra semplicemente la versione del file <code>BootMenuUX.dll</code>, sta poi all'utente finale capire se la patch è necessaria o meno.
+  </p>
+
+  <p>
+    Sfruttando questo script veloce ho integrato la logica di verifica automatica implementata nello script precedente, ottenendo quindi uno script veloce ma allo stesso tempo "parlante":
+  </p>
+<pre class="line-numbers  language-html"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
+$RELoc = $RELoc.Trim()
+$RealNtVersion = (Get-WindowsImageContent -ImagePath "$($RELoc)\winre.wim" -Index 1 |
+Where-Object { $_ -match 'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll'} |
+ForEach-Object { ([regex]'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll').Matches($_) |
+Select-Object -Expand Groups | Where-Object Name -eq 'Version' | Select-Object -ExpandProperty Value}| ForEach-Object { try {[version]$_}catch{ 'Failed'}} |
+Sort-Object -Descending | Select-Object -First 1 | ForEach-Object ToString)
+
+$VersionString = "$($RealNtVersion.Split('.')[0]).$($RealNtVersion.Split('.')[1])"
+                $FileVersion = $($RealNtVersion.Split('.')[2])
+                $FileRevision = $($RealNtVersion.Split('.')[3])
+                if ($VersionString -eq "10.0") {
+                    $ExpectedRevision = 0
+                    switch ($FileVersion) {
+                        "10240" { Write-Host "[CVE-2022-41099] Windows 10, version 1507, file revision should be &gt;= 19567."; $ExpectedRevision = 19567 }
+                        "14393" { Write-Host "[CVE-2022-41099] Windows 10, version 1607, file revision should be &gt;= 5499."; $ExpectedRevision = 5499 }
+                        "17763" { Write-Host "[CVE-2022-41099] Windows 10, version 1809, file revision should be &gt;= 3646."; $ExpectedRevision = 3646 }
+                        "19041" { Write-Host "[CVE-2022-41099] Windows 10, version 2004, file revision should be &gt;= 2247."; $ExpectedRevision = 2247 }
+                        "22000" { Write-Host "[CVE-2022-41099] Windows 11, version 21H2, file revision should be &gt;= 1215."; $ExpectedRevision = 1215 }
+                        "22621" { Write-Host "[CVE-2022-41099] Windows 11, version 22H2, file revision should be &gt;= 815."; $ExpectedRevision = 815 }
+                        default { Write-Host "[CVE-2022-41099] Unsupported OS."}
+                    }
+                    if ($ExpectedRevision -ne 0) {
+                        if ($FileRevision -lt $ExpectedRevision) { Write-Host "[CVE-2022-41099] WinRE is vulnerable." -ForegroundColor Red }
+                        else { Write-Host "[CVE-2022-41099] WinRE is not vulnerable." -ForegroundColor Green }
+                    }
+                }
+</code></pre>
+
+    <figure class="post__image post__image--center">
+      <img loading="lazy" src="https://gabriele.tips/media/posts/19/2023-08-22-17_30_14-Window.png" height="54" width="542" alt="WinRE is not vulnerable"  sizes="100vw" srcset="https://gabriele.tips/media/posts/19/responsive/2023-08-22-17_30_14-Window-xs.png 300w ,https://gabriele.tips/media/posts/19/responsive/2023-08-22-17_30_14-Window-sm.png 480w ,https://gabriele.tips/media/posts/19/responsive/2023-08-22-17_30_14-Window-md.png 768w ,https://gabriele.tips/media/posts/19/responsive/2023-08-22-17_30_14-Window-lg.png 1024w ,https://gabriele.tips/media/posts/19/responsive/2023-08-22-17_30_14-Window-xl.png 1360w ,https://gabriele.tips/media/posts/19/responsive/2023-08-22-17_30_14-Window-2xl.png 1600w">
+      <figcaption>WinRE is not vulnerable</figcaption>
+    </figure>
+
+  <p>
+    Ora che abbiamo il nostro script di verifica veloce e parlante, possiamo utilizzarlo come base per costruire una policy di verifica compliance in Intune.
+  </p>
+
+    <h2 id="introduzione-alle-custom-compliance-policies-con-intune">
+      Introduzione alle Custom Compliance Policies con Intune
+    </h2>
+
+  <p>
+    In Microsoft Intune è possibile creare delle Compliance Policies personalizzate. La policy è composta da due elementi: uno script PowerShell di "detection" che viene eseguito sulla macchina e un JSON per configurare i valori che desideriamo avere nella nostra "compliance".
+  </p>
+
+  <p>
+    Anche qui non mi dilungo sulla letteratura ma vi lascio la risorsa ufficiale di Microsoft:<br><a href="https://learn.microsoft.com/en-us/mem/intune/protect/compliance-use-custom-settings" target="_blank">https://learn.microsoft.com/en-us/mem/intune/protect/compliance-use-custom-settings</a>
+  </p>
+
+  <p>
+    E vi lascio anche questo articolo molto chiaro che mi ha aiutato a capire meglio il funzionamento:<br><a href="https://call4cloud.nl/2021/11/the-last-days-of-custom-compliance/" target="_blank">https://call4cloud.nl/2021/11/the-last-days-of-custom-compliance/<br></a>
+  </p>
+
+    <h2 id="creiamo-la-nostra-policy-di-compliance">
+      Creiamo la nostra Policy di Compliance
+    </h2>
+
+    <h3 id="script-powershell-di-detection">
+      Script PowerShell di detection
+    </h3>
+
+  <p>
+    La prima cosa da fare è costruire lo script PowerShell di detection. Prendendo come base lo script "veloce", lo adattiamo per ritornare un JSON come richiesto dalle specifiche di Intune.
+  </p>
+<pre class="line-numbers  language-html"><code>$Result = "ERROR"
+$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
+$RELoc = $RELoc.Trim()
+$RealNtVersion = (Get-WindowsImageContent -ImagePath "$($RELoc)\winre.wim" -Index 1 |
+Where-Object { $_ -match 'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll'} |
+ForEach-Object { ([regex]'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll').Matches($_) |
+Select-Object -Expand Groups | Where-Object Name -eq 'Version' | Select-Object -ExpandProperty Value}| ForEach-Object { try {[version]$_}catch{ 'Failed'}} |
+Sort-Object -Descending | Select-Object -First 1 | ForEach-Object ToString)
+$VersionString = "$($RealNtVersion.Split('.')[0]).$($RealNtVersion.Split('.')[1])"
+                $FileVersion = $($RealNtVersion.Split('.')[2])
+                $FileRevision = $($RealNtVersion.Split('.')[3])
+                if ($VersionString -eq "10.0") {
+                    $ExpectedRevision = 0
+                    switch ($FileVersion) {
+                        "10240" { $MatchVersion = "[CVE-2022-41099] Windows 10, version 1507, file revision should be 19567 or greater"; $ExpectedRevision = 19567 }
+                        "14393" { $MatchVersion = "[CVE-2022-41099] Windows 10, version 1607, file revision should be 5499 or greater"; $ExpectedRevision = 5499 }
+                        "17763" { $MatchVersion = "[CVE-2022-41099] Windows 10, version 1809, file revision should be 3646 or greater"; $ExpectedRevision = 3646 }
+                        "19041" { $MatchVersion = "[CVE-2022-41099] Windows 10, version 2004, file revision should be 2247 or greater"; $ExpectedRevision = 2247 }
+                        "22000" { $MatchVersion = "[CVE-2022-41099] Windows 11, version 21H2, file revision should be 1215 or greater"; $ExpectedRevision = 1215 }
+                        "22621" { $MatchVersion = "[CVE-2022-41099] Windows 11, version 22H2, file revision should be 815 or greater"; $ExpectedRevision = 815 }
+                        default { $MatchVersion = "[CVE-2022-41099] Unsupported OS."}
+                    }
+                    if ($ExpectedRevision -ne 0) {
+                        if ($FileRevision -lt $ExpectedRevision) { $Result = "[CVE-2022-41099] WinRE is vulnerable" }
+                        else { $Result = "[CVE-2022-41099] WinRE is not vulnerable" }
+                    }
+                }
+                
+$hash = @{Result = $Result; RealNtVersion = $RealNtVersion; MatchVersion = $MatchVersion}
+return $hash | ConvertTo-Json -Compress</code></pre>
+
+  <p>
+    Nello script ho deciso di passare al JSON più informazioni di quante ne servono veramente. Purtroppo Intune non permette di mostrare i valori passati nella dashboard, quindi non avremo modo di vedere per esempio il valore di $RealNtVersion e $MatchVersion, ma ho deciso comunque di esporli nel JSON perché vengono registrati nei log in locale sulla macchina e potrebbero essere utili per fare diagnostica.
+  </p>
+
+    <h3 id="json-di-configurazione">
+      JSON di configurazione
+    </h3>
+
+  <p>
+    A questo punto creiamo il JSON con la logica che ci interessa.
+  </p>
+<pre class="line-numbers  language-html"><code>{
+"Rules":[ 
+    { 
+        "SettingName":"Result",
+        "Operator":"IsEquals",
+        "DataType":"String",
+        "Operand":"[CVE-2022-41099] WinRE is not vulnerable",
+        "MoreInfoUrl":"https://example.com",
+        "RemediationStrings":[ 
+           { 
+              "Language":"en_US",
+              "Title":"[CVE-2022-41099] WinRE is vulnerable.",
+              "Description": "Contattare il reparto IT per le verifiche."
+           },
+           { 
+            "Language":"it_IT",
+            "Title":"[CVE-2022-41099] WinRE is vulnerable.",
+            "Description": "Contattare il reparto IT per le verifiche."
+           }
+        ]
+    },
+    { 
+        "SettingName":"RealNtVersion",
+        "Operator":"NotEquals",
+        "DataType":"String",
+        "Operand":"",
+        "MoreInfoUrl":"https://example.com",
+        "RemediationStrings":[ 
+           { 
+              "Language":"en_US",
+              "Title":"[CVE-2022-41099] WinRE is vulnerable.",
+              "Description": "Contattare il reparto IT per le verifiche."
+           },
+           { 
+            "Language":"it_IT",
+            "Title":"[CVE-2022-41099] WinRE is vulnerable.",
+            "Description": "Contattare il reparto IT per le verifiche."
+           }
+        ]
+    },
+    { 
+        "SettingName":"MatchVersion",
+        "Operator":"NotEquals",
+        "DataType":"String",
+        "Operand":"",
+        "MoreInfoUrl":"https://example.com",
+        "RemediationStrings":[ 
+           { 
+              "Language":"en_US",
+              "Title":"[CVE-2022-41099] WinRE is vulnerable.",
+              "Description": "Contattare il reparto IT per le verifiche."
+           },
+           { 
+            "Language":"it_IT",
+            "Title":"[CVE-2022-41099] WinRE is vulnerable.",
+            "Description": "Contattare il reparto IT per le verifiche."
+           }
+        ]
+    }
+
+ ]
+}</code></pre>
+
+  <p>
+    I due valori <code>$RealNtVersion</code> e <code>$MatchVersion</code> li facciamo validare sempre a true poiché non ci interessano nella logica di compliance. Il valore importante è <code>$Result</code>.
+  </p>
+
+    <h3 id="configuriamo-il-tutto-nella-dashboard">
+      Configuriamo il tutto nella Dashboard
+    </h3>
+
+  <p>
+    Entriamo nella dashboard di Intune e carichiamo il nostro PowerShell andando in<br><b>Devices &gt; Compliance Policies &gt; Scripts </b>e poi <b>Add &gt; Windows 10 and later</b>
+  </p>
+
+    <figure class="post__image post__image--center">
+      <img loading="lazy" src="https://gabriele.tips/media/posts/19/Screenshot-2023-08-22-alle-16.28.51.png" height="502" width="1166" alt="Compliance policies | Scripts"  sizes="100vw" srcset="https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.28.51-xs.png 300w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.28.51-sm.png 480w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.28.51-md.png 768w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.28.51-lg.png 1024w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.28.51-xl.png 1360w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.28.51-2xl.png 1600w">
+      <figcaption>Compliance policies | Scripts</figcaption>
+    </figure>
+
+  <p>
+    Qui diamo un bel nome al nostro script, io l'ho chiamato <em>"WinRE Vulnerability [CVE-2022-41099]"</em>, andiamo avanti e incolliamo lo script PowerShell lasciando le configurazioni come da screen. Al termine salviamo il tutto.
+  </p>
+
+    <figure class="post__image post__image--center">
+      <img loading="lazy" src="https://gabriele.tips/media/posts/19/Screenshot-2023-08-22-alle-16.29.31.png" height="1044" width="1620" alt="Create custom script"  sizes="100vw" srcset="https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.29.31-xs.png 300w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.29.31-sm.png 480w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.29.31-md.png 768w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.29.31-lg.png 1024w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.29.31-xl.png 1360w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.29.31-2xl.png 1600w">
+      <figcaption>Create custom script</figcaption>
+    </figure>
+
+  <p>
+    Una volta caricato lo script di detection, dobbiamo creare la Custom Compliance Policy e per farlo si va in <strong>Devices &gt; Windows &gt; Compliance Policies</strong>, qui selezioniamo <strong>Create Policy &gt; Windows 10 and later</strong>.
+  </p>
+
+  <p>
+    Diamo un nome alla nostra Compliance Policy (es. <em>"Windows - WinRE not vulnerable"</em>) e proseguiamo selezionando <strong>Custom Compliance</strong>, attiviamo <strong>Require</strong>, selezioniamo il nostro script di detection e carichiamo il JSON creato precedentemente.
+  </p>
+
+  <p>
+    Se tutto è stato impostato correttamente dovrebbe popolare i settings impostati nel JSON.
+  </p>
+
+    <figure class="post__image post__image--center">
+      <img loading="lazy" src="https://gabriele.tips/media/posts/19/Screenshot-2023-08-22-alle-16.42.57.png" height="1634" width="1706" alt="Windows | Compliance policies"  sizes="100vw" srcset="https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.42.57-xs.png 300w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.42.57-sm.png 480w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.42.57-md.png 768w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.42.57-lg.png 1024w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.42.57-xl.png 1360w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.42.57-2xl.png 1600w">
+      <figcaption>Windows | Compliance policies</figcaption>
+    </figure>
+
+  <p>
+    A questo punto possiamo proseguire come una classica Compliance Policy, assegnando le azioni in caso di non-compliance e gli assignments, che variano in base al tipo di ambiente. Personalmente ho configurato di segnalare immediatamente la non-compliance assegnando la policy a tutti i dispositivi del tenant.
+  </p>
+
+  <p>
+    Fatto questo... bisogna aspettare!&nbsp;
+  </p>
+
+  <p>
+    Purtroppo ci vuole circa mezz'oretta prima che una Compliance Policy venga recepita dall'ambiente di Intune e distribuita. Maggiori dettagli li trovate nel link riportato sopra di call4cloud.&nbsp;
+  </p>
+
+  <p>
+    Una volta che la policy si sarà propagata a dovere, sarà possibile vedere a colpo d'occhio quali sono i sistemi vulnerabili alla CVE-2022-41099 e pianificare l'installazione manuale della patch.
+  </p>
+
+    <figure class="post__image post__image--center">
+      <img loading="lazy" src="https://gabriele.tips/media/posts/19/Screenshot-2023-08-22-alle-16.49.41.png" height="652" width="2212" alt="Windows - WinRE Not Vulnerable | Device Status"  sizes="100vw" srcset="https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.49.41-xs.png 300w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.49.41-sm.png 480w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.49.41-md.png 768w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.49.41-lg.png 1024w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.49.41-xl.png 1360w ,https://gabriele.tips/media/posts/19/responsive/Screenshot-2023-08-22-alle-16.49.41-2xl.png 1600w">
+      <figcaption>Windows - WinRE Not Vulnerable | Device Status</figcaption>
+    </figure>
+
+    <h2 id="come-applicare-la-patch-per-cve-2022-41099">
+      Come applicare la patch per CVE-2022-41099
+    </h2>
+
+  <p>
+    A marzo 2023 Microsoft ha rilasciato uno script PowerShell per applicare la patch alla partizione WinRE. Qui trovate la pagina di riferimento:<br><a href="https://support.microsoft.com/en-us/topic/kb5025175-updating-the-winre-partition-on-deployed-devices-to-address-security-vulnerabilities-in-cve-2022-41099-ba6621fa-5a9f-48f1-9ca3-e13eb56fb589" target="_blank">https://support.microsoft.com/en-us/topic/kb5025175-updating-the-winre-partition-on-deployed-devices-to-address-security-vulnerabilities-in-cve-2022-41099-ba6621fa-5a9f-48f1-9ca3-e13eb56fb589</a><br>
+  </p>
+
+  <p>
+    (In realtà due script, ma se avete una versione di Windows più vecchia della 2004 direi che WinRE è l'ultimo dei vostri problemi.)
+  </p>
+
+  <p>
+    Il problema di questo script è che bisogna prima scaricare il pacchetto di aggiornamento "Safe OS Dynamic Update" corretto e poi eseguire lo script, passando il percorso del pacchetto come parametro.
+  </p>
+
+  <p>
+    C'è un po' di letteratura in giro in merito all'applicazione della patch, ve li linko per conoscenza.
+  </p>
+
+  <p>
+    Qui c'è uno dei post più vecchi sulla questione, che poi è stato aggiornato rimandando allo script ufficiale Microsoft:<br><a href="https://www.elevenforum.com/t/important-issue-to-be-aware-of-if-you-use-bitlocker-on-your-os-drive.11818/page-2#post-244851" target="_blank">https://www.elevenforum.com/t/important-issue-to-be-aware-of-if-you-use-bitlocker-on-your-os-drive.11818/page-2#post-244851&nbsp;</a>
+  </p>
+
+  <p>
+    Qui trovate uno script che fa un po' di tutto (e un po' di troppo anche, imho) ma come lo script Microsoft bisogna predisporre i file nella giusta cartella:<br><a href="https://manima.de/2023/01/modify-winre-patches-drivers-and-cve-2022-41099/">https://manima.de/2023/01/modify-winre-patches-drivers-and-cve-2022-41099/</a>
+  </p>
+
+  <p>
+    Qui trovate uno script per scaricare i file di aggiornamento per i vari sistemi, ma i link nello script non sono aggiornati alle ultime versioni di Safe OS rilasciate:&nbsp;<br><a href="https://homotechsual.dev/2023/01/17/Download-CVE-2022-41099-Patches/">https://homotechsual.dev/2023/01/17/Download-CVE-2022-41099-Patches/</a>
+  </p>
+
+  <p>
+    Qui c'è tutto il mega-spiegone di Microsoft in merito all'aggiornamento di WinRE:<br><a href="https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/add-update-to-winre" target="_blank">https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/add-update-to-winre</a><br>
+  </p>
+
+    <h2 id="1-click-winre-downloadandamppatch">
+      1-Click WinRE Download&amp;Patch
+    </h2>
+
+  <p>
+    Nessuno degli script trovati in giro fa una cosa molto semplice: scaricare l'ultima versione di SafeOS compatibile e installarla.
+  </p>
+
+  <p>
+    Ho quindi deciso di prendere lo script di Microsoft e "appiccicarci" sopra in modo molto grezzo e rozzo il download automatico della patch basandomi sulla logica dello script di detection usato in precedenza. Ho modificato la parte iniziale dello script di Microsoft per rimuovere la richiesta dei parametri in ingresso e prendere il file scaricato nella tmp.
+  </p>
+
+  <p class="msg msg--warning">
+    <b>ATTENZIONE:</b> lo script non è stato testato a fondo in ogni casistica, è scritto male e di fretta, potrebbe andare in errore. La logica di patching è immutata dallo script di Microsoft originale ma non mi assumo comunque nessuna responsabilità in caso di fallimento critico.
+  </p>
+
+  <p class="msg msg--info">
+    <strong>INFO:</strong> Lo script scarica le patch attuali aggiornate al <u>22 agosto 2023</u> ed è compatibile con Windows 10 dalla versione 2004 alla 22h2 e Windows 11 dalla 21h2 alla 22h2.
+  </p>
+
+  <p>
+    Di seguito lo script:
+  </p>
+<pre class="line-numbers  language-basic"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
+$RELoc = $RELoc.Trim()
+$RealNtVersion = (Get-WindowsImageContent -ImagePath "$($RELoc)\winre.wim" -Index 1 |
+Where-Object { $_ -match 'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll'} |
+ForEach-Object { ([regex]'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll').Matches($_) |
+Select-Object -Expand Groups | Where-Object Name -eq 'Version' | Select-Object -ExpandProperty Value}| ForEach-Object { try {[version]$_}catch{ 'Failed'}} |
+Sort-Object -Descending | Select-Object -First 1 | ForEach-Object ToString)
+
+$VersionString = "$($RealNtVersion.Split('.')[0]).$($RealNtVersion.Split('.')[1])"
+                $FileVersion = $($RealNtVersion.Split('.')[2])
+                if ($VersionString -eq "10.0") {
+                    $WebLink = ""
+                    switch ($FileVersion) {
+                        "19041" { Write-Output "Windows 10, version 2004"; $WebLink = "https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/crup/2023/06/windows10.0-kb5027388-x64_1790eeed872acc22ca22db59acb1cb423bac5cbd.cab" }
+                        "22000" { Write-Output "Windows 11, version 21H2"; $WebLink = "https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/crup/2023/06/windows10.0-kb5027572-x64_2540b19f40241a5c7cae4e782e67c17383965125.cab" }
+                        "22621" { Write-Output "Windows 11, version 22H2"; $WebLink = "https://catalog.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/fd6044df-9ac1-4633-a7f7-0964783d317c/public/windows11.0-kb5028495-x64_d16975c555b3b952605ecf2005c3f5cd75243eb6.cab" }
+                        default { Write-Output "Unsupported OS."; exit 1}
+                    }
+                    if ($WebLink -ne "") {
+                        # Get the temporary folder path
+                        $tempFolder = [System.IO.Path]::GetTempPath()
+
+                        # Full path where the file will be saved
+                        $packagePath = Join-Path -Path $tempFolder -ChildPath "winre-patch.cab"
+
+                        # Download the file
+                        Invoke-WebRequest -Uri $WebLink -OutFile $packagePath
+
+                        Write-Output "The file has been downloaded to: $packagePath"
+                    }
+                }
+
+
+################################################################################################
+#
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+#
+# THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+################################################################################################
+
+$workDir=""
+
+# ------------------------------------
+# Help functions
+# ------------------------------------
+# Log message
+
+function LogMessage([string]$message) {
+    $message = "$([DateTime]::Now) - $message"
+    Write-Output $message
+}
+
+function IsTPMBasedProtector {
+    $DriveLetter = $env:SystemDrive
+    LogMessage("Checking BitLocker status")
+    $BitLocker = Get-WmiObject -Namespace "Root\cimv2\Security\MicrosoftVolumeEncryption" -Class "Win32_EncryptableVolume" -Filter "DriveLetter = '$DriveLetter'"
+
+    if (-not $BitLocker) {
+        LogMessage("No BitLocker object")
+        return $False
+    }
+
+    $protectionEnabled = $False
+    switch ($BitLocker.GetProtectionStatus().protectionStatus) {
+        ("0") {
+            LogMessage("Unprotected")
+            break
+        }
+        ("1") {
+            LogMessage("Protected")
+            $protectionEnabled = $True
+            break
+        }
+        ("2") {
+            LogMessage("Uknown")
+            break
+        }
+        default {
+            LogMessage("NoReturn")
+            break
+        }
+    }
+
+    if (!$protectionEnabled) {
+        LogMessage("Bitlocker isn’t enabled on the OS")
+        return $False
+    }
+
+    $ProtectorIds = $BitLocker.GetKeyProtectors("0").volumekeyprotectorID
+    $return = $False
+
+    foreach ($ProtectorID in $ProtectorIds) {
+        $KeyProtectorType = $BitLocker.GetKeyProtectorType($ProtectorID).KeyProtectorType
+        switch($KeyProtectorType) {
+            "1" {
+                LogMessage("Trusted Platform Module (TPM)")
+                $return = $True
+                break
+            }
+            "4" {
+                LogMessage("TPM And PIN")
+                $return = $True
+                break
+            }
+            "5" {
+                LogMessage("TPM And Startup Key")
+                $return = $True
+                break
+            }
+            "6" {
+                LogMessage("TPM And PIN And Startup Key")
+                $return = $True
+                break
+            }
+            default {break}
+        } #endSwitch
+    } #EndForeach
+
+    if ($return) {
+        LogMessage("Has TPM-based protector")
+    }
+    else {
+        LogMessage("Doesn't have TPM-based protector")
+    }
+
+    return $return
+}
+
+function SetRegistrykeyForSuccess {
+    reg add HKLM\SOFTWARE\Microsoft\PushButtonReset /v WinREPathScriptSucceed /d 1 /f
+}
+
+function TargetfileVersionExam([string]$mountDir) {
+    # Exam target binary
+    $targetBinary=$mountDir + "\Windows\System32\bootmenuux.dll"
+    LogMessage("TargetFile: " + $targetBinary)
+    $realNTVersion = [Diagnostics.FileVersionInfo]::GetVersionInfo($targetBinary).ProductVersion
+    $versionString = "$($realNTVersion.Split('.')[0]).$($realNTVersion.Split('.')[1])"
+    $fileVersion = $($realNTVersion.Split('.')[2])
+    $fileRevision = $($realNTVersion.Split('.')[3])
+    LogMessage("Target file version: " + $realNTVersion)
+    if (!($versionString -eq "10.0")) {
+        LogMessage("Not Windows 10 or later")
+        return $False
+    }
+
+    $hasUpdated = $False
+
+    #Windows 10, version 1507 10240.19567
+    #Windows 10, version 1607 14393.5499
+    #Windows 10, version 1809 17763.3646
+    #Windows 10, version 2004 1904X.2247
+    #Windows 11, version 21H2 22000.1215
+    #Windows 11, version 22H2 22621.815
+    switch ($fileVersion) {
+        "10240" {
+            LogMessage("Windows 10, version 1507")
+            if ($fileRevision -ge 19567) {
+                LogMessage("Windows 10, version 1507 with revision " + $fileRevision + " &gt;= 19567, updates have been applied")
+                $hasUpdated = $True
+            }
+            break
+        }
+        "14393" {
+            LogMessage("Windows 10, version 1607")
+            if ($fileRevision -ge 5499) {
+                LogMessage("Windows 10, version 1607 with revision " + $fileRevision + " &gt;= 5499, updates have been applied")
+                $hasUpdated = $True
+            }
+            break
+        }
+        "17763" {
+            LogMessage("Windows 10, version 1809")
+            if ($fileRevision -ge 3646) {
+                LogMessage("Windows 10, version 1809 with revision " + $fileRevision + " &gt;= 3646, updates have been applied")
+                $hasUpdated = $True
+            }
+            break
+        }
+        "19041" {
+            LogMessage("Windows 10, version 2004")
+            if ($fileRevision -ge 2247) {
+                LogMessage("Windows 10, version 2004 with revision " + $fileRevision + " &gt;= 2247, updates have been applied")
+                $hasUpdated = $True
+            }
+            break
+        }
+        "22000" {
+            LogMessage("Windows 11, version 21H2")
+            if ($fileRevision -ge 1215) {
+                LogMessage("Windows 11, version 21H2 with revision " + $fileRevision + " &gt;= 1215, updates have been applied")
+                $hasUpdated = $True
+            }
+            break
+        }
+        "22621" {
+            LogMessage("Windows 11, version 22H2")
+            if ($fileRevision -ge 815) {
+                LogMessage("Windows 11, version 22H2 with revision " + $fileRevision + " &gt;= 815, updates have been applied")
+                $hasUpdated = $True
+            }
+            break
+        }
+        default {
+            LogMessage("Warning: unsupported OS version")
+        }
+    }
+
+    return $hasUpdated
+}
+
+function PatchPackage([string]$mountDir, [string]$packagePath) {
+    # Exam target binary
+    $hasUpdated =TargetfileVersionExam($mountDir)
+    if ($hasUpdated) {
+        LogMessage("The update has already been added to WinRE")
+        SetRegistrykeyForSuccess
+        return $False
+    }
+
+    # Add package
+    LogMessage("Apply package:" + $packagePath)
+    Dism /Add-Package /Image:$mountDir /PackagePath:$packagePath
+    if ($LASTEXITCODE -eq 0) {
+        LogMessage("Successfully applied the package")
+    }
+    else {
+        LogMessage("Applying the package failed with exit code: " + $LASTEXITCODE)
+        return $False
+    }
+
+    # Cleanup recovery image
+    LogMessage("Cleanup image")
+    Dism /image:$mountDir /cleanup-image /StartComponentCleanup /ResetBase
+    if ($LASTEXITCODE -eq 0) {
+        LogMessage("Cleanup image succeed")
+    }
+    else {
+        LogMessage("Cleanup image failed: " + $LASTEXITCODE)
+        return $False
+    }
+
+    return $True
+}
+
+# ------------------------------------
+# Execution starts
+# ------------------------------------
+# Check breadcrumb
+
+if (Test-Path HKLM:\Software\Microsoft\PushButtonReset) {
+    $values = Get-ItemProperty -Path HKLM:\Software\Microsoft\PushButtonReset
+
+    if (!(-not $values)) {
+        if (Get-Member -InputObject $values -Name WinREPathScriptSucceed) {
+            $value = Get-ItemProperty -Path HKLM:\Software\Microsoft\PushButtonReset -Name WinREPathScriptSucceed
+
+            if ($value.WinREPathScriptSucceed -eq 1) {
+                LogMessage("This script was previously run successfully")
+                exit 1
+            }
+        }
+    }
+}
+
+if ([string]::IsNullorEmpty($workDir)) {
+    LogMessage("No input for mount directory")
+    LogMessage("Use default path from temporary directory")
+    $workDir = [System.IO.Path]::GetTempPath()
+}
+
+LogMessage("Working Dir: " + $workDir)
+$name = "CA551926-299B-27A55276EC22_Mount"
+$mountDir = Join-Path $workDir $name
+LogMessage("MountDir: " + $mountdir)
+
+# Delete existing mount directory
+if (Test-Path $mountDir) {
+    LogMessage("Mount directory: " + $mountDir + " already exists")
+    LogMessage("Try to unmount it")
+    Dism /unmount-image /mountDir:$mountDir /discard
+    if (!($LASTEXITCODE -eq 0)) {
+        LogMessage("Warning: unmount failed: " + $LASTEXITCODE)
+    }
+    LogMessage("Delete existing mount direcotry " + $mountDir)
+    Remove-Item $mountDir -Recurse
+}
+
+# Create mount directory
+LogMessage("Create mount directory " + $mountDir)
+New-Item -Path $mountDir -ItemType Directory
+
+# Set ACL for mount directory
+LogMessage("Set ACL for mount directory")
+icacls $mountDir /inheritance:r
+icacls $mountDir /grant:r SYSTEM:"(OI)(CI)(F)"
+icacls $mountDir /grant:r *S-1-5-32-544:"(OI)(CI)(F)"
+
+# Mount WinRE
+LogMessage("Mount WinRE:")
+reagentc /mountre /path $mountdir
+if ($LASTEXITCODE -eq 0) {
+    # Patch WinRE
+    if (PatchPackage -mountDir $mountDir -packagePath $packagePath) {
+        $hasUpdated = TargetfileVersionExam($mountDir)
+        if ($hasUpdated) {
+            LogMessage("After patch, find expected version for target file")
+        }
+        else {
+            LogMessage("Warning: After applying the patch, unexpected version found for the target file")
+        }
+
+        LogMessage("Patch succeed, unmount to commit change")
+        Dism /unmount-image /mountDir:$mountDir /commit
+        if (!($LASTEXITCODE -eq 0)) {
+            LogMessage("Unmount failed: " + $LASTEXITCODE)
+            exit 1
+        }
+        else {
+            if ($hasUpdated) {
+                if (IsTPMBasedProtector) {
+                    # Disable WinRE and re-enable it to let new WinRE be trusted by BitLocker
+                    LogMessage("Disable WinRE")
+                    reagentc /disable
+                    LogMessage("Re-enable WinRE")
+                    reagentc /enable
+                    reagentc /info
+                }
+
+                # Leave a breadcrumb indicates the script has succeed
+                SetRegistrykeyForSuccess
+            }
+        }
+    }
+    else {
+        LogMessage("Patch failed or is not applicable, discard unmount")
+        Dism /unmount-image /mountDir:$mountDir /discard
+        if (!($LASTEXITCODE -eq 0)) {
+            LogMessage("Unmount failed: " + $LASTEXITCODE)
+            exit 1
+        }
+    }
+
+}
+else {
+    LogMessage("Mount failed: " + $LASTEXITCODE)
+}
+
+# Cleanup Mount directory in the end
+LogMessage("Delete mount direcotry")
+Remove-Item $mountDir -Recurse
+</code></pre>
+
+    <h2 id="per-concludere">
+      Per concludere
+    </h2>
+
+  <p>
+    Vorrei poter scrivere liberamente cosa ne penso di questa patch, dell'approccio che ha avuto Microsoft e della mirabolante procedura che bisogna seguire per garantire la sicurezza del dispositivo, ma vorrei evitare di scrivere imprecazioni su queste pagine, quindi mi limiterò a sperare che quanto scritto possa essere d'aiuto ad altre persone per mettere in sicurezza i propri sistemi senza dover impazzire troppo.
+  </p>
+
+  <p>
+    Microsoft, be better please. ❤️
+  </p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>Forse questa è la volta buona</title>
         <author>
@@ -523,112 +1339,6 @@ Per me è “match made in heaven” per il mio caso d’uso.</p>
 <p><strong>Mi collego ad altri WiFi -&gt;</strong> La condizione per "WiFi Collegato" non viene rispettata in quanto SSID differente, quindi continuo a navigare in VPN.</p>
 <p><strong>Torno a casa -&gt;</strong> Rileva connessione al WiFi domestico, entra "WiFi Collegato" che disconnette la VPN.</p>
 <p>E con questo è tutto. Se avete bisogno di ulteriori informazioni, segnalarmi degli errori o fornirmi feedback, scrivetemi! ☺️</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>VPPN: Virtual Private &quot;Pi-Holed&quot; Network</title>
-        <author>
-            <name>Gabriele</name>
-        </author>
-        <link href="https://gabriele.tips/virtual-private-pi-holed-network/"/>
-        <id>https://gabriele.tips/virtual-private-pi-holed-network/</id>
-
-        <updated>2023-08-08T16:07:38+02:00</updated>
-            <summary>
-                <![CDATA[
-                    Chi mi conosce sa molto bene che provo un amore incondizionato per Pi-Hole. Navigare in una rete non protetta da Pi-Hole mi fa sentire nudo e vulnerabile, perché Pi-Hole non è un semplice ad-blocker, è un incredibile strumento per alzare in modo considerevole la sicurezza&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>Chi mi conosce sa molto bene che provo un amore incondizionato per <a href="https://pi-hole.net/">Pi-Hole</a>. Navigare in una rete non protetta da Pi-Hole mi fa sentire nudo e vulnerabile, perché Pi-Hole non è un semplice ad-blocker, è un incredibile strumento per alzare in modo considerevole la sicurezza della navigazione.</p>
-<p>Senza gli ads, si riduce quasi del 100% la possibilità di venire dirottati su qualche pagina malevola a causa di malvertising.</p>
-<p>Per esempio, attacchi di questo tipo verrebbero completamente neutralizzati grazie a Pi-Hole:</p>
-<figure class="post__image"><a href="https://twitter.com/GabrielLandau/status/1055300918101598208" target="_blank" rel="noopener noreferrer"><img loading="lazy"  src="https://gabriele.tips/media/posts/7/Screenshot-2023-08-05-alle-18.05.05.png" alt="" width="1178" height="1028" sizes="100vw" srcset="https://gabriele.tips/media/posts/7/responsive/Screenshot-2023-08-05-alle-18.05.05-xs.png 300w ,https://gabriele.tips/media/posts/7/responsive/Screenshot-2023-08-05-alle-18.05.05-sm.png 480w ,https://gabriele.tips/media/posts/7/responsive/Screenshot-2023-08-05-alle-18.05.05-md.png 768w ,https://gabriele.tips/media/posts/7/responsive/Screenshot-2023-08-05-alle-18.05.05-lg.png 1024w ,https://gabriele.tips/media/posts/7/responsive/Screenshot-2023-08-05-alle-18.05.05-xl.png 1360w ,https://gabriele.tips/media/posts/7/responsive/Screenshot-2023-08-05-alle-18.05.05-2xl.png 1600w"></figure></a></p>
-<p>Fin dai primi giorni di utilizzo ho desiderato poter avere lo stesso livello di protezione anche in mobilità con lo smartphone. L'idea era quella di fare una VPN per dirottare tutto il traffico di navigazione nella rete di casa e far gestire quindi i DNS da Pi-Hole. Purtroppo questa idea è durata qualche secondo, giusto il tempo di ricordarsi di avere una misera aDSL da 8Mbps/700Kbps. #FuckDigitalDivide<br>Non potendo fare una VPN domestica a causa delle scarse prestazioni della mia rete, ho adottato per diverso tempo una VPN di terze parti, nello specifico F-Secure Freedome, che implementa un filtro per siti malevoli e tracking. Non siamo ai livelli di Pi-Hole, però mi ha aiutato a navigare in modo sicuro anche in mobilità negli ultimi due anni.</p>
-<p>Ora però la musica è cambiata. Ora ho cambiato casa e ho finalmente a disposizione una connessione stratosferica, 1Gbps/200Mbps con OpenFiber!</p>
-<figure class="kg-card kg-image-card"><figure class="kg-image"><img  src="https://gabriele.tips/media/posts/7/asdasdasdasda.gif" alt="" loading="lazy"></figure></figure>
-<p>Appena ho collegato il router e ho provato con mano l'incredibile velocità, l'idea della VPN è tornata a solleticarmi, così una sera mi sono messo comodo sul divano e ho realizzato la mia <strong>Virtual Private Pi-Holed Network</strong>!</p>
-<p>Nota: esiste una <a href="https://docs.pi-hole.net/guides/vpn/overview/">guida ufficiale molto ben dettagliata</a>, da cui ho preso informazioni a piene mani, tuttavia parte da una Raspbian pulita senza nulla, ci installa prima OpenVPN e poi Pi-Hole. E' molto più facile invece trovarsi in una situazione dove si ha un RPi con Pi-Hole già installato e configurato e si desidera installarci sopra la VPN.</p>
-<p>Ed è esattamente quello che faremo ora.</p>
-<p>Situazione di partenza: Raspberry Pi nella rete locale con Raspbian Lite e Pi-Hole installato e funzionante. Darò per scontato che se siete arrivati qui, sapete connettervi in SSH al vostro RPi. Consiglio prima di partire con l'installazione, di fare un controllo su eventuali aggiornamenti disponibili:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>sudo apt update &amp;&amp; sudo apt upgrade</code></pre>
-<!--kg-card-end: markdown-->
-<h3 id="installiamo-openvpn-su-pi-hole">Installiamo OpenVPN su Pi-Hole</h3>
-<p>La prima cosa da fare è scaricare e installare OpenVPN <a href="https://en.wikipedia.org/wiki/Road_warrior_(computing)">road warrior</a>. Connettetevi in SSH al RPi ed eseguite questo comando:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>wget https://git.io/vpn -O openvpn-install.shchmod 755 openvpn-install.shsudo ./openvpn-install.sh</code></pre>
-<!--kg-card-end: markdown-->
-<p>Verrà eseguita la procedura guidata per l'installazione. E' molto semplice e basta inserire poche informazioni chiave. Vi consiglio di tenere le stesse impostazioni che ho messo io e cambiare solamente il vostro indirizzo pubblico e il nome del client alla fine:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>Welcome to this quick OpenVPN "road warrior" installerI need to ask you a few questions before starting the setupYou can leave the default options and just press enter if you are ok with themFirst I need to know the IPv4 address of the network interface you want OpenVPNlistening to.IP address: 10.8.0.1This server is behind NAT. What is the public IPv4 address or hostname?Public IP address / hostname: x.x.x.x #Nota: qui dovete inserire il vostro IP pubblico di casaWhich protocol do you want for OpenVPN connections?   1) UDP (recommended)   2) TCPProtocol [1-2]: 1What port do you want OpenVPN listening to?Port: 1194Which DNS do you want to use with the VPN?   1) Current system resolvers   2) Google   3) OpenDNS   4) NTT   5) Hurricane Electric   6) VerisignDNS [1-6]: 1Finally, tell me your name for the client certificatePlease, use one word only, no special charactersClient name: GabrielePixel2 #Nota: qui dovete inserire un nome profilo per il vostro utente remotoOkay, that was all I needed. We are ready to setup your OpenVPN server nowPress any key to continue...</code></pre>
-<!--kg-card-end: markdown-->
-<p>A questo punto partirà l'installazione e terminerà così:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>Finished!Your client configuration is available at /root/GabrielePixel2.ovpnIf you want to add more clients, you simply need to run this script again!</code></pre>
-<!--kg-card-end: markdown-->
-<p>Il file che ha generato è il profilo <code>.ovpn</code> da copiare nel vostro client per poter effettuare la connessione. Di default lo salva in <code>/root/</code>, vi consiglio di spostarlo nella vostra home per poterlo prelevare dal RPi con più semplicità:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>cd ~sudo mv /root/GabrielePixel2.ovpn GabrielePixel2.ovpn</code></pre>
-<!--kg-card-end: markdown-->
-<p>A seconda della configurazione del vostro RPi, potrebbe essere necessario diventare proprietari del file per poterlo gestire. Se usate l'utente di default <code>pi</code> basta digitare:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>sudo chown pi:pi GabrielePixel2.ovpn</code></pre>
-<!--kg-card-end: markdown-->
-<p>Di questo file ci occuperemo più avanti. Procediamo con la configurazione del server VPN.</p>
-<h3 id="configuriamo-openvpn-server">Configuriamo OpenVPN Server</h3>
-<p>Ora dobbiamo cambiare i resolver DNS per l'interfaccia <code>tun0</code> creata dallo script di OpenVPN. Prima però ci serve sapere l'IP di questa interfaccia. Se non avete cambiato nulla in fase di installazione rispetto alla guida, dovrebbe avere indirizzo <code>10.8.0.1</code>, in alternativa potete sempre verificare con questi semplici comandi</p>
-<p>Per Raspbian Jessie:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>ifconfig tun0 | grep 'inet addr'</code></pre>
-<!--kg-card-end: markdown-->
-<p>Per Raspbian Stretch:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>ip a</code></pre>
-<!--kg-card-end: markdown-->
-<p>Annotiamoci l'IP dell'interfaccia <code>tun0</code>, quindi andiamo a modificare il file di configurazione di OpenVPN:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>sudo nano /etc/openvpn/server.conf</code></pre>
-<!--kg-card-end: markdown-->
-<p>Cercate all'interno del file la riga che inizia con <code>push "dhcp option DNS x.x.x.x"</code>   e modificatela con l'IP della vostra <code>tun0</code>:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>push "dhcp-option DNS 10.8.0.1"</code></pre>
-<!--kg-card-end: markdown-->
-<p>Chiudete salvando il file e riavviate il servizio di OpenVPN:</p>
-<!--kg-card-begin: markdown-->
-<pre><code>sudo service openvpn restart</code></pre>
-<!--kg-card-end: markdown-->
-<p>Ora colleghiamoci al pannello admin web di Pi-Hole, nelle impostazioni, sezione DNS, impostate l'interfaccia di ascolto su "Listen on all interfaces" e salvate:</p>
-<figure class="kg-card kg-image-card kg-card-hascaption"><figure class="kg-image"><img  src="https://gabriele.tips/media/posts/7/Screenshot_2018-11-02-Pi-hole-Admin-Console.png" alt="" loading="lazy" sizes="100vw" srcset="https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Pi-hole-Admin-Console-xs.png 300w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Pi-hole-Admin-Console-sm.png 480w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Pi-hole-Admin-Console-md.png 768w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Pi-hole-Admin-Console-lg.png 1024w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Pi-hole-Admin-Console-xl.png 1360w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Pi-hole-Admin-Console-2xl.png 1600w"></figure>
-<figcaption>Listen on all interfaces</figcaption>
-</figure>
-<p>A questo punto il server OpenVPN è configurato e funzionante con Pi-Hole come resolver DNS! 👏</p>
-<h3 id="port-forward-dal-router">Port Forward dal router</h3>
-<p>Per poter accedere da fuori è necessario esporre su internet la porta 1194 UDP del vostro RPi. Non vi lascio una guida per farlo perché cambia a seconda del router che avete, però vi consiglio di fare molta attenzione ad esporre SOLAMENTE la porta 1194 UDP e non tutto il RPi. <strong>Non mettete il RPi in DMZ!! </strong></p>
-<h3 id="esportiamo-il-file-ovpn">Esportiamo il file .ovpn</h3>
-<p>Ora possiamo provare a connetterci alla nostra VPN, però prima dobbiamo recuperare il nostro file di configurazione <code>.ovpn</code> dal RPi e copiarlo sullo smartphone. Per farlo è sufficiente connettersi con un client SFTP e prelevare dalla home directory il file. Se siete su Windows vi consiglio <a href="https://winscp.net/eng/docs/lang:it">WinSCP</a>. Salvate pure il file <code>.ovpn</code> dove volete nel vostro smartphone, non è importante.</p>
-<p>Se volete, potete creare ulteriori nuovi utenti semplicemente eseguendo di nuovo lo script iniziale</p>
-<!--kg-card-begin: markdown-->
-<pre><code>sudo ./openvpn-install.sh</code></pre>
-<!--kg-card-end: markdown-->
-<p>Questa volta apparirà un menu differente, dove potremo creare un nuovo profilo <code>.ovpn</code> da usare per esempio su un altro device.</p>
-<!--kg-card-begin: markdown-->
-<pre><code>Looks like OpenVPN is already installedWhat do you want to do?   1) Add a new user   2) Revoke an existing user   3) Remove OpenVPN   4) ExitSelect an option [1-4]: 1Tell me a name for the client certificatePlease, use one word only, no special charactersClient name: iPhone7</code></pre>
-<!--kg-card-end: markdown-->
-<p>La procedura per esportare il file .ovpn è la medesima riportata sopra.</p>
-<h3 id="connettiamoci-alla-vpn">Connettiamoci alla VPN</h3>
-<p>Procediamo quindi all'installazione del client OpenVPN. Su Android vi consiglio OpenVPN for Android, poiché è un'alternativa OpenSource al client ufficiale e permette una personalizzazione più granulare.</p>
-<p>Ora dovete solamente importare il profilo <code>.ovpn</code> nell'app e provare a connettervi.</p>
-<p>Nota: potete cambiare liberamente il nome della connessione. Per esempio io l'ho chiamata <code>Casa</code>.</p>
-<figure class="kg-card kg-image-card"><figure class="kg-image"><img  src="https://gabriele.tips/media/posts/7/Screenshot_20181102-153132.png" alt="" loading="lazy" sizes="100vw" srcset="https://gabriele.tips/media/posts/7/responsive/Screenshot_20181102-153132-xs.png 300w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_20181102-153132-sm.png 480w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_20181102-153132-md.png 768w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_20181102-153132-lg.png 1024w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_20181102-153132-xl.png 1360w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_20181102-153132-2xl.png 1600w"></figure></figure>
-<p>Se tutto è stato fatto come da manuale, dovrebbe connettersi e dovreste riuscire a navigare.</p>
-<figure class="kg-card kg-image-card"><figure class="kg-image"><img  src="https://gabriele.tips/media/posts/7/Screenshot--2-nov-2018-17_30_49-.png" alt="" loading="lazy" sizes="100vw" srcset="https://gabriele.tips/media/posts/7/responsive/Screenshot--2-nov-2018-17_30_49--xs.png 300w ,https://gabriele.tips/media/posts/7/responsive/Screenshot--2-nov-2018-17_30_49--sm.png 480w ,https://gabriele.tips/media/posts/7/responsive/Screenshot--2-nov-2018-17_30_49--md.png 768w ,https://gabriele.tips/media/posts/7/responsive/Screenshot--2-nov-2018-17_30_49--lg.png 1024w ,https://gabriele.tips/media/posts/7/responsive/Screenshot--2-nov-2018-17_30_49--xl.png 1360w ,https://gabriele.tips/media/posts/7/responsive/Screenshot--2-nov-2018-17_30_49--2xl.png 1600w"></figure></figure>
-<p>Come prova dell'effettiva navigazione con Pi-Hole, potete provare a visitare questo sito: <a href="https://blockads.fivefilters.org/?pihole">https://blockads.fivefilters.org/?pihole</a></p>
-<figure class="kg-card kg-image-card"><figure class="kg-image"><img  src="https://gabriele.tips/media/posts/7/Screenshot_2018-11-02-Block-Ads--1.png" alt="" loading="lazy" sizes="100vw" srcset="https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Block-Ads--1-xs.png 300w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Block-Ads--1-sm.png 480w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Block-Ads--1-md.png 768w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Block-Ads--1-lg.png 1024w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Block-Ads--1-xl.png 1360w ,https://gabriele.tips/media/posts/7/responsive/Screenshot_2018-11-02-Block-Ads--1-2xl.png 1600w"></figure></figure>
-<p>Se vi restituisce questo messaggio, potete farvi i complimenti, avete appena creato la vostra <strong>Virtual Private Pi-Holed Network</strong>!</p>
-<h3> </h3>
             ]]>
         </content>
     </entry>
