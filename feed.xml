@@ -3,7 +3,7 @@
     <title>Gabriele Tips</title>
     <link href="https://gabriele.tips/feed.xml" rel="self" />
     <link href="https://gabriele.tips" />
-    <updated>2023-08-22T18:10:13+02:00</updated>
+    <updated>2023-08-22T18:37:27+02:00</updated>
     <author>
         <name>Gabriele</name>
     </author>
@@ -17,7 +17,7 @@
         <link href="https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/"/>
         <id>https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/</id>
 
-        <updated>2023-08-22T18:10:13+02:00</updated>
+        <updated>2023-08-22T18:36:44+02:00</updated>
             <summary>
                 <![CDATA[
                     Recentemente mi sono imbattuto di nuovo in questa vulnerabilità di Windows che ai tempi avevo deliberatamente deciso di ignorare a causa della scarsa documentazione sulla questione. A distanza di qualche mese, la situazione sembra essere più chiara ed è possibile verificare in modo efficiente se&hellip;
@@ -254,7 +254,7 @@ $hash = @{Result = $Result; RealNtVersion = $RealNtVersion; MatchVersion = $Matc
 return $hash | ConvertTo-Json -Compress</code></pre>
 
   <p>
-    Nello script ho deciso di passare al JSON più informazioni di quante ne servono veramente. Purtroppo Intune non permette di mostrare i valori passati nella dashboard, quindi non avremo modo di vedere per esempio il valore di $RealNtVersion e $MatchVersion, ma ho deciso comunque di esporli nel JSON perché vengono registrati nei log in locale sulla macchina e potrebbero essere utili per fare diagnostica.
+    Nello script ho deciso di passare al JSON più informazioni di quante ne servono veramente. Purtroppo Intune non permette di mostrare i valori passati nella dashboard, quindi non avremo modo di vedere per esempio il valore di <code>$RealNtVersion</code> e <code>$MatchVersion</code>, ma ho deciso comunque di esporli nel JSON perché vengono registrati nei log in locale sulla macchina e potrebbero essere utili per fare diagnostica.
   </p>
 
     <h3 id="json-di-configurazione">
@@ -833,7 +833,7 @@ Remove-Item $mountDir -Recurse
         <link href="https://gabriele.tips/forse-questa-e-la-volta-buona/"/>
         <id>https://gabriele.tips/forse-questa-e-la-volta-buona/</id>
 
-        <updated>2023-08-06T00:50:05+02:00</updated>
+        <updated>2023-08-22T18:37:27+02:00</updated>
             <summary>
                 <![CDATA[
                     Questa storia nasce più o meno un anno fa, nell’agosto 2022 quando un po’ curioso e un po’ annoiato decisi di approfondire meglio il mondo dei generatori statici come Hugo, Jekyll e compagnia. Quando adottai Ghost come strumento per questo blog era ancora una piattaforma&hellip;
@@ -870,7 +870,7 @@ Per me è “match made in heaven” per il mio caso d’uso.</p>
 <h2 id="ghosttopublii">GhostToPublii</h2>
 <p>Purtroppo non esistono tool di migrazione da Ghost a Publii, ma quest’ultimo integra un importer per WP. Ho quindi preso l’export di Ghost (in json), convertito nel formato WP tramite un tool online, dato in pasto a Publii e in un attimo ha ricreato tutti i post.</p>
 <p>Ho perso circa un paio d’ore di cazzeggio per rifinire le impostazioni del template per renderlo di mio gradimento e al termine l’ho pubblicato con un clic nel repo di GitHub.</p>
-<p>Infine, mi sono deciso a fare il grande passo e fare definitivamente lo switch.<br>Il dominio principale di questo blog ora punta al sito statico generato da Publii. Il vecchio blog per ora è raggiungibile da <a href="https://old.gabriele.tips">https://old.gabriele.tips</a> se volete fare confronti. Credo lo terrò ancora un paio di mesi, per poi segare definitivamente l’istanza.</p>
+<p>Infine, mi sono deciso a fare il grande passo e fare definitivamente lo switch.<br>Il dominio principale di questo blog ora punta al sito statico generato da Publii. Il vecchio blog per ora è raggiungibile da <a href="https://old.gabriele.tips">https://old.gabriele.tips</a> se volete fare confronti. Credo lo terrò ancora un paio di mesi, per poi segare definitivamente l’istanza. [EDIT: è offline]</p>
 <p>Se vi interessa ho archiviato qui la versione del blog che avevo creato con Hugo: <a href="https://github.com/gabry89/gabriele-tips-hugo">https://github.com/gabry89/gabriele-tips-hugo</a></p>
 <h2 id="publii-or-not-publii">Publii or not Publii</h2>
 <p>Nonostante Publii sia riuscito a convincermi a fare lo switch dedicandogli un paio d’ore della mia vita, mantengo delle riserve sullo strumento.<br>Come accennavo prima, è un po’ una nicchia, non ha un vasto pubblico e lo sviluppo non sembra correre veloce come Hugo o altri framework.<br>E’ comunque attivamente mantenuto e ha la sua piccola comunità.<br>Oggi c’è, funziona e fa quello che mi serve. Domani? Si vedrà.</p>
