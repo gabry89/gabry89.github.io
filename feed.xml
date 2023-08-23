@@ -3,7 +3,7 @@
     <title>Gabriele Tips</title>
     <link href="https://gabriele.tips/feed.xml" rel="self" />
     <link href="https://gabriele.tips" />
-    <updated>2023-08-22T18:48:07+02:00</updated>
+    <updated>2023-08-23T13:41:43+02:00</updated>
     <author>
         <name>Gabriele</name>
     </author>
@@ -17,7 +17,7 @@
         <link href="https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/"/>
         <id>https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/</id>
 
-        <updated>2023-08-22T18:48:07+02:00</updated>
+        <updated>2023-08-23T13:41:43+02:00</updated>
             <summary>
                 <![CDATA[
                     Recentemente mi sono imbattuto di nuovo in questa vulnerabilità di Windows che ai tempi avevo deliberatamente deciso di ignorare a causa della scarsa documentazione sulla questione. A distanza di qualche mese, la situazione sembra essere più chiara ed è possibile verificare in modo efficiente se&hellip;
@@ -69,7 +69,7 @@
   <p>
     Prendendo sempre spunto dall'articolo indicato sopra, è sufficiente aprire una PowerShell come amministratore ed eseguire questo script:
   </p>
-<pre class="line-numbers  language-visual-basic"><code>$BitLocker = Get-WmiObject -Namespace "Root\cimv2\Security\MicrosoftVolumeEncryption" -Class "Win32_EncryptableVolume" -Filter "DriveLetter = '$($env:SystemDrive)'"
+<pre class="line-numbers  language-sql"><code>$BitLocker = Get-WmiObject -Namespace "Root\cimv2\Security\MicrosoftVolumeEncryption" -Class "Win32_EncryptableVolume" -Filter "DriveLetter = '$($env:SystemDrive)'"
 if ($BitLocker) {
     if ($BitLocker.GetProtectionStatus().protectionStatus -eq 1) {
         Write-Host "[CVE-2022-41099] BitLocker is enabled."
@@ -150,7 +150,7 @@ if ($BitLocker) {
   <p>
     Ho quindi modificato lo script per identificare la partizione di recovery a prescindere dalla lingua del sistema:
   </p>
-<pre class="line-numbers  language-html"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
+<pre class="line-numbers  language-sql"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
 $RELoc = $RELoc.Trim()
 Get-WindowsImageContent -ImagePath "$($RELoc)\winre.wim" -Index 1 |
 Where-Object { $_ -match 'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll'} |
@@ -165,7 +165,7 @@ Sort-Object -Descending | Select-Object -First 1 | ForEach-Object ToString</code
   <p>
     Sfruttando questo script veloce ho integrato la logica di verifica automatica implementata nello script precedente, ottenendo quindi uno script veloce ma allo stesso tempo "parlante":
   </p>
-<pre class="line-numbers  language-html"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
+<pre class="line-numbers  language-sql"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
 $RELoc = $RELoc.Trim()
 $RealNtVersion = (Get-WindowsImageContent -ImagePath "$($RELoc)\winre.wim" -Index 1 |
 Where-Object { $_ -match 'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll'} |
@@ -230,7 +230,7 @@ $VersionString = "$($RealNtVersion.Split('.')[0]).$($RealNtVersion.Split('.')[1]
   <p>
     La prima cosa da fare è costruire lo script PowerShell di detection. Prendendo come base lo script "veloce", lo adattiamo per ritornare un JSON come richiesto dalle specifiche di Intune.
   </p>
-<pre class="line-numbers  language-html"><code>$Result = "ERROR"
+<pre class="line-numbers  language-sql"><code>$Result = "ERROR"
 $null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
 $RELoc = $RELoc.Trim()
 $RealNtVersion = (Get-WindowsImageContent -ImagePath "$($RELoc)\winre.wim" -Index 1 |
@@ -272,7 +272,7 @@ return $hash | ConvertTo-Json -Compress</code></pre>
   <p>
     A questo punto creiamo il JSON con la logica che ci interessa.
   </p>
-<pre class="line-numbers  language-html"><code>{
+<pre class="line-numbers  language-json"><code>{
 "Rules":[ 
     { 
         "SettingName":"Result",
@@ -458,7 +458,7 @@ return $hash | ConvertTo-Json -Compress</code></pre>
   <p>
     Di seguito lo script:
   </p>
-<pre class="line-numbers  language-basic"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
+<pre class="line-numbers  language-sql"><code>$null,$RELoc = ((& (Get-Command "$($env:systemroot)\system32\ReAgentC.exe") @('/info')) | Where-Object { $_ -match '\\Recovery\\WindowsRE' } ) -split ':'
 $RELoc = $RELoc.Trim()
 $RealNtVersion = (Get-WindowsImageContent -ImagePath "$($RELoc)\winre.wim" -Index 1 |
 Where-Object { $_ -match 'Windows\\WinSxS\\amd64_microsoft-windows-bootmenuux_.+_(?&lt;Version&gt;(\d{1,5}\.)+\d{1,5})_.+\\BootMenuUX\.dll'} |
