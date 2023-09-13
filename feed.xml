@@ -3,7 +3,7 @@
     <title>Gabriele Tips</title>
     <link href="https://gabriele.tips/feed.xml" rel="self" />
     <link href="https://gabriele.tips" />
-    <updated>2023-08-23T13:41:43+02:00</updated>
+    <updated>2023-09-13T19:45:39+02:00</updated>
     <author>
         <name>Gabriele</name>
     </author>
@@ -17,7 +17,7 @@
         <link href="https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/"/>
         <id>https://gabriele.tips/verificare-la-vulnerabilita-winre-cve-2022-41099-con-intune/</id>
 
-        <updated>2023-08-23T13:41:43+02:00</updated>
+        <updated>2023-09-13T19:45:39+02:00</updated>
             <summary>
                 <![CDATA[
                     Recentemente mi sono imbattuto di nuovo in questa vulnerabilità di Windows che ai tempi avevo deliberatamente deciso di ignorare a causa della scarsa documentazione sulla questione. A distanza di qualche mese, la situazione sembra essere più chiara ed è possibile verificare in modo efficiente se&hellip;
@@ -35,7 +35,15 @@
   </p>
 
   <p>
-    Vediamo poi come utilizzare una Custom Compliance Policy di Microsoft Intune per verificare la presenza della vulnerabilità nel nostro ambiente.<br><br>
+    Vediamo poi come utilizzare una Custom Compliance Policy di Microsoft Intune per verificare la presenza della vulnerabilità nel nostro ambiente.<br>
+  </p>
+
+  <p class="msg msg--info">
+    <b>INFO:</b> L'articolo è stato modificato dalla sua pubblicazione originale.<br><br><u>13/09/2023</u>: <br>- Corretto un bug nello script che non comparava correttamente la versione richiesta con la versione rilevata<br>- Corretto il link alla patch per Windows 10<br>- Corretto l'output dello script di patching
+  </p>
+
+  <p>
+    
   </p>
 
   <div class="post__toc">
@@ -188,7 +196,7 @@ $VersionString = "$($RealNtVersion.Split('.')[0]).$($RealNtVersion.Split('.')[1]
                         default { Write-Host "[CVE-2022-41099] Unsupported OS."}
                     }
                     if ($ExpectedRevision -ne 0) {
-                        if ($FileRevision -lt $ExpectedRevision) { Write-Host "[CVE-2022-41099] WinRE is vulnerable." -ForegroundColor Red }
+                        if ([int]$FileRevision -lt $ExpectedRevision) { Write-Host "[CVE-2022-41099] WinRE is vulnerable." -ForegroundColor Red }
                         else { Write-Host "[CVE-2022-41099] WinRE is not vulnerable." -ForegroundColor Green }
                     }
                 }
@@ -471,10 +479,10 @@ $VersionString = "$($RealNtVersion.Split('.')[0]).$($RealNtVersion.Split('.')[1]
                 if ($VersionString -eq "10.0") {
                     $WebLink = ""
                     switch ($FileVersion) {
-                        "19041" { Write-Output "Windows 10, version 2004"; $WebLink = "https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/crup/2023/06/windows10.0-kb5027388-x64_1790eeed872acc22ca22db59acb1cb423bac5cbd.cab" }
-                        "22000" { Write-Output "Windows 11, version 21H2"; $WebLink = "https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/crup/2023/06/windows10.0-kb5027572-x64_2540b19f40241a5c7cae4e782e67c17383965125.cab" }
-                        "22621" { Write-Output "Windows 11, version 22H2"; $WebLink = "https://catalog.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/fd6044df-9ac1-4633-a7f7-0964783d317c/public/windows11.0-kb5028495-x64_d16975c555b3b952605ecf2005c3f5cd75243eb6.cab" }
-                        default { Write-Output "Unsupported OS."; exit 1}
+                        "19041" { Write-Host "Windows 10, version 2004"; $WebLink = "https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/crup/2023/06/windows10.0-kb5027389-x64_8d1880d95f920fc8a4c2d96ca8d3b44f3e044581.cab" }
+                        "22000" { Write-Host "Windows 11, version 21H2"; $WebLink = "https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/crup/2023/06/windows10.0-kb5027572-x64_2540b19f40241a5c7cae4e782e67c17383965125.cab" }
+                        "22621" { Write-Host "Windows 11, version 22H2"; $WebLink = "https://catalog.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/fd6044df-9ac1-4633-a7f7-0964783d317c/public/windows11.0-kb5028495-x64_d16975c555b3b952605ecf2005c3f5cd75243eb6.cab" }
+                        default { Write-Host "Unsupported OS."; exit 1}
                     }
                     if ($WebLink -ne "") {
                         # Get the temporary folder path
@@ -486,7 +494,7 @@ $VersionString = "$($RealNtVersion.Split('.')[0]).$($RealNtVersion.Split('.')[1]
                         # Download the file
                         Invoke-WebRequest -Uri $WebLink -OutFile $packagePath
 
-                        Write-Output "The file has been downloaded to: $packagePath"
+                        Write-Host "The file has been downloaded to: $packagePath"
                     }
                 }
 
@@ -515,7 +523,7 @@ $workDir=""
 
 function LogMessage([string]$message) {
     $message = "$([DateTime]::Now) - $message"
-    Write-Output $message
+    Write-Host $message
 }
 
 function IsTPMBasedProtector {
