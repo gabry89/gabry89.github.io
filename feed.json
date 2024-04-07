@@ -98,14 +98,14 @@
             "url": "https://gabriele.tips/privacy-policy/",
             "title": "Privacy Policy",
             "summary": "Qui non ci sono tracker, annunci e cookie di nessun genere. Il sito è generato con Publii e ospitato su GitHub Pages. Utilizzo Umami per&hellip;",
-            "content_html": "<p>Qui non ci sono tracker, annunci e cookie di nessun genere.</p>\n<p>Il sito è generato con <a href=\"https://getpublii.com\" target=\"_blank\" rel=\"noopener noreferrer\">Publii</a> e ospitato su GitHub Pages. Utilizzo <a href=\"https://umami.is\" target=\"_blank\" rel=\"noopener noreferrer\">Umami</a> per avere qualche numero indicativo delle visite sul sito.</p>\n<p>Se consideri uno di questi strumenti una violazione della tua privacy, premi <code>Ctrl + W</code> (con Mac <code>Command + W</code>) per caricare una versione alternativa del sito.</p>\n<p>Buona lettura!</p>",
+            "content_html": "<p>Qui non ci sono tracker, annunci e cookie di nessun genere.</p>\n<p>Il sito è generato con <a href=\"https://getpublii.com\" target=\"_blank\" rel=\"noopener noreferrer\">Publii</a> e ospitato su GitHub Pages. Utilizzo <a href=\"https://umami.is\" target=\"_blank\" rel=\"noopener noreferrer\">Umami</a> per avere qualche numero indicativo delle visite sul sito.</p>\n<p>Se consideri uno di questi strumenti una violazione della tua privacy, puoi premere <code>Ctrl + W</code> (con Mac <code>Command + W</code>) per caricare una versione alternativa del sito.</p>\n<p>Buona lettura!</p>",
             "author": {
                 "name": "Gabriele"
             },
             "tags": [
             ],
             "date_published": "2020-03-01T23:19:52+01:00",
-            "date_modified": "2024-04-07T11:58:16+02:00"
+            "date_modified": "2024-04-07T13:00:43+02:00"
         },
         {
             "id": "https://gabriele.tips/nuova-casa-per-il-blog/",
